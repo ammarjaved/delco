@@ -249,9 +249,9 @@
         </div>
         </div>
     </div>
-
+    
     <div class="tab-pane fade" id="tab2" role="tabpanel">
-    <h3 class="mt-3">Site Pictures</h3>
+        <h3 class="mt-3">Site Pictures</h3>
     
         @php
             $pictureFields = [
@@ -261,31 +261,40 @@
                 'trench_view', 'rtu', 'rcb', 'efi', 'other'
             ];
         @endphp
-
-        @foreach ($pictureFields as $field)
-           <div class="row">
-           <div class="col-md-6">
-            <div class="form-group">
-                <label for="{{ $field }}">{{ ucwords(str_replace('_', ' ', $field)) }}</label>
-                <input type="text" class="form-control" id="{{ $field }}" name="{{ $field }}" value="{{ $siteSurvey1->$field ?? old($field) }}">
-            </div>
-            </div>
-            @for ($i = 1; $i <= ($field == 'other' ? 4 : 2); $i++)
-				<div class="col-md-6">
-				<div class="form-group">
-                    <label for="{{ $field }}_image{{ $i }}">{{ ucwords(str_replace('_', ' ', $field)) }} Image {{ $i }}</label>
-                    <input type="file" class="form-control-file" id="{{ $field }}_image{{ $i }}" name="{{ $field }}_image{{ $i }}">
-
-                    @if(isset($siteSurvey) && $siteSurvey1->{"{$field}_image{$i}"})
-                        <img src="{{ asset(''.$siteSurvey1->{"{$field}_image{$i}"}) }}" alt="{{ ucwords(str_replace('_', ' ', $field)) }} Image {{ $i }}" class="img-thumbnail mt-2" style="max-width: 200px;">
-                    @endif
+    
+        <div class="row">
+            @foreach ($pictureFields as $field)
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ ucwords(str_replace('_', ' ', $field)) }}:</label>
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: inline-block; margin-right: 15px;">
+                                <input type="radio" name="{{ $field }}" value="yes" onclick="toggleFileUpload('{{ $field }}', true)" {{ isset($siteSurvey1) && $siteSurvey1->$field == 'yes' ? 'checked' : '' }} style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;">
+                                Yes
+                            </label>
+                            <label style="display: inline-block;">
+                                <input type="radio" name="{{ $field }}" value="no" onclick="toggleFileUpload('{{ $field }}', false)" {{ isset($siteSurvey1) && $siteSurvey1->$field == 'no' ? 'checked' : '' }} style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;">
+                                No
+                            </label>
+                        </div>
+                        <div id="{{ $field }}_images" style="{{ (isset($siteSurvey1) && $siteSurvey1->$field == 'yes') ? '' : 'display: none;' }}">
+                            @for ($i = 1; $i <= ($field == 'other' ? 4 : 2); $i++)
+                                <div class="form-group">
+                                    <label for="{{ $field }}_image{{ $i }}">{{ ucwords(str_replace('_', ' ', $field)) }} Image {{ $i }}</label>
+                                    <input type="file" class="form-control-file" id="{{ $field }}_image{{ $i }}" name="{{ $field }}_image{{ $i }}">
+    
+                                    @if (isset($siteSurvey1) && $siteSurvey1->{"{$field}_image{$i}"})
+                                        <img src="{{ asset($siteSurvey1->{"{$field}_image{$i}"}) }}" alt="{{ ucwords(str_replace('_', ' ', $field)) }} Image {{ $i }}" class="img-thumbnail mt-2" style="max-width: 200px;">
+                                    @endif
+                                </div>
+                            @endfor
+                        </div>
+                    </div>
                 </div>
-				</div>
-				
-            @endfor
-		</div>	
-        @endforeach
+            @endforeach
         </div>
+    </div>
+    
         
 
     <div class="mt-3">
@@ -328,6 +337,11 @@
 //     updateSubmitButton();
 // });
 // });
+
+function toggleFileUpload(field, show) {
+        var fileUploadDiv = document.getElementById(field + '_images');
+        fileUploadDiv.style.display = show ? 'block' : 'none';
+    }
 
 
 
