@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SiteSurvey;
 use App\Models\SitePicture;
+use App\Models\ToolBoxTalk;
 use Illuminate\Support\Facades\DB;
 
 
@@ -43,11 +44,7 @@ class SiteSurveyController extends Controller
     public function store(Request $request)
     {
        // DB::transaction(function () use ($validatedData, $request) {
-            $siteSurvey = SiteSurvey::create($request->all());
-    
-           // $pictureData = $validatedData;
-          // $pictureData = $request->all();
-          
+            $siteSurvey = SiteSurvey::create($request->all()); 
             $pictureData['site_survey_id'] = $siteSurvey->id;
             $pictureData['substation_fl'] = $request->substation_fl;
             $pictureData['existing_switchgear'] = $request->existing_switchgear;
@@ -66,6 +63,28 @@ class SiteSurveyController extends Controller
             $pictureData['rcb'] = $request->rcb;
             $pictureData['efi'] = $request->efi;
             $pictureData['other'] = $request->other;
+        
+            $toolbox['site_survey_id'] = $siteSurvey->id;
+            $toolbox['pe_nama'] = $siteSurvey->nama_pe;
+            $toolbox['lokasi'] = $request->lokasi;
+            $toolbox['tarikh'] = $request->tarikh;
+            $toolbox['cfs'] = $request->cfs;
+            $toolbox['skop_kerja'] = $request->skop_kerja;
+            $toolbox['ppd_safety_helment'] = $request->ppd_safety_helment;
+            $toolbox['ppd_safety_vest'] = $request->ppd_safety_vest;
+            $toolbox['ppd_safety_shoes'] = $request->ppd_safety_shoes;
+            $toolbox['equipment_condition'] = $request->equipment_condition;
+            $toolbox['equipment_kit_condition'] = $request->equipment_kit_condition;
+            $toolbox['vehicle_fire_extinguisher'] = $request->vehicle_fire_extinguisher;
+            $toolbox['vehicle_condition'] = $request->vehicle_condition;
+            $toolbox['traffic_safety_kon'] = $request->traffic_safety_kon;
+            $toolbox['traffic_sign_board'] = $request->traffic_sign_board;
+            $toolbox['traffic_chargeman'] = $request->traffic_chargeman;
+            $toolbox['rcb'] = $request->rcb;
+            $toolbox['efi'] = $request->efi;
+            $toolbox['other'] = $request->other;
+
+        
 
     
             // Handle file uploads
@@ -92,7 +111,7 @@ class SiteSurveyController extends Controller
 
     
                 foreach ($imageFields as $field) {
-                    if ($request->hasFile($field)) {
+                    if ($request->hasFile($field) && $field!='toolbox_image1' &&  $field!='toolbox_image2') {
                         $img_ext =$request->file($field)->getClientOriginalExtension();
                         $filename =$field . '-' . strtotime(now()) . '.' . $img_ext;
                         $request->file($field)->move($destinationPath, $filename);
@@ -100,9 +119,24 @@ class SiteSurveyController extends Controller
                        $pictureData[$field] =$destinationPath . $filename;
                     }
                 }
+
+
+                foreach ($imageFields as $field) {
+                    if ($request->hasFile($field)) {
+                        if($field=='toolbox_image1'  && $field=='toolbox_image2'){
+                        $img_ext =$request->file($field)->getClientOriginalExtension();
+                        $filename =$field . '-' . strtotime(now()) . '.' . $img_ext;
+                        $request->file($field)->move($destinationPath, $filename);
+                       // $pictureData[$field] = $request->file($field)->store('images', 'public');
+                        $toolbox[$field] =$destinationPath . $filename;
+                        }
+                    }
+                }
     
            // return $pictureData;
             SitePicture::create($pictureData);
+            ToolBoxTalk::create($toolbox);
+
        // });
     
         return redirect()->route('site_survey.index')
@@ -131,6 +165,7 @@ class SiteSurveyController extends Controller
     {
         $siteSurvey = SiteSurvey::find($id);
         $siteSurvey1 = SitePicture::where('site_survey_id',$id)->get()[0];
+        $toolboxTalk = ToolBoxTalk::where('site_survey_id',$id)->get()[0];
 
        
     //  $combinedArray =  (object) array_merge($data->toArray(), $data1->toArray());

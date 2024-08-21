@@ -301,6 +301,98 @@
         
         <div class="tab-pane fade" id="tab3" role="tabpanel">
         <h3 class="mt-3">ToolBoxTalk</h3>  
+        <div class="form-group">
+            <label for="lokasi">Lokasi</label>
+            <input type="text" class="form-control" id="lokasi" name="lokasi" value="{{ $toolboxTalk->lokasi ?? old('lokasi') }}" required>
+        </div>
+
+        
+
+        <div class="form-group">
+            <label for="tarikh">Tarikh</label>
+            <input type="date" class="form-control" id="tarikh" name="tarikh" value="{{ $toolboxTalk->tarikh ?? old('tarikh') }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cfs">CFS</label>
+            <input type="text" class="form-control" id="cfs" name="cfs" value="{{ $toolboxTalk->cfs ?? old('cfs')}}">
+        </div>
+
+        <div class="form-group">
+            <label for="skop_kerja">Skop Kerja</label>
+            <input type="text" class="form-control" id="skop_kerja" name="skop_kerja" value="{{ $toolboxTalk->skop_kerja ?? old('skop_kerja') }}">
+        </div>
+
+        <!-- PPD Safety fields -->
+        @foreach(['ppd_safety_helment', 'ppd_safety_vest', 'ppd_safety_shoes', 'ppd_safety'] as $field)
+            <div class="form-group">
+                <label for="{{ $field }}">{{ ucwords(str_replace('_', ' ', $field)) }}</label>
+                <input type="text" class="form-control" id="{{ $field }}" name="{{ $field }}" value="{{ $toolboxTalk->$field ?? old($field)}}">
+            </div>
+        @endforeach
+
+        <!-- Equipment fields -->
+        @foreach(['equipment_condition', 'equipment_kit_condition'] as $field)
+            <div class="form-group">
+                <label for="{{ $field }}">{{ ucwords(str_replace('_', ' ', $field)) }}</label>
+                <input type="text" class="form-control" id="{{ $field }}" name="{{ $field }}" value="{{ $toolboxTalk->$field ?? old($field)}}">
+            </div>
+        @endforeach
+
+        <!-- Vehicle fields -->
+        @foreach(['vehicle_fire_extinguisher', 'vehicle_condition'] as $field)
+            <div class="form-group">
+                <label for="{{ $field }}">{{ ucwords(str_replace('_', ' ', $field)) }}</label>
+                <input type="text" class="form-control" id="{{ $field }}" name="{{ $field }}" value="{{ $toolboxTalk->$field ?? old($field)}}">
+            </div>
+        @endforeach
+
+        <!-- Traffic fields -->
+        @foreach(['traffic_safety_kon', 'traffic_sign_board', 'traffic_chargeman'] as $field)
+            <div class="form-group">
+                <label for="{{ $field }}">{{ ucwords(str_replace('_', ' ', $field)) }}</label>
+                <input type="text" class="form-control" id="{{ $field }}" name="{{ $field }}" value="{{ $toolboxTalk->$field ?? old($field) }}">
+            </div>
+        @endforeach
+
+        <!-- Team fields -->
+        @foreach(['team_ap_tnp', 'team_cp_tnb'] as $field)
+            <div class="form-group">
+                <label for="{{ $field }}">{{ ucwords(str_replace('_', ' ', $field)) }}</label>
+                <input type="text" class="form-control" id="{{ $field }}" name="{{ $field }}" value="{{ $toolboxTalk->$field ?? old($field) }}">
+            </div>
+        @endforeach
+
+        <!-- NIOSH fields -->
+        @foreach(['niosh_staff_ntsp', 'niosh_special_permit'] as $field)
+            <div class="form-group">
+                <label for="{{ $field }}">{{ ucwords(str_replace('_', ' ', $field)) }}</label>
+                <input type="text" class="form-control" id="{{ $field }}" name="{{ $field }}" value="{{ $toolboxTalk->$field ?? old($field) }}">
+            </div>
+        @endforeach
+
+        <div class="form-group">
+            <label for="picture_during_toolbox">Picture During Toolbox</label>
+            <input type="text" class="form-control" id="picture_during_toolbox" name="picture_during_toolbox" value="{{ $toolboxTalk->picture_during_toolbox ?? old('picture_during_toolbox')}}">
+        </div>
+
+        <div class="form-group">
+            <label for="toolbox_image1">Toolbox Image 1</label>
+            <input type="file" class="form-control-file" id="toolbox_image1" name="toolbox_image1">
+            @if(isset($toolbox_image2) && $toolboxTalk->toolbox_image1)
+                <img src="{{ asset($toolboxTalk->toolbox_image1) }}" alt="Toolbox Image 1" class="img-thumbnail mt-2" style="max-width: 200px;">
+            @endif
+        </div>
+
+        <div class="form-group">
+            <label for="toolbox_image2">Toolbox Image 2</label>
+            <input type="file" class="form-control-file" id="toolbox_image2" name="toolbox_image2">
+            @if(isset($toolbox_image2) && $toolboxTalk->toolbox_image2)
+                <img src="{{ asset($toolboxTalk->toolbox_image2) }}" alt="Toolbox Image 2" class="img-thumbnail mt-2" style="max-width: 200px;">
+            @endif
+        </div>
+
+
     </div>
     <div class="mt-3">
       <button type="button" class="btn btn-secondary" id="prevBtn" onclick="navigate(-1)">Previous</button>
