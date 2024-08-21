@@ -56,6 +56,8 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
 
     Route::resource('site_survey', SiteSurveyController::class);
+    Route::resource('toolbox_talks', ToolboxTalkController::class);
+
 
 
 

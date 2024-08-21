@@ -35,10 +35,7 @@
       <li class="nav-item">
         <a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab">Site Survey Pic</a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" id="tab3-tab" data-toggle="tab" href="#tab3" role="tab">Tool Box Talk</a>
-      </li>
+      
     </ul>
 
 
@@ -290,19 +287,16 @@
         @endforeach
         </div>
         
-        <div class="tab-pane fade" id="tab3" role="tabpanel">
-        <h3 class="mt-3">ToolBoxTalk</h3>  
-    </div>
+
     <div class="mt-3">
       <button type="button" class="btn btn-secondary" id="prevBtn" onclick="navigate(-1)">Previous</button>
       <button type="button" class="btn btn-primary" id="nextBtn" onclick="navigate(1)">Next</button>
       <button type="submit" class="btn btn-success" id="submitBtn" style="display:none;">{{ isset($siteSurvey) ? 'Update' : 'Create' }}</button>
 
     </div>
-
-
         
     </form>
+    </div>
 
         </div>
 		</div>
@@ -338,7 +332,7 @@
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    const tabs = ['#tab1', '#tab2','#tab3'];
+    const tabs = ['#tab1', '#tab2'];
     let currentTabIndex = 0;
 
     function updateButtons() {
