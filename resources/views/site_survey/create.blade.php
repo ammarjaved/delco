@@ -629,15 +629,26 @@ document.addEventListener('DOMContentLoaded', function() {
         ];
 
         pictureFields.forEach(field => {
+
             const isYesChecked = document.querySelector(`input[name="${field}"][value="yes"]`).checked;
             const imageContainer = document.getElementById(`${field}_images`);
             if (isYesChecked) {
+                isYesChecked.forEach(radio => {
+             const img = radio.closest('div').querySelector('img');
+             console.log(img.src)
+
+              });
+
+
                 const files = imageContainer.querySelectorAll('input[type="file"]');
                 let allFilesUploaded = Array.from(files).every(input => input.files.length > 0);
+                
                 if (!allFilesUploaded) {
                     isValid = false;
                 }
+                
             }
+
         });
 
         return isValid;
@@ -703,3 +714,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (nextBtn) nextBtn.addEventListener('click', function() { navigate(1); });
 });
 </script>
+
+
+
+
+
