@@ -289,7 +289,7 @@
                                     <label for="{{ $field }}_image{{ $i }}">{{ ucwords(str_replace('_', ' ', $field)) }} Image {{ $i }}</label>
                                     <input type="file" class="form-control-file" id="{{ $field }}_image{{ $i }}" name="{{ $field }}_image{{ $i }}">
                                     @if (isset($siteSurvey1) && $siteSurvey1->{"{$field}_image{$i}"})
-                                        <img src="{{ asset($siteSurvey1->{"{$field}_image{$i}"}) }}" alt="{{ ucwords(str_replace('_', ' ', $field)) }} Image {{ $i }}" class="img-thumbnail mt-2" style="max-width: 200px;">
+                                        <img src="{{ asset($siteSurvey1->{"{$field}_image{$i}"}) }}" id='img_{{$field}}{{$i}}' alt="{{ ucwords(str_replace('_', ' ', $field)) }} Image {{ $i }}" class="img-thumbnail mt-2" style="max-width: 200px;">
                                     @endif
                                 </div>
                             @endfor
@@ -562,30 +562,7 @@
 
 <script>
 
-// document.addEventListener('DOMContentLoaded', function() {
-//     document.addEventListener('DOMContentLoaded', function() {
-//     const submitBtn = document.getElementById('submitBtn');
-//     let currentTabIndex = 0;
 
-//     function updateSubmitButton() {
-//         if (submitBtn) {
-//             submitBtn.style.display = currentTabIndex === 2 ? 'inline-block' : 'none';
-//         }
-//     }
-
-//     // Add event listener for tab changes
-//     document.querySelectorAll('a[data-toggle="tab"]').forEach(function(tabElement, index) {
-//         tabElement.addEventListener('shown.bs.tab', function (e) {
-//             currentTabIndex = index;
-//             updateSubmitButton();
-//         });
-//     });
-
-//     // Initialize submit button state
-//     updateSubmitButton();
-// });
-// });
-// Function to toggle file upload fields
 function toggleFileUpload(field, show) {
     var fileUploadDiv = document.getElementById(field + '_images');
     fileUploadDiv.style.display = show ? 'block' : 'none';
@@ -628,18 +605,14 @@ document.addEventListener('DOMContentLoaded', function() {
             'trench_view', 'rtu', 'rcb', 'efi', 'other'
         ];
 
+        var status= '{{isset($siteSurvey['id'])}}';
+
+        
+
+        if(status==''){
         pictureFields.forEach(field => {
-
             const isYesChecked = document.querySelector(`input[name="${field}"][value="yes"]`).checked;
-            const imageContainer = document.getElementById(`${field}_images`);
             if (isYesChecked) {
-                isYesChecked.forEach(radio => {
-             const img = radio.closest('div').querySelector('img');
-             console.log(img.src)
-
-              });
-
-
                 const files = imageContainer.querySelectorAll('input[type="file"]');
                 let allFilesUploaded = Array.from(files).every(input => input.files.length > 0);
                 
@@ -650,6 +623,30 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
         });
+     }else{
+        pictureFields.forEach(field => {
+        const isYesChecked = document.querySelector(`input[name="${field}"][value="yes"]`).checked;
+        if(isYesChecked){
+       if(field=='other'){
+        for(var i=1;i<=4;i++){
+           var srcVal= $('#img_'+field+i).attr('src');
+           if(!srcVal){
+            isValid = false;
+           }
+        }
+              
+       }else{
+        for(var i=1;i<=2;i++){
+           var srcVal= $('#img_'+field+i).attr('src');
+           if(!srcVal){
+            isValid = false;
+           }
+        }
+       }
+    }
+
+       });
+     }
 
         return isValid;
     }
@@ -677,13 +674,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function navigate(direction) {
+
         if (direction === 1 && !validateFields()) {
             alert('Please complete all required fields.');
             return; // Prevent navigation if validation fails
         }
-
         currentTabIndex += direction;
+       
         if (currentTabIndex >= 0 && currentTabIndex < tabs.length) {
+            
             const tabElement = document.querySelector(`a[href="${tabs[currentTabIndex]}"]`);
             if (tabElement && typeof bootstrap !== 'undefined') {
                 const tab = new bootstrap.Tab(tabElement);
@@ -691,8 +690,10 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 console.error('Tab element not found or Bootstrap is not available');
             }
+         
             updateButtons();
         }
+      
     }
 
     // Initialize button states
