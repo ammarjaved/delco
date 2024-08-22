@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\SiteSurvey;
 use App\Models\SitePicture;
 use App\Models\ToolBoxTalk;
+use Exception;
 use Illuminate\Support\Facades\DB;
-
 
 
 
@@ -43,6 +43,10 @@ class SiteSurveyController extends Controller
      */
     public function store(Request $request)
     {
+
+         try {
+
+        
        // DB::transaction(function () use ($validatedData, $request) {
             $siteSurvey = SiteSurvey::create($request->all()); 
             $pictureData['site_survey_id'] = $siteSurvey->id;
@@ -73,16 +77,28 @@ class SiteSurveyController extends Controller
             $toolbox['ppd_safety_helment'] = $request->ppd_safety_helment;
             $toolbox['ppd_safety_vest'] = $request->ppd_safety_vest;
             $toolbox['ppd_safety_shoes'] = $request->ppd_safety_shoes;
+            $toolbox['ppd_safety'] = $request->ppd_safety;
             $toolbox['equipment_condition'] = $request->equipment_condition;
             $toolbox['equipment_kit_condition'] = $request->equipment_kit_condition;
             $toolbox['vehicle_fire_extinguisher'] = $request->vehicle_fire_extinguisher;
             $toolbox['vehicle_condition'] = $request->vehicle_condition;
+            $toolbox['team_ap_tnp'] = $request->team_ap_tnp;
+            $toolbox['team_cp_tnb'] = $request-> team_cp_tnb;
+            $toolbox['niosh_staff_ntsp'] = $request-> niosh_staff_ntsp;
+            $toolbox['niosh_special_permit'] = $request-> niosh_special_permit;
+            $toolbox['picture_during_toolbox'] = $request-> picture_during_toolbox;
+           
             $toolbox['traffic_safety_kon'] = $request->traffic_safety_kon;
             $toolbox['traffic_sign_board'] = $request->traffic_sign_board;
             $toolbox['traffic_chargeman'] = $request->traffic_chargeman;
             $toolbox['rcb'] = $request->rcb;
             $toolbox['efi'] = $request->efi;
             $toolbox['other'] = $request->other;
+
+            $toolbox['toolbox_image1'] = $request->toolbox_image1;
+            $toolbox['toolbox_image2'] = $request->toolbox_image2;
+
+
 
         
 
@@ -109,6 +125,8 @@ class SiteSurveyController extends Controller
             ];
             $destinationPath = 'assets/images/';
 
+            $imageFields = ['toolbox_image1', 'toolbox_image2'];
+
     
                 foreach ($imageFields as $field) {
                     if ($request->hasFile($field) && $field!='toolbox_image1' &&  $field!='toolbox_image2') {
@@ -123,7 +141,7 @@ class SiteSurveyController extends Controller
 
                 foreach ($imageFields as $field) {
                     if ($request->hasFile($field)) {
-                        if($field=='toolbox_image1'  && $field=='toolbox_image2'){
+                        if($field=='toolbox_image1'  || $field=='toolbox_image2'){
                         $img_ext =$request->file($field)->getClientOriginalExtension();
                         $filename =$field . '-' . strtotime(now()) . '.' . $img_ext;
                         $request->file($field)->move($destinationPath, $filename);
@@ -132,6 +150,15 @@ class SiteSurveyController extends Controller
                         }
                     }
                 }
+
+        //           foreach ($imageFields as $field) {
+        //     if ($request->hasFile($field)) {
+        //         $img_ext = $request->file($field)->getClientOriginalExtension();
+        //         $filename = $field . '-' . time() . '.' . $img_ext;
+        //         $request->file($field)->move(public_path($destinationPath), $filename);
+        //         $toolbox[$field] = $destinationPath . $filename;
+        //     }
+        // }
     
            // return $pictureData;
             SitePicture::create($pictureData);
@@ -141,7 +168,14 @@ class SiteSurveyController extends Controller
     
         return redirect()->route('site_survey.index')
             ->with('success', 'Site survey and pictures created successfully.');
-    
+        }
+
+        catch (Exception $e) {
+            return $e->getMessage();
+            return redirect()
+                ->route('site-data-collection.index')
+                ->with('failed', 'Request Failed');
+        }
     }
 
     /**
@@ -152,7 +186,14 @@ class SiteSurveyController extends Controller
      */
     public function show($id)
     {
-        //
+        $siteSurvey = SiteSurvey::find($id);
+        $siteSurvey1 = SitePicture::where('site_survey_id',$id)->get()[0];
+        $toolboxTalk = toolboxTalk::where('site_survey_id', $id)->first();
+
+       
+    //  $combinedArray =  (object) array_merge($data->toArray(), $data1->toArray());
+    // return $siteSurvey1;
+    return view('site_survey.show', compact('siteSurvey','siteSurvey1','toolboxTalk'));
     }
 
     /**
@@ -165,12 +206,12 @@ class SiteSurveyController extends Controller
     {
         $siteSurvey = SiteSurvey::find($id);
         $siteSurvey1 = SitePicture::where('site_survey_id',$id)->get()[0];
-        $toolboxTalk = ToolBoxTalk::where('site_survey_id',$id)->get()[0];
+        $toolboxTalk = toolboxTalk::where('site_survey_id', $id)->first();
 
        
     //  $combinedArray =  (object) array_merge($data->toArray(), $data1->toArray());
     // return $siteSurvey1;
-    return view('site_survey.create', compact('siteSurvey','siteSurvey1'));
+    return view('site_survey.create', compact('siteSurvey','siteSurvey1','toolboxTalk'));
 
     }
 
@@ -259,6 +300,24 @@ class SiteSurveyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $sitevar=SiteSurvey::find($id);
+            $sitevar->delete();
+    
+            SitePicture::where('site_survey_id',$id)->delete();
+    
+            ToolBoxTalk::where('site_survey_id',$id)->delete();
+            return redirect()
+            ->route('site_survey.index')
+            ->with('success', 'Data successfully deleted');
+
+        } catch (Exception $e) {
+            return $e->getMessage();
+            return redirect()
+                ->route('site_survey.index')
+                ->with('failed', 'Request Failed');
+        }
+    
+        
     }
 }
