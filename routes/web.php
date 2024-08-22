@@ -24,6 +24,8 @@ use App\Http\Controllers\web\CsuPaymentDetailController;
 use App\Http\Controllers\web\PaymentSummaryController;
 use App\Http\Controllers\web\FilterPaymentSummaryController;
 use App\Http\Controllers\SiteSurveyController;
+use App\Http\Controllers\ToolboxTalkController;
+
 
 
 
