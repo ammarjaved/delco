@@ -24,6 +24,8 @@ use App\Http\Controllers\web\CsuPaymentDetailController;
 use App\Http\Controllers\web\PaymentSummaryController;
 use App\Http\Controllers\web\FilterPaymentSummaryController;
 use App\Http\Controllers\SiteSurveyController;
+use App\Http\Controllers\MaterialSelectionController;
+
 
 
 
@@ -57,6 +59,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('site_survey', SiteSurveyController::class);
     Route::resource('toolbox_talks', ToolboxTalkController::class);
+
+    Route::get('/material-selection', [MaterialSelectionController::class, 'index'])->name('material-selection.index');
+Route::post('/material-selection', [MaterialSelectionController::class, 'saveSelections'])->name('material-selection.save');
 
 
 
