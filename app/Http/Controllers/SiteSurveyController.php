@@ -202,11 +202,13 @@ class SiteSurveyController extends Controller
         $siteSurvey = SiteSurvey::find($id);
         $siteSurvey1 = SitePicture::where('site_survey_id',$id)->get()[0];
         $toolboxTalk = toolboxTalk::where('site_survey_id', $id)->first();
+        $sql='select st_x(geom) as x,st_y(geom) as y from tbl_site_survey where id='.$id;
+        $location=DB::select($sql)[0];
 
        
     //  $combinedArray =  (object) array_merge($data->toArray(), $data1->toArray());
     // return $siteSurvey1;
-    return view('site_survey.show', compact('siteSurvey','siteSurvey1','toolboxTalk'));
+    return view('site_survey.show', compact('siteSurvey','siteSurvey1','toolboxTalk','location'));
     }
 
     /**
