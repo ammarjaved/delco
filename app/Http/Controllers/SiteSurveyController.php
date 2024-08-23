@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Models\SiteSurvey;
@@ -221,11 +220,15 @@ class SiteSurveyController extends Controller
         $siteSurvey = SiteSurvey::find($id);
         $siteSurvey1 = SitePicture::where('site_survey_id',$id)->get()[0];
         $toolboxTalk = toolboxTalk::where('site_survey_id', $id)->first();
+        $sql='select st_x(geom) as x,st_y(geom) as y from tbl_site_survey where id='.$id;
+        $location=DB::select($sql)[0];
+
+    
 
        
     //  $combinedArray =  (object) array_merge($data->toArray(), $data1->toArray());
     // return $siteSurvey1;
-    return view('site_survey.create', compact('siteSurvey','siteSurvey1','toolboxTalk'));
+    return view('site_survey.create', compact('siteSurvey','siteSurvey1','toolboxTalk','location'));
 
     }
 
@@ -240,6 +243,9 @@ class SiteSurveyController extends Controller
     {
        // DB::transaction(function () use ($validatedData, $request, $siteSurvey) {
             $siteSurvey=SiteSurvey::find($id)->update($request->all());
+
+            DB::statement("UPDATE tbl_site_survey set geom = ST_GeomFromText('POINT($request->lng $request->lat)',4326) where id =  $id");
+
     
             $pictureData['site_survey_id'] = $id;
             $pictureData['substation_fl'] = $request->substation_fl;
