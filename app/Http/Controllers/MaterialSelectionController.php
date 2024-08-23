@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+
+
 
 use App\Models\material;
 use App\Models\ProjectMaterial;
@@ -29,6 +32,8 @@ class MaterialSelectionController extends Controller
 
         foreach ($selections as $materialId => $quantity) {
             if ($quantity > 0) {
+                $username=\Auth::user()->name;
+                //return $username;
                 ProjectMaterial::updateOrCreate(
                     ['material_id' => $materialId],
                     ['quantity' => $quantity]
