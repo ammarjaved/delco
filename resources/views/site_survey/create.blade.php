@@ -254,7 +254,20 @@
         </div>
         </div>
         </div>
+        <div class="row">
+            <div class="col-5">
+                <input type="text" class="form-control" placeholder="lat" name="lat" id="lat" readonly>
+            </div>
+            <div class="col-5">
+                <input type="text" class="form-control" placeholder="lng" name="lng" id="lng" readonly>
+            </div>
+        </div>
+        <div id="map" style="height: 400px; width: 100%;" class="my-3"></div>
     </div>
+
+    
+
+
     
     <div class="tab-pane fade" id="tab2" role="tabpanel">
         <h3 class="mt-3">Site Pictures</h3>
@@ -714,6 +727,32 @@ document.addEventListener('DOMContentLoaded', function() {
     if (prevBtn) prevBtn.addEventListener('click', function() { navigate(-1); });
     if (nextBtn) nextBtn.addEventListener('click', function() { navigate(1); });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+                    let map = L.map('map').setView([3.2888784335929744,102.06586684019376], 8);
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 19,
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
+                    var mark1='';
+                    
+                    
+                   
+
+                    map.on('click', function (e) {
+                        if(mark1!=''){
+                            map.removeLayer(mark1);
+                        }
+                      
+                    mark1= L.marker([e.latlng.lat,e.latlng.lng]).addTo(map)
+
+                        document.getElementById('lat').value = e.latlng.lat;
+                        document.getElementById('lng').value = e.latlng.lng;
+                    });
+                });
+
 </script>
 
 

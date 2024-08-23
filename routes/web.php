@@ -27,6 +27,8 @@ use App\Http\Controllers\SiteSurveyController;
 use App\Http\Controllers\MaterialSelectionController;
 use App\Http\Controllers\ToolboxTalkController;
 
+use App\Http\Controllers\LocationController;
+
 
 
 
@@ -136,7 +138,8 @@ Route::post('/material-selection', [MaterialSelectionController::class, 'saveSel
 
 
 
-
+    Route::get('/location', [LocationController::class, 'index'])->name('location.index');
+    Route::post('/location', [LocationController::class, 'store'])->name('location.store');
 
 });
 

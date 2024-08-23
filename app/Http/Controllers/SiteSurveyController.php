@@ -46,9 +46,22 @@ class SiteSurveyController extends Controller
 
          try {
 
+            $pe_check=SiteSurvey::where('nama_pe',$request->nama_pe)->first();
+
+            if($pe_check){
+                return redirect()
+                ->route('site_survey.index')
+                ->with('failed', 'Request Failed PE Name already exist');
+            }
+
         
        // DB::transaction(function () use ($validatedData, $request) {
             $siteSurvey = SiteSurvey::create($request->all()); 
+
+            DB::statement("UPDATE tbl_site_survey set geom = ST_GeomFromText('POINT($request->lng $request->lat)',4326) where id = $siteSurvey->id");
+
+
+
             $pictureData['site_survey_id'] = $siteSurvey->id;
             $pictureData['substation_fl'] = $request->substation_fl;
             $pictureData['existing_switchgear'] = $request->existing_switchgear;
