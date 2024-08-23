@@ -8,13 +8,20 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\material;
 use App\Models\ProjectMaterial;
 use Illuminate\Http\Request;
+use App\Models\SiteSurvey;
+
 
 class MaterialSelectionController extends Controller
 {
     public function index(Request $request)
     {
-        $query = material::query();
 
+      //  return $request->id;
+        $query = material::query();
+        $siteSurvey = SiteSurvey::find($request->id);
+        
+
+     
         if ($request->has('search')) {
             $search = $request->input('search');
             $query->where('mat_code', 'LIKE', "%{$search}%")
@@ -23,11 +30,13 @@ class MaterialSelectionController extends Controller
 
         $materials = $query->get();
 
-        return view('material-selection.index', compact('materials'));
+        return view('material-selection.index', compact('materials','siteSurvey'));
     }
 
-    public function saveSelections(Request $request)
+    public function saveSelections(Request $request,$id)
     {
+
+        return $id
         $selections = $request->input('selections', []);
 
         foreach ($selections as $materialId => $quantity) {
@@ -36,7 +45,8 @@ class MaterialSelectionController extends Controller
                 //return $username;
                 ProjectMaterial::updateOrCreate(
                     ['material_id' => $materialId],
-                    ['quantity' => $quantity]
+                    ['quantity' => $quantity],
+                    ['site_survey_id' => $request->site_survey_id]
                 );
             }
         }

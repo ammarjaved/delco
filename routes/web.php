@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('toolbox_talks', ToolboxTalkController::class);
 
     Route::get('/material-selection', [MaterialSelectionController::class, 'index'])->name('material-selection.index');
-Route::post('/material-selection', [MaterialSelectionController::class, 'saveSelections'])->name('material-selection.save');
+Route::post('/material-selection{$id}', [MaterialSelectionController::class, 'saveSelections'])->name('material-selection.save');
 
 
 

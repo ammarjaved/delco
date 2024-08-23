@@ -92,7 +92,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger ml-2">Delete</button>
                             </form>
-                            <a href="{{route('material-selection.index')}}" class="btn btn-secondary ml-2">Material Selection</a>
+                            <a href="{{route('material-selection.index', ['id'=>$survey->id])}}" class="btn btn-secondary ml-2">Material Selection</a>
                         </div>
                     </td>
                 </tr>

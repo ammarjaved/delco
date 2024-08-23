@@ -11,11 +11,13 @@
         </div>
     </form>
 
-    <form action="{{ route('material-selection.save') }}" method="POST">
+    <form action="{{ route('material-selection.save', ['id' => $siteSurvey->id]) }}" method="POST">
         @csrf
+        
         <table class="table">
             <thead>
                 <tr>
+                    <th>PE NAME</th>
                     <th>Material Code</th>
                     <th>Description</th>
                     <th>BUn</th>
@@ -23,6 +25,7 @@
                 </tr>
             </thead>
             <tbody>
+                 
                 @foreach ($materials as $material)
                 <tr>
                     <td>{{ $material->mat_code }}</td>
@@ -33,6 +36,7 @@
                     </td>
                 </tr>
                 @endforeach
+
             </tbody>
         </table>
 

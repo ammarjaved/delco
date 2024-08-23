@@ -12,14 +12,14 @@ class ProjectMaterial extends Model
     use HasFactory;
     protected $table = 'project_material';
 
-    protected $fillable = ['material_id', 'quantity'];
+    protected $fillable = ['quantity','material_id','site_survey_id'];
 
     protected static function boot()
     {
         parent::boot();
 
         static::creating(function ($model) {
-            $model->created_by = Auth::id();
+            $model->created_by = Auth::user()->name;
         });
     }
 
