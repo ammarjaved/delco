@@ -83,6 +83,8 @@
                             
                             <!-- Edit Button with margin-left -->
                             <a href="{{ route('site_survey.edit', $survey) }}" class="btn btn-primary ml-2">Edit</a>
+
+                           
         
                             <!-- Delete Button with margin-left -->
                             <form action="{{ route('site_survey.destroy', $survey->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');" style="display:inline;">
@@ -90,6 +92,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger ml-2">Delete</button>
                             </form>
+                            <a href="" class="btn btn-secondary ml-2">Material Selection</a>
                         </div>
                     </td>
                 </tr>
