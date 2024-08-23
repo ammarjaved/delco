@@ -161,17 +161,7 @@
                 </ul>
 
 
-                <ul>
-                    <li class="nav-item">
-                        <a href="{{ route('location.index') }}"
-                            class="nav-link  ">
-                            <i class="nav-icon fas fa-map"></i>
-                            <p>Get Location</p>
-                        </a>
-                    </li>
-                </ul>
-
-
+               
 
 
 

@@ -256,10 +256,10 @@
         </div>
         <div class="row">
             <div class="col-5">
-                <input type="text" class="form-control" placeholder="lat" name="lat" id="lat" readonly>
+                <input type="text" hidden class="form-control" placeholder="lat" name="lat" id="lat" readonly>
             </div>
             <div class="col-5">
-                <input type="text" class="form-control" placeholder="lng" name="lng" id="lng" readonly>
+                <input type="text" hidden class="form-control" placeholder="lng" name="lng" id="lng" readonly>
             </div>
         </div>
         <div id="map" style="height: 400px; width: 100%;" class="my-3"></div>
