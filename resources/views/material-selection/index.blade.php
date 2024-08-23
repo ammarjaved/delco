@@ -10,8 +10,8 @@
             <button type="submit" class="btn btn-primary">Search</button>
         </div>
     </form>
-
-    <form action="{{ route('material-selection.save', ['id' => $siteSurvey->id]) }}" method="POST">
+ 
+    <form action="{{ route('material-selection.save', ['id' => 18]) }}" method="POST">
         @csrf
         
         <table class="table">

@@ -36,17 +36,23 @@ class MaterialSelectionController extends Controller
     public function saveSelections(Request $request,$id)
     {
 
-        return $id
+        //return $id;
         $selections = $request->input('selections', []);
+
 
         foreach ($selections as $materialId => $quantity) {
             if ($quantity > 0) {
-                $username=\Auth::user()->name;
-                //return $username;
+                $username = Auth::user()->name;
+                
                 ProjectMaterial::updateOrCreate(
-                    ['material_id' => $materialId],
-                    ['quantity' => $quantity],
-                    ['site_survey_id' => $request->site_survey_id]
+                    [
+                        'material_id' => $materialId,
+                        'site_survey_id' => $id  // Move this to the first array
+                    ],
+                    [
+                        'quantity' => $quantity,
+                        'created_by' => $username  // Assuming you want to save the username
+                    ]
                 );
             }
         }
