@@ -49,10 +49,10 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ route('site_survey.index') }}"
-                                    class="nav-link {{ Request::route()->getName() === 'site_survey.index' ? 'active' : '' }}">
+                                <a href="{{ route('material-selection.show') }}"
+                                    class="nav-link {{ Request::route()->getName() === 'material-selection.show' ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Show Estimation</p>
+                                    <p>Show Material Selection</p>
                                 </a>
                             </li>
                             
