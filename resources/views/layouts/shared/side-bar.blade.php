@@ -47,6 +47,15 @@
                                     <p>index</p>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('site_survey.index') }}"
+                                    class="nav-link {{ Request::route()->getName() === 'site_survey.index' ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Show Estimation</p>
+                                </a>
+                            </li>
+                            
                         </ul>
                     </li>
 

@@ -27,6 +27,8 @@ use App\Http\Controllers\SiteSurveyController;
 use App\Http\Controllers\MaterialSelectionController;
 use App\Http\Controllers\ToolboxTalkController;
 
+use App\Http\Controllers\Materialshow;
+
 
 
 
@@ -56,6 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/material-selection/{id}', [MaterialSelectionController::class, 'saveSelections'])->name('material-selection.save');
 
 
+    Route::get('/material-show', [MaterialSelectionController::class, 'showData'])->name('material-selection.show');
 
 
 
@@ -124,6 +127,12 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('payment-summary-details', PaymentSummaryController::class);
     Route::post('/payment-summary-search', [FilterPaymentSummaryController::class, 'index'])->name('payment-summary-search');
+
+    
+
+    
+
+
 
 
 

@@ -9,6 +9,9 @@ use App\Models\material;
 use App\Models\ProjectMaterial;
 use Illuminate\Http\Request;
 use App\Models\SiteSurvey;
+use Illuminate\Support\Facades\DB;
+
+
 
 
 class MaterialSelectionController extends Controller
@@ -31,6 +34,17 @@ class MaterialSelectionController extends Controller
         $materials = $query->get();
 
         return view('material-selection.index', compact('materials','siteSurvey'));
+    }
+
+    public function showData()
+    {
+        $data = DB::select(DB::raw('
+           with foo as (select * from project_material)
+select c.nama_pe,mat_desc,mat_code,bun,a.quantity from material b,foo a,
+tbl_site_survey c where a.material_id=b.id and a.site_survey_id=c.id
+        '));
+
+        return view('material-selection.data-table', ['data' => $data]);
     }
 
     public function saveSelections(Request $request,$id)
