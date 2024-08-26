@@ -26,6 +26,7 @@ use App\Http\Controllers\web\FilterPaymentSummaryController;
 use App\Http\Controllers\SiteSurveyController;
 use App\Http\Controllers\MaterialSelectionController;
 use App\Http\Controllers\ToolboxTalkController;
+use App\Http\Controllers\SiteSurveyFilesController;
 
 
 use App\Http\Controllers\Materialshow;
@@ -65,7 +66,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/material-selection/{id}', [MaterialSelectionController::class, 'destroy'])->name('material-selection.destroy');
 
 
-    Route::post('/', [ SiteSurveyController::class, 'store'])->name('file.upload');
+    Route::post('/siteFileUpload/{id}', [SiteSurveyFilesController::class, 'storeViewFiles'])->name('siteFileUpload.storeViewFiles');
+    Route::get('/siteFileUploadView', [SiteSurveyFilesController::class, 'index'])->name('siteFileUploadView.index');
+
 
 
 

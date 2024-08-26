@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\SiteSurvey;
 use App\Models\SitePicture;
 use App\Models\ToolBoxTalk;
-use App\Models\FileUpload;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -46,33 +45,6 @@ class SiteSurveyController extends Controller
     {
 
          try {
-            $request->validate([
-                'file' => 'required|file|mimes:pdf,docx,png|max:2048',
-                'description' => 'required|string|max:255',
-            ]);
-
-           
-            $destinationPath = 'assets/images/';
-            if ($request->hasFile('site_file')) {
-                $file = $request->file('site_file');
-                $filename = time() . '-' . $file->getClientOriginalName();
-               
-                // $path = $file->storeAs('public/files', $filename);
-                $img_ext =$request->file('site_file')->getClientOriginalExtension();
-                $request->file('site_file')->move($destinationPath, $filename);
-               // $pictureData[$field] = $request->file($field)->store('images', 'public');
-               $file_path=$destinationPath.$filename;
-                // Save file details to the database
-                $uploadedFile = FileUpload::create([
-                    'filename' => $filename,
-                    'path' => $file_path,
-                    'description' => $request->description,
-                ]);
-
-                return  $uploadedFile;
-            }
-
-
            
     
 

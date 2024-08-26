@@ -42,14 +42,6 @@ class MaterialSelectionController extends Controller
 
     public function showData($id)
     {
-<<<<<<< HEAD
-        $data = DB::select(DB::raw('
-           with foo as (select * from project_material)
-            select c.nama_pe,mat_desc,mat_code,bun,a.quantity from material b,foo a,
-            tbl_site_survey c where a.material_id=b.id and a.site_survey_id=c.id
-        '));
-
-=======
         $data = DB::select(DB::raw("
             WITH foo AS (SELECT * FROM project_material)
             SELECT c.nama_pe, mat_desc, mat_code, bun, a.quantity
@@ -59,7 +51,6 @@ class MaterialSelectionController extends Controller
             WHERE c.id = ?
         "), [$id]);
     
->>>>>>> 9b200a244cf123ea40d6f0819932d4100e01c842
         return view('material-selection.data-table', ['data' => $data]);
     }
     

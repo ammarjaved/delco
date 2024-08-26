@@ -15,6 +15,7 @@ class FileUpload extends Model
         'file_name',
         'description',
         'file_path',
+        'site_survey_id'
     ];
 
     protected $casts = [
