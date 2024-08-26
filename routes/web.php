@@ -28,9 +28,9 @@ use App\Http\Controllers\MaterialSelectionController;
 use App\Http\Controllers\ToolboxTalkController;
 
 use App\Http\Controllers\Materialshow;
-
-
-
+use App\Http\Controllers\PreCablingController;
+use App\Http\Controllers\PreCablingShutDownController;
+use App\Models\PreCablingShutDown;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +60,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/material-show', [MaterialSelectionController::class, 'showData'])->name('material-selection.show');
 
+    Route::resource('pre-cabling',PreCablingController::class,['except' => ['create']]);
+    Route::get('/pre-cabling-piw/{id}/create',[PreCablingController::class,'create'])->name('pre-cabling-piw.create');
+
+    Route::resource('pre-cabling-shut-down',PreCablingShutDownController::class,['except' => ['create']]);
+    Route::get('/pre-cabling-shut-down/{id}/create',[PreCablingShutDownController::class,'create'])->name('pre-cabling-shut-down.create');
 
 
     

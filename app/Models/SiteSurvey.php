@@ -27,4 +27,14 @@ class SiteSurvey extends Model
     protected $casts = [
         'tahun_pembinaan' => 'date',
     ];
+
+
+    public function PreCabling() {
+        return $this->hasOne(PreCabling::class, 'site_survey_id');
+    }
+
+    public function PreCablingShutDown() {
+        return $this->hasOne(PreCablingShutDown::class, 'site_survey_id');
+    }
+
 }
