@@ -1,6 +1,4 @@
-<!-- resources/views/material-selection/data-table.blade.php -->
 @extends('layouts.app')
-
 
 @section('content')
 <div class="container">
@@ -22,13 +20,8 @@
                     <td>{{ $item->nama_pe }}</td>
                     <td>{{ $item->mat_code }}</td>
                     <td>{{ $item->mat_desc }}</td>
-                    
                     <td>{{ $item->bun }}</td>
                     <td>{{ $item->quantity }}</td>
-                    
-                    
-                    
-                   
                 </tr>
             @endforeach
         </tbody>

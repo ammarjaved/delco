@@ -39,6 +39,11 @@
       <li class="nav-item">
         <a class="nav-link" id="tab3-tab" data-toggle="tab" href="#tab3" role="tab">Tool Box Talk</a>
       </li>
+      @if(isset($siteSurvey)) 
+      <li class="nav-item">
+        <a class="nav-link" id="tab4-tab" data-toggle="tab" href="#tab4" role="tab">Upload Files</a>
+      </li>
+      @endif
     </ul>
 
 
@@ -557,6 +562,7 @@
 
 </div>
 
+
     <div class="mt-3">
       <button type="button" class="btn btn-secondary" id="prevBtn" onclick="navigate(-1)">Previous</button>
       <button type="button" class="btn btn-primary" id="nextBtn" onclick="navigate(1)">Next</button>
@@ -568,8 +574,17 @@
         
     </form>
 
-        </div>
-		</div>
+   @if(isset($siteSurvey)) 
+    <div class="tab-pane fade" id="tab4" role="tabpanel">
+    <h3 class="mt-3">Upload Files</h3>
+    <form action="{{ route('siteFileUpload.storeViewFiles',['id' => $siteSurvey]) }}" method="POST" enctype="multipart/form-data">
+    @csrf 
+    @include('site_survey.fileupload')
+     </form>
+    </div>
+  @endif
+    </div>
+	</div>
     </section>
 @endsection
 
@@ -592,11 +607,36 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+function checkactiveTabId(){
+    //var activeTabId = $('.nav-tabs li.active').data('tab');
+   setTimeout(function(){
+ 
+    var activeTab = $('#myTab .nav-link.active').attr('id');
+    if(activeTab=='tab4-tab'){
+       $('#prevBtn').hide();
+       $('#nextBtn').hide();
+       $('#submitBtn').hide();
+    }else{
+        $('#prevBtn').show();
+       $('#nextBtn').show();
+       $('#submitBtn').show();
+    }
+},2000)
+     // alert(activeTab);
+}
+
+
 
 // Function to check if all required images are uploaded
 document.addEventListener('DOMContentLoaded', function() {
-    const tabs = ['#tab1', '#tab2', '#tab3'];
+    const tabs = ['#tab1', '#tab2', '#tab3'
+    ];
     let currentTabIndex = 0;
+
+
+    $('.nav-tabs li').click(function() {
+        checkactiveTabId();
+    })
 
     function updateButtons() {
         const prevBtn = document.getElementById('prevBtn');

@@ -26,6 +26,8 @@ use App\Http\Controllers\web\FilterPaymentSummaryController;
 use App\Http\Controllers\SiteSurveyController;
 use App\Http\Controllers\MaterialSelectionController;
 use App\Http\Controllers\ToolboxTalkController;
+use App\Http\Controllers\SiteSurveyFilesController;
+
 
 use App\Http\Controllers\Materialshow;
 use App\Http\Controllers\PreCablingController;
@@ -56,9 +58,18 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/material-selection', [MaterialSelectionController::class, 'index'])->name('material-selection.index');
     Route::post('/material-selection/{id}', [MaterialSelectionController::class, 'saveSelections'])->name('material-selection.save');
+    // Route::get('/material-show', [MaterialSelectionController::class, 'showData'])->name('material-selection.show');
+
+    Route::get('/material-selection/show/{id}', [MaterialSelectionController::class, 'showData'])->name('material-selection.show');
 
 
-    Route::get('/material-show', [MaterialSelectionController::class, 'showData'])->name('material-selection.show');
+    Route::delete('/material-selection/{id}', [MaterialSelectionController::class, 'destroy'])->name('material-selection.destroy');
+
+
+    Route::post('/siteFileUpload/{id}', [SiteSurveyFilesController::class, 'storeViewFiles'])->name('siteFileUpload.storeViewFiles');
+    Route::get('/siteFileUploadView', [SiteSurveyFilesController::class, 'index'])->name('siteFileUploadView.index');
+
+
 
     Route::resource('pre-cabling',PreCablingController::class,['except' => ['create']]);
     Route::get('/pre-cabling-piw/{id}/create',[PreCablingController::class,'create'])->name('pre-cabling-piw.create');

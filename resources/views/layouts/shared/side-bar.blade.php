@@ -48,13 +48,13 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="{{ route('material-selection.show') }}"
                                     class="nav-link {{ Request::route()->getName() === 'material-selection.show' ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Show Material Selection</p>
                                 </a>
-                            </li>
+                            </li> --}}
                             
                         </ul>
                     </li>
