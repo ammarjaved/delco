@@ -27,6 +27,7 @@ use App\Http\Controllers\SiteSurveyController;
 use App\Http\Controllers\MaterialSelectionController;
 use App\Http\Controllers\ToolboxTalkController;
 
+
 use App\Http\Controllers\Materialshow;
 
 
@@ -56,9 +57,16 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/material-selection', [MaterialSelectionController::class, 'index'])->name('material-selection.index');
     Route::post('/material-selection/{id}', [MaterialSelectionController::class, 'saveSelections'])->name('material-selection.save');
+    // Route::get('/material-show', [MaterialSelectionController::class, 'showData'])->name('material-selection.show');
+
+    Route::get('/material-selection/show/{id}', [MaterialSelectionController::class, 'showData'])->name('material-selection.show');
 
 
-    Route::get('/material-show', [MaterialSelectionController::class, 'showData'])->name('material-selection.show');
+    Route::delete('/material-selection/{id}', [MaterialSelectionController::class, 'destroy'])->name('material-selection.destroy');
+
+
+    Route::post('/', [ SiteSurveyController::class, 'store'])->name('file.upload');
+
 
 
 

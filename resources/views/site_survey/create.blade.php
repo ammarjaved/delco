@@ -39,6 +39,10 @@
       <li class="nav-item">
         <a class="nav-link" id="tab3-tab" data-toggle="tab" href="#tab3" role="tab">Tool Box Talk</a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" id="tab4-tab" data-toggle="tab" href="#tab4" role="tab">Upload Files</a>
+      </li>
     </ul>
 
 
@@ -557,6 +561,30 @@
 
 </div>
 
+<form action="{{ route('file.upload') }}" method="POST" enctype="multipart/form-data">
+<div class="tab-pane fade" id="tab4" role="tabpanel">
+    <h3 class="mt-3">Upload Files</h3> 
+
+    <div class="mb-4">
+        <label for="file" class="block text-sm font-medium text-gray-700 mb-2">Upload Your File</label>
+        <div class="relative">
+            <input type="file" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:border-indigo-500" id="site_file" name="site_file" required>
+         
+        </div>
+    </div>
+    
+<div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+</div>
+
+<button type="submit" class="btn btn-primary">Upload</button>
+
+</div>
+</div>
+
+
+
     <div class="mt-3">
       <button type="button" class="btn btn-secondary" id="prevBtn" onclick="navigate(-1)">Previous</button>
       <button type="button" class="btn btn-primary" id="nextBtn" onclick="navigate(1)">Next</button>
@@ -595,7 +623,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to check if all required images are uploaded
 document.addEventListener('DOMContentLoaded', function() {
-    const tabs = ['#tab1', '#tab2', '#tab3'];
+    const tabs = ['#tab1', '#tab2', '#tab3','#tab4'
+    ];
     let currentTabIndex = 0;
 
     function updateButtons() {

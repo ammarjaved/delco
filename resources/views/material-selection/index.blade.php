@@ -4,6 +4,12 @@
 <div class="container">
     <h2>Material Selection</h2>
 
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <form action="{{ route('material-selection.index') }}" method="GET" class="mb-3">
         <div class="input-group">
             <input type="text" name="search" class="form-control" placeholder="Search by material code or description" value="{{ request('search') }}">
@@ -11,7 +17,8 @@
         </div>
     </form>
  
-    <form action="{{ route('material-selection.save', ['id' => 18]) }}" method="POST">
+    <!-- Use the dynamic siteSurvey ID -->
+    <form action="{{ route('material-selection.save', ['id' => $siteSurvey->id]) }}" method="POST">
         @csrf
         
         <table class="table">
