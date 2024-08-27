@@ -85,6 +85,37 @@
                             </li>
                         </ul>
                     </li>
+
+
+                    <li
+                    class="nav-item {{ Request::route()->getName() === 'pre-cabling.create' || Request::route()->getName() === 'pre-cabling.index' ? 'menu-is-opening menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                        <i class="fa fa-book"></i>
+                        <p>
+                            Pre Cabling
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        {{-- <li class="nav-item">
+                            <a href="{{ route('pre-cabling.create') }}"
+                                class="nav-link {{ Request::route()->getName() === 'pre-cabling.create' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create</p>
+                            </a>
+                        </li> --}}
+                        <li class="nav-item">
+                            <a href="{{ route('pre-cabling.index') }}"
+                                class="nav-link {{ Request::route()->getName() === 'pre-cabling.index' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>index</p>
+                            </a>
+                        </li>
+
+                        
+                        
+                    </ul>
+                </li>
                 @endif
                 <!-- <li
                     class="nav-item {{ Request::route()->getName() === 'order.create' || Request::route()->getName() === 'admin-order.index' ? 'menu-is-opening menu-open' : '' }}">

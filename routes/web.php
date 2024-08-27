@@ -30,9 +30,9 @@ use App\Http\Controllers\SiteSurveyFilesController;
 
 
 use App\Http\Controllers\Materialshow;
-
-
-
+use App\Http\Controllers\PreCablingController;
+use App\Http\Controllers\PreCablingShutDownController;
+use App\Models\PreCablingShutDown;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +75,11 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/siteFileUpload/{id}', [SiteSurveyFilesController::class, 'destroy'])->name('siteFileUpload.destroy');
 
+    Route::resource('pre-cabling',PreCablingController::class,['except' => ['create']]);
+    Route::get('/pre-cabling-piw/{id}/create',[PreCablingController::class,'create'])->name('pre-cabling-piw.create');
+
+    Route::resource('pre-cabling-shut-down',PreCablingShutDownController::class,['except' => ['create']]);
+    Route::get('/pre-cabling-shut-down/{id}/create',[PreCablingShutDownController::class,'create'])->name('pre-cabling-shut-down.create');
 
 
     
