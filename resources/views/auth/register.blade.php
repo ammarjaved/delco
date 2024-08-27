@@ -43,6 +43,38 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+                        <div class="mt-4">
+                                <x-input-label label for="" :value="(__('Area'))"/>
+                                <select class="block mt-1 w-full" id="area" name="area" required>
+                                    <option value="" disabled selected>Select Type</option>
+                                    <option value="KL">KL</option>
+                                    <option value="JOHOR">Johor</option>
+                                </select>
+                            </div>
+
+
+                    <div class="form-group">
+                    <x-input-label label for="" :value="(__('Project'))"/>
+                    <select class="block mt-1 w-full" id="project" name="project" required>
+                                    <option value="" disabled selected>Select Type</option>
+                                    <option value="AERO-KL">AERO-KL</option>
+                                    <option value="ARAS-JOHOR">ARAS-JOHOR</option>
+                                    <option value="AERO-JOHOR">AERO-JOHOR</option>
+                                </select>
+                            </div>
+
+
+
+                    <div class="form-group">
+                    <x-input-label label for="" :value="(__('Company'))"/>
+                    <select class="block mt-1 w-full" id="company" name="company" required>
+                                    <option value="" disabled selected>Select Type</option>
+                                    <option value="Aerosynergy Solutiosn Sdn. Bhd">Aerosynergy Solutiosn Sdn. Bhd</option>
+                                    <option value="ARAS KEJURUTERAAN SDN. Bhd">ARAS KEJURUTERAAN SDN. Bhd</option>
+                                   
+                                </select>
+                            </div>
+
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}

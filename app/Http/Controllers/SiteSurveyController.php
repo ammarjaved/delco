@@ -20,7 +20,13 @@ class SiteSurveyController extends Controller
      */
     public function index()
     {
-        $surveys = SiteSurvey::all();
+         $myuser=\Auth::user();
+        // return $myuser->area.'-'.$myuser->project.'-'.$myuser->vendo;
+
+        $surveys = SiteSurvey::where('area',$myuser->area)
+                            ->where('project','=',$myuser->project)->get();
+
+         //return  $surveys;                  
         return view('site_survey.index',compact('surveys')); //compact('surveys') is equivalent to ['surveys' => $surveys].
 
     }
@@ -62,7 +68,10 @@ class SiteSurveyController extends Controller
             $siteSurvey = SiteSurvey::create($request->all()); 
 
             DB::statement("UPDATE tbl_site_survey set geom = ST_GeomFromText('POINT($request->lng $request->lat)',4326) where id = $siteSurvey->id");
-
+            $usr_info=\Auth::user();
+            $area= $usr_info->area;
+            $company= $usr_info->company;
+            DB::statement("update tbl_site_survey set area='$area' ,project='$company' where id = $siteSurvey->id");  
 
 
             $pictureData['site_survey_id'] = $siteSurvey->id;

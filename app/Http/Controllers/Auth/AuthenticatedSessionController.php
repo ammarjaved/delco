@@ -29,13 +29,13 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
         
-        if(Auth::user()->type==false){
-         return redirect('/site-data/create-mobile');
-        }else{
+        // if(Auth::user()->type==false){
+        //  return redirect('/site-data/create-mobile');
+        // }else{
         return redirect()->intended(RouteServiceProvider::HOME);
       //  return redirect('/site_survey/index');
 
-        }
+      //  }
     }
 
     /**
