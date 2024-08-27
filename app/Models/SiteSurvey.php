@@ -43,4 +43,9 @@ class SiteSurvey extends Model
         return $this->hasOne(PreCablingShutDown::class, 'site_survey_id');
     }
 
+    public function imageShutdown()
+    {
+        return $this->hasOne(ImageShutdown::class, 'site_survey_id');
+    }
+
 }

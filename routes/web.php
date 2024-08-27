@@ -11,6 +11,7 @@ use App\Http\Controllers\web\scrapController;
 use App\Http\Controllers\web\siteDateCollection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+
 use Intervention\Image\Gd\Commands\RotateCommand;
 use App\Http\Controllers\web\CsuAeroSpendController;
 use App\Http\Controllers\web\CsuBudgetTNBController;
@@ -27,12 +28,14 @@ use App\Http\Controllers\SiteSurveyController;
 use App\Http\Controllers\MaterialSelectionController;
 use App\Http\Controllers\ToolboxTalkController;
 use App\Http\Controllers\SiteSurveyFilesController;
+use App\Http\Controllers\ImageShutdownController;
 
 
 use App\Http\Controllers\Materialshow;
 use App\Http\Controllers\PreCablingController;
 use App\Http\Controllers\PreCablingShutDownController;
-use App\Models\PreCablingShutDown;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +83,28 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('pre-cabling-shut-down',PreCablingShutDownController::class,['except' => ['create']]);
     Route::get('/pre-cabling-shut-down/{id}/create',[PreCablingShutDownController::class,'create'])->name('pre-cabling-shut-down.create');
+
+
+
+   // Route to display a list of image shutdowns
+   Route::get('/image-shutdown', [ImageShutdownController::class, 'index'])->name('image-shutdown.index');
+   Route::get('/image-shutdown/create/{survey}', [ImageShutdownController::class, 'create'])->name('image-shutdown.create');
+   Route::post('/image-shutdown', [ImageShutdownController::class, 'store'])->name('image-shutdown.store');
+   
+   Route::get('/site-surveys', [SiteSurveyController::class, 'index'])->name('site-surveys.index');
+   Route::get('/image-shutdown/create/{id}', [ImageShutdownController::class, 'create'])->name('image-shutdown.create');
+
+   // Define the route to display the form for editing an image shutdown
+Route::get('image-shutdown/{id}/edit', [ImageShutdownController::class, 'edit'])->name('image-shutdown.edit');
+
+// Define the route to handle the form submission for updating an image shutdown
+Route::put('image-shutdown/{id}', [ImageShutdownController::class, 'update'])->name('image-shutdown.update');
+
+// Define the route to handle deletion of an image shutdown
+Route::delete('image-shutdown/{id}', [ImageShutdownController::class, 'destroy'])->name('image-shutdown.destroy');
+
+   
+
 
 
     
