@@ -23,5 +23,10 @@ class FileUpload extends Model
         'updated_at' => 'datetime',
     ];
 
+    public function siteSurvey()
+    {
+        return $this->belongsTo(SiteSurvey::class);
+    }
+
     // Optionally, you can define any relationships if needed
 }

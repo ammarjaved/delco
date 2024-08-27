@@ -96,6 +96,9 @@
                                 <a href="{{ route('material-selection.index', ['id' => $survey->id]) }}" class="btn btn-secondary">
                                     <i class="fas fa-list-alt"></i> Material Selection
                                 </a>
+
+
+                                
                         
                                 <!-- Show Material Selection Button -->
                                 <a href="{{ route('material-selection.show', $survey->id) }}" class="btn btn-secondary">
@@ -122,6 +125,11 @@
                                     </button>
                                 </form>
                             </div>
+
+                            <a href="{{ route('siteFileUploadView.index', ['id' => $survey->id]) }}" class="btn btn-secondary">
+                                <i class="fas fa-eye"></i> Upload
+                            </a>
+                            
                         </div>
                         
                     </td>

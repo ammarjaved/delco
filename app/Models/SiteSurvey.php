@@ -27,4 +27,10 @@ class SiteSurvey extends Model
     protected $casts = [
         'tahun_pembinaan' => 'date',
     ];
+
+    public function fileUploads()
+    {
+        return $this->hasMany(FileUpload::class);
+    }
 }
+

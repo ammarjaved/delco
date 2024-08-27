@@ -66,10 +66,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/material-selection/{id}', [MaterialSelectionController::class, 'destroy'])->name('material-selection.destroy');
 
 
-    Route::post('/siteFileUpload/{id}', [SiteSurveyFilesController::class, 'storeViewFiles'])->name('siteFileUpload.storeViewFiles');
-    Route::get('/siteFileUploadView', [SiteSurveyFilesController::class, 'index'])->name('siteFileUploadView.index');
+    Route::get('site-file-upload/{id}', [SiteSurveyFilesController::class, 'index'])->name('siteFileUploadView.index');
 
 
+
+    // Route to handle the form submission
+    Route::post('/siteFileUpload/storeViewFiles/{id}', [SiteSurveyFilesController::class, 'storeViewFiles'])->name('siteFileUpload.storeViewFiles');
+
+    Route::delete('/siteFileUpload/{id}', [SiteSurveyFilesController::class, 'destroy'])->name('siteFileUpload.destroy');
 
 
 
