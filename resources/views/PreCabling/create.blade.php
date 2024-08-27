@@ -37,7 +37,7 @@
                     </div> --}}
 
 
-                    <input type="hidden" name="site_survey_id" value="{{isset($site_survey_id) ?? $piw->site_survey_id}}">
+                    <input type="hidden" name="site_survey_id" value="{{isset($site_survey_id) ? $site_survey_id: $piw->site_survey_id}}">
 
                     @foreach (['lokasi_efi' => 'Lokasi EFI Seteah Dipasang', 'lokasi_rcb' => 'Lokasi RCB Seteah Dipasang', 'connection_rcb' => 'Connection RCB', 'lokasi_battery' => 'Lokasi Battery Charger Setelah Dipasang', 'plate_battery' => 'Plate Battery Charger / Serial No', 'lokasi_rtu' => 'Lokasi RTU Setelah Dipasang', 'connection_rtu' => 'Connection RTU', 'plate_rtu' => 'Plate RTU / Serial No', 'laluan_cable_piw' => 'Laluan Cable (PIW)', 'laluan_cable' => 'Laulan Cable'] as $key => $field)
                         <div class="row">
