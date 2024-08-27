@@ -77,8 +77,14 @@
 
 
                     <div class="text-center">
-                        <button class="btn btn-success mt-4" style="cursor: pointer !important"
-                            type="submit">{{ isset($piw) ? 'Update' : 'Create' }}</button>
+                        @if (isset($piw))
+                        <a href="{{route('pre-cabling-piw.delete', $piw->id)}}">
+                            <button type="button" class="btn btn-danger mt-4" style="cursor: pointer !important"
+                                type="submit">Remove</button>
+                            </a>
+                        @endif
+                            <button class="btn btn-success mt-4" style="cursor: pointer !important"
+                                type="submit">{{ isset($piw) ? 'Update' : 'Create' }}</button>
                     </div>
 
                 </form>

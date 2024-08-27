@@ -110,5 +110,13 @@ class PreCablingShutDownController extends Controller
     public function destroy($id)
     {
         //
+        try {
+            $shutDown = PreCablingShutDown::findOrFail($id);
+            $shutDown->delete();
+        } catch (\Throwable $th) {
+            return redirect()->route('pre-cabling.index')->with('failed', 'Request Failed');
+        }
+
+        return redirect()->route('pre-cabling.index')->with('success', 'Request Success');
     }
 }
