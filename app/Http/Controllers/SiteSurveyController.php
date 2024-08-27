@@ -27,7 +27,7 @@ class SiteSurveyController extends Controller
         $surveys = SiteSurvey::where('area',$myuser->area)
                             ->where('project','=',$myuser->project)->get();
 
-         return  $surveys;                  
+        //  return  $surveys;                  
         return view('site_survey.index',compact('surveys')); //compact('surveys') is equivalent to ['surveys' => $surveys].
 
     }
