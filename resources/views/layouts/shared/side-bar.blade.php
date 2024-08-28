@@ -141,6 +141,50 @@
                 </ul>
                 
             </li>
+
+
+
+            <li
+                class="nav-item {{ Request::route()->getName() === 'pre-cabling.create' || Request::route()->getName() === 'pre-cabling.index' ? 'menu-is-opening menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i class="fa fa-book"></i>
+                    <p>
+                        SAT
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+             
+          {{-- <a href="{{ route('sat.index') }}" class="nav-link">
+    <i class="far fa-circle nav-icon"></i>
+    <p>Index</p>
+   </a> --}}
+
+
+   <ul class="nav nav-treeview">
+    <li class="nav-item">
+        <a href="{{ route('sat.index') }}"
+           class="nav-link ">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Index</p>
+        </a>
+    </li>
+</ul>
+
+
+
+                
+                
+                
+            </li>
+
+
+
+
+
+
+
+
+
                 @endif
 
 

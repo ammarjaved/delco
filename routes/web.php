@@ -29,7 +29,7 @@ use App\Http\Controllers\MaterialSelectionController;
 use App\Http\Controllers\ToolboxTalkController;
 use App\Http\Controllers\SiteSurveyFilesController;
 use App\Http\Controllers\ImageShutdownController;
-
+use App\Http\Controllers\SATController;
 
 use App\Http\Controllers\Materialshow;
 use App\Http\Controllers\PreCablingController;
@@ -114,6 +114,20 @@ Route::put('image-shutdown/{id}', [ImageShutdownController::class, 'update'])->n
 Route::delete('image-shutdown/{id}', [ImageShutdownController::class, 'destroy'])->name('image-shutdown.destroy');
 
    
+Route::get('/sat', [SATController::class, 'index'])->name('sat.index');
+
+// Show the form for creating a new SAT
+Route::get('/sat/create/{id}', [SATController::class, 'create'])->name('sat.create');
+
+// Store a new SAT record
+Route::post('/sat/store', [SATController::class, 'store'])->name('sat.store');
+
+
+
+
+
+
+
 
 
 
