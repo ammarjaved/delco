@@ -52,7 +52,7 @@ class MaterialSelectionController extends Controller
                  // ->orWhere('mat_desc', 'LIKE', "%{$search}%");
         }
     
-        return $materials = $query->limit(10)->pluck('mat_desc')->toArray();
+        return $materials = $query->limit(100)->pluck('mat_desc')->toArray();
     }
 
     public function materialData(Request $request){
@@ -142,7 +142,7 @@ public function format()
            // }
         }
     
-        return redirect()->route('material-selection.index', ['id' => $id])->with('success', 'Selections saved successfully.');
+        return redirect()->route('material-selection.format', ['id' => $id])->with('success', 'Selections saved successfully.');
     }
 
     public function destroy($id)

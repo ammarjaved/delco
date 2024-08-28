@@ -75,8 +75,8 @@
                                                 <td>{{ $satRecord->image_name }}</td>
                                                 <td>{{ $satRecord->image_type }}</td>
                                                 <td>
-                                                    @if($satRecords->image_url)
-                                                        <a href="{{ asset('storage/' . $satRecords->image_url) }}" target="_blank" class="btn btn-info btn-sm">
+                                                    @if($satRecord->image_url)
+                                                        <a href="{{ asset('storage/' . $satRecord->image_url) }}" target="_blank" class="btn btn-info btn-sm">
                                                             View
                                                         </a>
                                                     @else
@@ -84,8 +84,8 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('image-shutdown.edit', $satRecords->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                                    <form action="{{ route('image-shutdown.destroy', $satRecords->id) }}" method="POST" style="display:inline;">
+                                                    <a href="{{ route('image-shutdown.edit', $satRecord->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                                    <form action="{{ route('image-shutdown.destroy', $satRecord->id) }}" method="POST" style="display:inline;">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>

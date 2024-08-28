@@ -38,31 +38,38 @@ class SATController extends Controller
     // Method to store a new SAT record
     public function store(Request $request)
 {
-    dd($request->all()); // Debug the incoming request data
+    //dd($request->all()); // Debug the incoming request data
     try {
         // Validate the incoming request
-        $request->validate([
-            'image_name' => 'required|string|max:255',
-            'image_url' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image_type' => 'required|string|in:before,during,after',
-            'site_survey_id' => 'required|integer|exists:site_surveys,id',
-        ]);
+        // $request->validate([
+        //     'image_name' => 'required|string|max:255',
+        //     'image_url' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        //     'image_type' => 'required|string|in:before,during,after',
+        //     'site_survey_id' => 'required|integer|exists:site_surveys,id',
+        // ]);
 
         // Store the uploaded image in the 'images' directory within the 'public' disk
         $filePath = $request->file('image_url')->store('images', 'public');
 
         // Create a new SAT record in the database
-        SAT::create([
+
+        $sat_data=[
             'image_name' => $request->image_name,
             'image_url' => $filePath,
             'image_type' => $request->image_type,
             'site_survey_id' => $request->site_survey_id,
             'created_by' => Auth::user()->email,
-        ]);
+        ];
+
+         $sat_data;
+
+        SAT::create($sat_data);
 
         // Redirect back to the SAT index page with a success message
         return redirect()->route('sat.index')->with('success', 'Image shutdown added successfully!');
     } catch (Exception $e) {
+
+     //   return $e->getMessage();
         // Redirect back with an error message
         return redirect()->route('sat.create', ['id' => $request->site_survey_id])
             ->with('failed', 'Request Failed: ' . $e->getMessage());

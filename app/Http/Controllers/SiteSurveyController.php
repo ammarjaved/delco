@@ -176,11 +176,11 @@ class SiteSurveyController extends Controller
             ];
             $destinationPath = 'assets/images/';
 
-            $imageFields = ['toolbox_image1', 'toolbox_image2'];
+            $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
 
     
                 foreach ($imageFields as $field) {
-                    if ($request->hasFile($field) && $field!='toolbox_image1' &&  $field!='toolbox_image2') {
+                    if ($request->hasFile($field)) {
                         $img_ext =$request->file($field)->getClientOriginalExtension();
                         $filename =$field . '-' . strtotime(now()) . '.' . $img_ext;
                         $request->file($field)->move($destinationPath, $filename);
@@ -190,7 +190,7 @@ class SiteSurveyController extends Controller
                 }
 
 
-                foreach ($imageFields as $field) {
+                foreach ($toolboxImageFields as $field) {
                     if ($request->hasFile($field)) {
                         if($field=='toolbox_image1'  || $field=='toolbox_image2'){
                         $img_ext =$request->file($field)->getClientOriginalExtension();
@@ -211,7 +211,7 @@ class SiteSurveyController extends Controller
         //     }
         // }
     
-           // return $pictureData;
+          // return $pictureData;
             SitePicture::create($pictureData);
             ToolBoxTalk::create($toolbox);
 

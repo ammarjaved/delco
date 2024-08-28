@@ -36,8 +36,7 @@
                                         </a>
                                     </div>
 
-                                    <div class="btn-group" role="group" aria-label="Delete Actions">
-                                        <!-- Delete Site Survey Button -->
+                                    <!-- <div class="btn-group" role="group" aria-label="Delete Actions">
                                         <form action="{{ route('site_survey.destroy', $survey->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this Site Survey?');" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
@@ -45,7 +44,7 @@
                                                 <i class="fas fa-trash-alt"></i> Delete Site Survey
                                             </button>
                                         </form>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </td>
                         </tr>

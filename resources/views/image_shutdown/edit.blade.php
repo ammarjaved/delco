@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label for="existing_image">Existing Image</label>
                     <br>
-                    <img src="{{ asset('storage/' . $imageShutdown->image_url) }}" alt="Existing Image" class="img-fluid" style="max-width: 300px;">
+                    <img src="{{ asset($imageShutdown->image_url) }}" alt="Existing Image" class="img-fluid" style="max-width: 300px;">
                 </div>
 
                 <!-- Submit and Cancel Buttons -->

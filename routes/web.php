@@ -120,7 +120,7 @@ Route::get('/sat', [SATController::class, 'index'])->name('sat.index');
 Route::get('/sat/create/{id}', [SATController::class, 'create'])->name('sat.create');
 
 // Store a new SAT record
-Route::post('/sat/store', [SATController::class, 'store'])->name('sat.store');
+Route::post('sat-store', [SATController::class, 'store'])->name('sat.store');
 
 
 

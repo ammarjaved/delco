@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
 $('#search_input1').typeahead({
                 name: 'hce1',
                 remote: searchMaterialUrl+'?key=%QUERY',
-                limit: 5
+                limit: 100
 });
 
     });

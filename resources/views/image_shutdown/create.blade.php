@@ -76,7 +76,7 @@
                                                 <td>{{ $imageShutdown->image_type }}</td>
                                                 <td>
                                                     @if($imageShutdown->image_url)
-                                                    <a href="{{ asset('storage/' . $imageShutdown->image_url) }}" target="_blank" class="btn btn-info btn-sm">
+                                                    <a href="{{ asset($imageShutdown->image_url) }}" target="_blank" class="btn btn-info btn-sm">
                                                         View
                                                     </a>
                                                     @else

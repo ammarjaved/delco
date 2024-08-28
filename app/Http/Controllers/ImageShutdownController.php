@@ -41,7 +41,16 @@ class ImageShutdownController extends Controller
         ]);
     
         // Handle the file upload
-        $imagePath = $request->file('image_url')->store('images/shutdown', 'public');
+       // $imagePath = $request->file('image_url')->store('images/shutdown', 'public');;
+       $imagePath='';
+       $destinationPath = 'assets/images/';
+        if ($request->hasFile('image_url')) {
+            $img_ext =$request->file('image_url')->getClientOriginalExtension();
+            $filename ='image_url' . '-' . strtotime(now()) . '.' . $img_ext;
+            $request->file('image_url')->move($destinationPath, $filename);
+           // $pictureData[$field] = $request->file($field)->store('images', 'public');
+           $imagePath =$destinationPath . $filename;
+        }
     
         // Create the ImageShutdown record
         ImageShutdown::create([
@@ -53,7 +62,7 @@ class ImageShutdownController extends Controller
         ]);
     
         // Redirect with success message
-        return redirect()->route('image-shutdown.index')->with('success', 'Image Shutdown created successfully.');
+        return redirect()->route('image-shutdown.create',['id'=>$request->site_survey_id])->with('success', 'Image Shutdown created successfully.');
     }
     public function edit($id)
     {
@@ -71,7 +80,20 @@ class ImageShutdownController extends Controller
         ]);
 
         $imageShutdown = ImageShutdown::findOrFail($id);
-        $imageShutdown->update($request->all());
+        
+        $imagePath='';
+        $destinationPath = 'assets/images/';
+         if ($request->hasFile('image_url')) {
+             $img_ext =$request->file('image_url')->getClientOriginalExtension();
+             $filename ='image_url' . '-' . strtotime(now()) . '.' . $img_ext;
+             $request->file('image_url')->move($destinationPath, $filename);
+            // $pictureData[$field] = $request->file($field)->store('images', 'public');
+            $imagePath =$destinationPath . $filename;
+         }
+
+        $req_data=$request->all();
+        $req_data['image_url']=$imagePath;
+        $imageShutdown->update($req_data);
 
         return redirect()->route('image-shutdown.create', $imageShutdown->site_survey_id)
                          ->with('success', 'Image Shutdown updated successfully.');
