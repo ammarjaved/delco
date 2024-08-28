@@ -69,20 +69,22 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="{{ route('estimation-work.create') }}"
                                     class="nav-link {{ Request::route()->getName() === 'estimation-work.create' ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Create</p>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
-                                <a href="{{ route('estimation-work.index') }}"
-                                    class="nav-link {{ Request::route()->getName() === 'estimation-work.index' ? 'active' : '' }}">
+                                <a href="{{ route('material-selection.format') }}"
+                                   class="nav-link {{ Request::route()->getName() === 'material-selection.format' ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>index</p>
                                 </a>
                             </li>
+                            
+                            
                         </ul>
                     </li>
 
@@ -215,17 +217,7 @@
  -->
 
 
-                    <ul>
-                    <li class="nav-item">
-                        <a href="{{ route('payment-summary-details.index') }}"
-                            class="nav-link  ">
-                            <i class="nav-icon fas fa-edit"></i>
-                            <p>Payments</p>
-                        </a>
-                    </li>
-                </ul>
-
-
+                  
                
 
 

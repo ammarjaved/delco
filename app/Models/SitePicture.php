@@ -67,7 +67,10 @@ class SitePicture extends Model
         'other_image4',
         'created_by',
         'updated_by',
-        'site_survey_id'
+        'site_survey_id',
+        'project',
+        'area'
+
     ];
 
     protected $casts = [

@@ -22,32 +22,34 @@
                             @csrf
                             <input type="hidden" name="site_survey_id" value="{{ $survey->id }}">
                             
-                            <!-- Image Name -->
-                            <div class="form-group">
-                                <label for="image_name">Image Name</label>
-                                <input type="text" class="form-control" id="image_name" name="image_name" required>
-                            </div>
+                            <div class="form-group row">
+                                <!-- Image Name -->
+                                <div class="col-md-4">
+                                    <label for="image_name">Image Name</label>
+                                    <input type="text" class="form-control" id="image_name" name="image_name" required>
+                                </div>
 
-                            <!-- Upload Image -->
-                            <div class="form-group">
-                                <label for="image_url">Upload Image</label>
-                                <input type="file" class="form-control" id="image_url" name="image_url" required>
-                            </div>
+                                <!-- Upload Image -->
+                                <div class="col-md-4">
+                                    <label for="image_url">Upload Image</label>
+                                    <input type="file" class="form-control" id="image_url" name="image_url" required>
+                                </div>
 
-                            <!-- Image Type -->
-                            <div class="form-group">
-                                <label for="image_type">Image Type</label>
-                                <select class="form-control" id="image_type" name="image_type" required>
-                                    <option value="" disabled selected>Select Type</option>
-                                    <option value="before">Before</option>
-                                    <option value="during">During</option>
-                                    <option value="after">After</option>
-                                </select>
+                                <!-- Image Type -->
+                                <div class="col-md-4">
+                                    <label for="image_type">Image Type</label>
+                                    <select class="form-control" id="image_type" name="image_type" required>
+                                        <option value="" disabled selected>Select Type</option>
+                                        <option value="before">Before</option>
+                                        <option value="during">During</option>
+                                        <option value="after">After</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <!-- Submit and Cancel Buttons -->
-                            <button type="submit" class="btn btn-success">Save</button>
-                            <a href="{{ url()->previous() }}" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-success mt-3">Save</button>
+                            <a href="{{ url()->previous() }}" class="btn btn-secondary mt-3">Cancel</a>
                         </form>
 
                         <!-- Table of Saved Image Shutdowns -->
@@ -55,36 +57,45 @@
                         @if($imageShutdowns->isEmpty())
                             <p>No image shutdowns found for this survey.</p>
                         @else
-                            <table class="table mt-3">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Image Name</th>
-                                        <th>Image Type</th>
-                                        <th>Actions</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($imageShutdowns as $imageShutdown)
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover mt-3">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $imageShutdown->id }}</td>
-                                            <td>{{ $imageShutdown->image_name }}</td>
-                                            <td>{{ $imageShutdown->image_type }}</td>
-                                            
-                                            <td>
-                                                <!-- You can add actions like Edit or Delete here -->
-                                                <a href="{{ route('image-shutdown.edit', $imageShutdown->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                                <form action="{{ route('image-shutdown.destroy', $imageShutdown->id) }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                                </form>
-                                            </td>
+                                            <th>ID</th>
+                                            <th>Image Name</th>
+                                            <th>Image Type</th>
+                                            <th>Image Preview</th>
+                                            <th>Actions</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($imageShutdowns as $imageShutdown)
+                                            <tr>
+                                                <td>{{ $imageShutdown->id }}</td>
+                                                <td>{{ $imageShutdown->image_name }}</td>
+                                                <td>{{ $imageShutdown->image_type }}</td>
+                                                <td>
+                                                    @if($imageShutdown->image_url)
+                                                    <a href="{{ asset('storage/' . $imageShutdown->image_url) }}" target="_blank" class="btn btn-info btn-sm">
+                                                        View
+                                                    </a>
+                                                    @else
+                                                        No image
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('image-shutdown.edit', $imageShutdown->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                                    <form action="{{ route('image-shutdown.destroy', $imageShutdown->id) }}" method="POST" style="display:inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         @endif
                     </div>
                 </div>

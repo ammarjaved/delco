@@ -86,10 +86,11 @@ class SiteSurveyController extends Controller
 
             DB::statement("UPDATE tbl_site_survey set geom = ST_GeomFromText('POINT($request->lng $request->lat)',4326) where id = $siteSurvey->id");
            
+
             // DB::statement("update tbl_site_survey set area='$area' ,project='$company' where id = $siteSurvey->id"); 
 
 
-
+               
             $pictureData['site_survey_id'] = $siteSurvey->id;
             $pictureData['substation_fl'] = $request->substation_fl;
             $pictureData['existing_switchgear'] = $request->existing_switchgear;
@@ -108,6 +109,11 @@ class SiteSurveyController extends Controller
             $pictureData['rcb'] = $request->rcb;
             $pictureData['efi'] = $request->efi;
             $pictureData['other'] = $request->other;
+
+            $pictureData['created_by']= $usr_info->email;
+            $pictureData['updated_by']= $usr_info->email;
+            $pictureData['area']=$area;
+            $pictureData['project']=$project;
         
             $toolbox['site_survey_id'] = $siteSurvey->id;
             $toolbox['pe_nama'] = $siteSurvey->nama_pe;
@@ -138,6 +144,10 @@ class SiteSurveyController extends Controller
 
             $toolbox['toolbox_image1'] = $request->toolbox_image1;
             $toolbox['toolbox_image2'] = $request->toolbox_image2;
+            $toolbox['created_by']= $usr_info->email;
+            $toolbox['updated_by']= $usr_info->email;
+            $toolbox['area']=$area;
+            $toolbox['project']=$project;
 
 
 
@@ -232,6 +242,7 @@ class SiteSurveyController extends Controller
         $toolboxTalk = toolboxTalk::where('site_survey_id', $id)->first();
         $sql='select st_x(geom) as x,st_y(geom) as y from tbl_site_survey where id='.$id;
         $location=DB::select($sql)[0];
+        
 
        
     //  $combinedArray =  (object) array_merge($data->toArray(), $data1->toArray());

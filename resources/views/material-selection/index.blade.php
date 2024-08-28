@@ -24,7 +24,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>PE NAME</th>
+                    
                     <th>Material Code</th>
                     <th>Description</th>
                     <th>BUn</th>
@@ -35,6 +35,7 @@
                  
                 @foreach ($materials as $material)
                 <tr>
+                    
                     <td>{{ $material->mat_code }}</td>
                     <td>{{ $material->mat_desc }}</td>
                     <td>{{ $material->bun }}</td>

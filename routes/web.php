@@ -68,6 +68,9 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/material-selection/{id}', [MaterialSelectionController::class, 'destroy'])->name('material-selection.destroy');
 
+    Route::get('/material-selection/index', [MaterialSelectionController::class, 'index'])->name('material-selection.index');
+
+    Route::get('/material-selection', [MaterialSelectionController::class, 'format'])->name('material-selection.format');
 
     Route::get('site-file-upload/{id}', [SiteSurveyFilesController::class, 'index'])->name('siteFileUploadView.index');
 

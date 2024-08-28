@@ -38,6 +38,15 @@ class MaterialSelectionController extends Controller
     
         return view('material-selection.index', compact('materials', 'siteSurvey'));
     }
+
+    // app/Http/Controllers/MaterialSelectionController.php
+
+public function format()
+{
+    $surveys = SiteSurvey::all(); // Adjust the query as needed to fetch the required data
+    return view('material-selection.format', compact('surveys'));
+}
+
     
 
     public function showData($id)

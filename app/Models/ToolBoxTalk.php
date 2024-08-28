@@ -37,6 +37,8 @@ class ToolBoxTalk extends Model
         'created_by',
         'updated_by',
         'site_survey_id',
+        'project',
+        'area'
     ];
 
     protected $casts = [

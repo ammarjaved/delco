@@ -91,7 +91,7 @@
                                 </a>
                             </div>
                         
-                            <div class="btn-group mr-2" role="group" aria-label="Secondary Actions">
+                            {{-- <div class="btn-group mr-2" role="group" aria-label="Secondary Actions">
                                 <!-- Material Selection Button -->
                                 <a href="{{ route('material-selection.index', ['id' => $survey->id]) }}" class="btn btn-secondary">
                                     <i class="fas fa-list-alt"></i> Material Selection
@@ -104,7 +104,7 @@
                                 <a href="{{ route('material-selection.show', $survey->id) }}" class="btn btn-secondary">
                                     <i class="fas fa-eye"></i> Show Materials
                                 </a>
-                            </div>
+                            </div> --}}
                         
                             <div class="btn-group" role="group" aria-label="Delete Actions">
                                 <!-- Delete Site Survey Button -->
@@ -115,20 +115,22 @@
                                         <i class="fas fa-trash-alt"></i> Delete Site Survey
                                     </button>
                                 </form>
-                        
+                            
                                 <!-- Delete Materials Button -->
-                                <form action="{{ route('material-selection.destroy', $survey->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete materials for this Site Survey?');" style="display:inline;">
+                                {{-- <form action="{{ route('material-selection.destroy', $survey->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete materials for this Site Survey?');" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger ml-2">
                                         <i class="fas fa-trash"></i> Delete Materials
                                     </button>
-                                </form>
+                                </form> --}}
                             </div>
-
-                            <a href="{{ route('siteFileUploadView.index', ['id' => $survey->id]) }}" class="btn btn-secondary">
-                                <i class="fas fa-eye"></i> Upload
+                            
+                            <!-- Add margin-left to the Upload Files link -->
+                            <a href="{{ route('siteFileUploadView.index', ['id' => $survey->id]) }}" class="btn btn-secondary ml-3">
+                                <i class="fas fa-eye"></i> Upload Files
                             </a>
+                            
                             
                         </div>
                         
