@@ -12,12 +12,13 @@
                     <label for="site_file" class="form-label">Upload Your File</label>
                     <input type="file" id="site_file" name="site_file" class="form-control" required>
                 </div>
-                <div class="col-md-8 mb-3">
+                <div class="col-md-6 mb-2" >
                     <label for="description" class="form-label">Description</label>
-                    <textarea id="description" name="description" class="form-control" rows="3" required></textarea>
+                    <textarea style="height: 41px;" id="description" name="description" class="form-control" rows="3" required></textarea>
                 </div>
+                <button style="    height: 40px;margin-top: 30px;" type="submit" class="btn btn-primary">Upload</button>
             </div>
-            <button type="submit" class="btn btn-primary">Upload</button>
+           
         </form>
     </div>
 
