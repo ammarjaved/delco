@@ -78,11 +78,14 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/siteFileUpload/{id}', [SiteSurveyFilesController::class, 'destroy'])->name('siteFileUpload.destroy');
 
-    Route::resource('pre-cabling',PreCablingController::class,['except' => ['create']]);
+    Route::resource('pre-cabling',PreCablingController::class,['except' => ['create','delete']]);
     Route::get('/pre-cabling-piw/{id}/create',[PreCablingController::class,'create'])->name('pre-cabling-piw.create');
+    Route::get('/pre-cabling-piw/{id}/delete',[PreCablingController::class,'destroy'])->name('pre-cabling-piw.delete');
 
-    Route::resource('pre-cabling-shut-down',PreCablingShutDownController::class,['except' => ['create']]);
+    Route::resource('pre-cabling-shut-down',PreCablingShutDownController::class,['except' => ['create','delete']]); 
+
     Route::get('/pre-cabling-shut-down/{id}/create',[PreCablingShutDownController::class,'create'])->name('pre-cabling-shut-down.create');
+    Route::get('/pre-cabling-shut-down/{id}/delete',[PreCablingShutDownController::class,'destroy'])->name('pre-cabling-shut-down.delete');
 
 
 

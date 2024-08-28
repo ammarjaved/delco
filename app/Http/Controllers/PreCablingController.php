@@ -18,7 +18,7 @@ class PreCablingController extends Controller
     public function index()
     {
         //
-        $data = SiteSurvey::with(['PreCabling','PreCablingShutDown'])->get();
+        $data = SiteSurvey::with(['PreCabling', 'PreCablingShutDown'])->get();
         return view('PreCabling.index', ['surveys' => $data]);
     }
 
@@ -46,14 +46,11 @@ class PreCablingController extends Controller
 
             $request['created_by'] = Auth::user()->name;
             PreCabling::create($request->all());
-
         } catch (\Throwable $th) {
             return redirect()->route('pre-cabling.index')->with('failed', 'Request Failed');
-
         }
 
         return redirect()->route('pre-cabling.index')->with('success', 'Request Success');
-
     }
 
     /**
@@ -77,7 +74,7 @@ class PreCablingController extends Controller
     {
         //
         $piw = PreCabling::find($id);
-        return $piw ? view('PreCabling.create',['piw'=>$piw]) : abort(404);
+        return $piw ? view('PreCabling.create', ['piw' => $piw]) : abort(404);
     }
 
     /**
@@ -90,16 +87,13 @@ class PreCablingController extends Controller
     public function update(Request $request, $id)
     {
         try {
- 
-           $preCabling = PreCabling::find($id);
-           if (!$preCabling) {
+            $preCabling = PreCabling::find($id);
+            if (!$preCabling) {
                 abort(404);
-           }
-                $preCabling->update($request->all());
-
+            }
+            $preCabling->update($request->all());
         } catch (\Throwable $th) {
             return redirect()->route('pre-cabling.index')->with('failed', 'Request Failed');
-
         }
 
         return redirect()->route('pre-cabling.index')->with('success', 'Request Success');
@@ -114,5 +108,13 @@ class PreCablingController extends Controller
     public function destroy($id)
     {
         //
+        try {
+            $piw = PreCabling::findOrFail($id); 
+            $piw->delete();
+        } catch (\Throwable $th) {
+            return redirect()->route('pre-cabling.index')->with('failed', 'Request Failed');
+        }
+
+        return redirect()->route('pre-cabling.index')->with('success', 'Request Success');
     }
 }
