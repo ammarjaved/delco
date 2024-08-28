@@ -64,7 +64,10 @@ Route::middleware('auth')->group(function () {
     // Route::get('/material-show', [MaterialSelectionController::class, 'showData'])->name('material-selection.show');
 
     Route::get('/material-selection/show/{id}', [MaterialSelectionController::class, 'showData'])->name('material-selection.show');
-    Route::get('/search_material', [MaterialSelectionController::class, 'searchMaterial']);
+    Route::get('/search_material', [MaterialSelectionController::class, 'searchMaterial'])->name('search.material');
+
+    Route::get('/data_material', [MaterialSelectionController::class, 'materialData'])->name('data.material');
+
 
 
     Route::delete('/material-selection/{id}', [MaterialSelectionController::class, 'destroy'])->name('material-selection.destroy');
