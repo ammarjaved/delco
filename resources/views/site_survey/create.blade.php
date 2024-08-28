@@ -638,7 +638,7 @@ document.addEventListener('DOMContentLoaded', function() {
         pictureFields.forEach(field => {
             const isYesChecked = document.querySelector(`input[name="${field}"][value="yes"]`).checked;
             if (isYesChecked) {
-                const files = imageContainer.querySelectorAll('input[type="file"]');
+                const files = document.querySelector('input[type="file"]');
                 let allFilesUploaded = Array.from(files).every(input => input.files.length > 0);
                 
                 if (!allFilesUploaded) {

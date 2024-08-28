@@ -128,7 +128,7 @@
                             
                             <!-- Add margin-left to the Upload Files link -->
                             <a href="{{ route('siteFileUploadView.index', ['id' => $survey->id]) }}" class="btn btn-secondary ml-3">
-                                <i class="fas fa-eye"></i> Upload Files
+                                <i class="fas fa-eye"></i> Attach Files
                             </a>
                             
                             
