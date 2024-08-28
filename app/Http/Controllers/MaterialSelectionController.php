@@ -20,6 +20,44 @@ class MaterialSelectionController extends Controller
     public function index(Request $request)
     {
         $siteSurvey = SiteSurvey::find($request->id);
+
+        // return $siteSurvey;
+    
+        // Handle the case where SiteSurvey is not found
+        // if (!$siteSurvey) {
+        //     return redirect()->route('material-selection.index')->with('error', 'Site Survey not found.');
+        // }
+    
+        // $query = material::query();
+    
+        // if ($request->has('search')) {
+        //     $search = $request->input('search');
+        //     $query->where('mat_code', 'LIKE', "%{$search}%")
+        //           ->orWhere('mat_desc', 'LIKE', "%{$search}%");
+    
+        // $materials = $query->get();
+    
+        //  return view('material-selection.index', compact('materials', 'siteSurvey'));
+        // }else{
+            return view('material-selection.index',compact('siteSurvey'));
+ 
+     //   }
+    }
+
+    public function searchMaterial(Request $request){
+        $query = material::query();
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('mat_code', 'LIKE', "%{$search}%")
+                  ->orWhere('mat_desc', 'LIKE', "%{$search}%");
+        }
+    
+        return $materials = $query->get();
+    }
+
+    public function searchResult(Request $request)
+    {
+        $siteSurvey = SiteSurvey::find($request->id);
     
         // Handle the case where SiteSurvey is not found
         if (!$siteSurvey) {
@@ -38,6 +76,7 @@ class MaterialSelectionController extends Controller
     
         return view('material-selection.index', compact('materials', 'siteSurvey'));
     }
+
 
     // app/Http/Controllers/MaterialSelectionController.php
 

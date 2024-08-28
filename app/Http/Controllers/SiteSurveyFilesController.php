@@ -35,11 +35,16 @@ class SiteSurveyFilesController extends Controller
                 $file_path = $destinationPath . $filename;
 
                 // Save file details to the database
+                $user=\Auth::user();
                 $uploadedFile = FileUpload::create([
                     'file_name' => $filename,
                     'file_path' => $file_path,
                     'description' => $request->description,
-                    'site_survey_id' => $id
+                    'site_survey_id' => $id,
+                    'created_by'=>$user->email,
+                    'updated_by'=>$user->email,
+                    'project'=>$user->project,
+                    'area'=>$user->area
                 ]);
 
                 return redirect()->route('siteFileUploadView.index', ['id' => $id])->with('success', 'File uploaded successfully.');
