@@ -81,20 +81,30 @@
                                                         <!-- Show Button -->
                                                         <div class="mx-2">
                                                             @if ($survey->PreCabling)
-                                                                <a href="{{  route('pre-cabling.edit', $survey->PreCabling->id) }}" class="btn btn-primary">Show PIW</a>
+                                                                <a href="{{  route('pre-cabling.edit', $survey->PreCabling->id) }}" class="btn btn-primary rounded-0" >Show PIW</a>
                                                             @else
-                                                                <a href="{{  route('pre-cabling-piw.create',$survey) }}" class="btn btn-success">Add PIW</a>
+                                                                <a href="{{  route('pre-cabling-piw.create',$survey) }}" class="btn btn-success rounded-0">Add PIW</a>
 
                                                             @endif
                                                         </div>
 
                                                         <div class="mx-2">
                                                             @if ($survey->PreCablingShutDown)
-                                                                <a href="{{  route('pre-cabling-shut-down.edit', $survey->PreCablingShutDown->id) }}" class="btn btn-primary">ShutDown</a>
+                                                                <a href="{{  route('pre-cabling-shut-down.edit', $survey->PreCablingShutDown->id) }}" class="btn btn-primary rounded-0">ShutDown</a>
                                                             @else
-                                                                <a href="{{  route('pre-cabling-shut-down.create',$survey) }}" class="btn btn-success">Add ShutDown</a>
+                                                                <a href="{{  route('pre-cabling-shut-down.create',$survey) }}" class="btn btn-success rounded-0">Add ShutDown</a>
                                                             @endif
                                                         </div>
+
+                                                        <div class="mx-2"> 
+                                                                <a href="{{  route('pre-cabling-attachment.index', $survey->id) }}" class="btn btn-secondary rounded-0">  <i class="fas fa-eye"></i> Add Attactments</a> 
+                                                           
+                                                        </div>
+
+                                                        <div class="mx-2"> 
+                                                            <a href="{{  route('pre-cabling-image.index', $survey->id) }}" class="btn btn-secondary rounded-0">  <i class="fas fa-plus"></i> Add Images</a> 
+                                                       
+                                                    </div>
                                                         
 
                                                         <!-- Edit Button with margin-left -->

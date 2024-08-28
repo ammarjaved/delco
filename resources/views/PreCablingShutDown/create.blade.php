@@ -31,7 +31,13 @@
                     @endif
                     @csrf
 
-
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nama_pe">Nama PE </label>
+                            <input type="text" class="form-control" id="substation_name" readonly name="substation_name" value="{{!isset($site_survey_id) ? $piw->substation_name : $nama_pe }}" required>
+                           
+                        </div>
+                    </div>
 
                     <input type="hidden" name="site_survey_id" value="{{isset($site_survey_id) ? $site_survey_id : $piw->site_survey_id}}">
 
