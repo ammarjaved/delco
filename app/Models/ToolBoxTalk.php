@@ -12,7 +12,7 @@ class ToolBoxTalk extends Model
 
     protected $fillable = [
         'lokasi',
-        'pe_nama',
+        'pe_name',
         'tarikh',
         'cfs',
         'skop_kerja',
@@ -21,7 +21,7 @@ class ToolBoxTalk extends Model
         'ppd_safety_shoes',
         'ppd_safety',
         'equipment_condition',
-        'equipment_kit_condition',
+        'instrument_kit_condition',
         'vehicle_fire_extinguisher',
         'vehicle_condition',
         'traffic_safety_kon',
@@ -30,7 +30,7 @@ class ToolBoxTalk extends Model
         'team_ap_tnp',
         'team_cp_tnb',
         'niosh_staff_ntsp',
-        'niosh_special_permit',
+        'permit_special',
         'picture_during_toolbox',
         'toolbox_image1',
         'toolbox_image2',

@@ -3,6 +3,10 @@
 use App\Http\Controllers\api\siteDataCollections;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\LoginController;
+use App\Http\Controllers\api\DBController;
+use App\Http\Controllers\api\uploadImagesContoller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +24,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('api-site-data-collection',siteDataCollections::class);
+
+Route::post('/login',[LoginController::class,'login']);
+
+Route::post('/database/GetResults',[DBController::class,'GetResults']);
+
+Route::post("/database/insert",[DBController::class,'insert']);
+Route::post("/database/update",[DBController::class,'update']);
+
+Route::post('/upload-site-images/{id}',[uploadImagesContoller::class,"uploadImages"]);
+Route::post('/upload-toolbox-images/{id}/{type}',[uploadImagesContoller::class,"uploadImagesToolBox"]);
+
+Route::post('/upload-precbl-images',[uploadImagesContoller::class,"preCblImage"]);
+Route::post('/upload-shutdown-images',[uploadImagesContoller::class,"shutdownImage"]);
+
+
+
+

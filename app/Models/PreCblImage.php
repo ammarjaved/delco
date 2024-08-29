@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth; // To get the authenticated user ID
 
-class ImageShutdown extends Model
+class PreCblImage extends Model
 {
     use HasFactory;
 
-    protected $table = 'tbl_shutdown_images';
+    protected $table = 'tbl_precabl_images';
     protected $primaryKey = 'id';
     protected $fillable = [
         'image_name',
         'image_url',
-        'image_type',
+        'image_desc',
         'created_by',
         'updated_by',
         'site_survey_id',
