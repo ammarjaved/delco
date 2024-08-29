@@ -21,6 +21,7 @@ class ToolBoxTalk extends Model
         'ppd_safety_shoes',
         'ppd_safety',
         'equipment_condition',
+        'instrument_condition', //this one to 
         'instrument_kit_condition',
         'vehicle_fire_extinguisher',
         'vehicle_condition',
@@ -31,6 +32,7 @@ class ToolBoxTalk extends Model
         'team_cp_tnb',
         'niosh_staff_ntsp',
         'permit_special',
+        'permit_work', //this one to
         'picture_during_toolbox',
         'toolbox_image1',
         'toolbox_image2',

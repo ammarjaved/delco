@@ -320,21 +320,14 @@
     <h3 class="mt-3">ToolBoxTalk</h3> 
     
        <div class="row">
-        <div class="col-md-6">
+        {{-- <div class="col-md-6">
 
-    <div class="form-group">
-        <label for="lokasi">Lokasi</label><br>
-        <label for="lokasi_yes">
-            <input type="radio" id="lokasi_yes" name="lokasi" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->lokasi ?? old('lokasi')) === 'yes' ? 'checked' : '' }}>
-            Yes
-        </label>
-        <label for="lokasi_no">
-            <input type="radio" id="lokasi_no" name="lokasi" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->lokasi ?? old('lokasi')) === 'no' ? 'checked' : '' }}>
-            No
-        </label>
-    </div>
-
-</div>
+            <div class="form-group">
+                <label for="lokasi">Lokasi</label><br>
+                <input type="text" id="lokasi" name="lokasi" class="form-control" value="{{ $toolboxTalk->lokasi ?? old('lokasi') }}">
+            </div>
+            
+</div> --}}
 
 <div class="col-md-6">
     <div class="form-group">
@@ -348,35 +341,28 @@
 </div>
     
 <div class="row">
-    <div class="col-md-6">
-    <div class="form-group">
+    {{-- <div class="col-md-6"> --}}
+    {{-- <div class="form-group">
         <label for="cfs">CFS</label><br>
         <label for="cfs_yes">
             <input type="radio" id="cfs_yes" name="cfs" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->cfs ?? old('cfs')) === 'yes' ? 'checked' : '' }}>
             Yes
         </label>
         <label for="cfs_no">
-            <input type="radio" id="cfs_no" name="cfs" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->cfs ?? old('cfs')) === 'no' ? 'checked' : '' }}>
+            <input type="radio" id="cfs_no" name="cfs" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->cfs ?? old('cfs','no')) === 'no' ? 'checked' : '' }}>
             No
         </label>
-    </div>
-</div>
+    </div> --}}
+{{-- </div> --}}
 
     
 <div class="col-md-6">
     <div class="form-group">
         <label for="skop_kerja">Skop Kerja</label><br>
-        <label for="skop_kerja_yes">
-            <input type="radio" id="skop_kerja_yes" name="skop_kerja" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->skop_kerja ?? old('skop_kerja')) === 'yes' ? 'checked' : '' }}>
-            Yes
-        </label>
-        <label for="skop_kerja_no">
-            <input type="radio" id="skop_kerja_no" name="skop_kerja" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->skop_kerja ?? old('skop_kerja')) === 'no' ? 'checked' : '' }}>
-            No
-        </label>
+        <input type="text" id="skop_kerja" name="skop_kerja" class="form-control" value="SITE SURVEY" readonly>
     </div>
-
 </div>
+
 
 </div>
 
@@ -389,11 +375,11 @@
         <div class="form-group">
             <label for="{{ $field }}">{{ ucwords(str_replace('_', ' ', $field)) }}</label><br>
             <label for="{{ $field }}_yes">
-                <input type="radio" id="{{ $field }}_yes" name="{{ $field }}" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field)) === 'yes' ? 'checked' : '' }}>
+                <input type="radio" id="{{ $field }}_yes" name="{{ $field }}" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field,'no')) === 'yes' ? 'checked' : '' }}>
                 Yes
             </label>
             <label for="{{ $field }}_no">
-                <input type="radio" id="{{ $field }}_no" name="{{ $field }}" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field)) === 'no' ? 'checked' : '' }}>
+                <input type="radio" id="{{ $field }}_no" name="{{ $field }}" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field,'no')) === 'no' ? 'checked' : '' }}>
                 No
             </label>
         </div>
@@ -403,16 +389,16 @@
 
     <!-- Equipment fields -->
     <div class="row">
-    @foreach(['equipment_condition', 'equipment_kit_condition'] as $field)
+    @foreach(['equipment_condition','instrument_condition', 'instrument_kit_condition'] as $field)
     <div class="col-md-6">
         <div class="form-group">
             <label for="{{ $field }}">{{ ucwords(str_replace('_', ' ', $field)) }}</label><br>
             <label for="{{ $field }}_yes">
-                <input type="radio" id="{{ $field }}_yes" name="{{ $field }}" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field)) === 'yes' ? 'checked' : '' }}>
+                <input type="radio" id="{{ $field }}_yes" name="{{ $field }}" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field,'no')) === 'yes' ? 'checked' : '' }}>
                 Yes
             </label>
             <label for="{{ $field }}_no">
-                <input type="radio" id="{{ $field }}_no" name="{{ $field }}" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field)) === 'no' ? 'checked' : '' }}>
+                <input type="radio" id="{{ $field }}_no" name="{{ $field }}" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field,'no')) === 'no' ? 'checked' : '' }}>
                 No
             </label>
         </div>
@@ -427,11 +413,11 @@
         <div class="form-group">
             <label for="{{ $field }}">{{ ucwords(str_replace('_', ' ', $field)) }}</label><br>
             <label for="{{ $field }}_yes">
-                <input type="radio" id="{{ $field }}_yes" name="{{ $field }}" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field)) === 'yes' ? 'checked' : '' }}>
+                <input type="radio" id="{{ $field }}_yes" name="{{ $field }}" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field,'no')) === 'yes' ? 'checked' : '' }}>
                 Yes
             </label>
             <label for="{{ $field }}_no">
-                <input type="radio" id="{{ $field }}_no" name="{{ $field }}" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field)) === 'no' ? 'checked' : '' }}>
+                <input type="radio" id="{{ $field }}_no" name="{{ $field }}" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field,'no')) === 'no' ? 'checked' : '' }}>
                 No
             </label>
         </div>
@@ -446,11 +432,11 @@
         <div class="form-group">
             <label for="{{ $field }}">{{ ucwords(str_replace('_', ' ', $field)) }}</label><br>
             <label for="{{ $field }}_yes">
-                <input type="radio" id="{{ $field }}_yes" name="{{ $field }}" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field)) === 'yes' ? 'checked' : '' }}>
+                <input type="radio" id="{{ $field }}_yes" name="{{ $field }}" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field,'no')) === 'yes' ? 'checked' : '' }}>
                 Yes
             </label>
             <label for="{{ $field }}_no">
-                <input type="radio" id="{{ $field }}_no" name="{{ $field }}" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field)) === 'no' ? 'checked' : '' }}>
+                <input type="radio" id="{{ $field }}_no" name="{{ $field }}" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field,'no')) === 'no' ? 'checked' : '' }}>
                 No
             </label>
         </div>
@@ -467,11 +453,11 @@
         <div class="form-group">
             <label for="{{ $field }}">{{ ucwords(str_replace('_', ' ', $field)) }}</label><br>
             <label for="{{ $field }}_yes">
-                <input type="radio" id="{{ $field }}_yes" name="{{ $field }}" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field)) === 'yes' ? 'checked' : '' }}>
+                <input type="radio" id="{{ $field }}_yes" name="{{ $field }}" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field,'no')) === 'yes' ? 'checked' : '' }}>
                 Yes
             </label>
             <label for="{{ $field }}_no">
-                <input type="radio" id="{{ $field }}_no" name="{{ $field }}" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field)) === 'no' ? 'checked' : '' }}>
+                <input type="radio" id="{{ $field }}_no" name="{{ $field }}" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field,'no')) === 'no' ? 'checked' : '' }}>
                 No
             </label>
         </div>
@@ -481,16 +467,16 @@
 
     <!-- NIOSH fields -->
     <div class="row">
-    @foreach(['niosh_staff_ntsp', 'niosh_special_permit'] as $field)
+    @foreach(['niosh_staff_ntsp', 'permit_special','permit_work'] as $field)
     <div class="col-md-6">
         <div class="form-group">
             <label for="{{ $field }}">{{ ucwords(str_replace('_', ' ', $field)) }}</label><br>
             <label for="{{ $field }}_yes">
-                <input type="radio" id="{{ $field }}_yes" name="{{ $field }}" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field)) === 'yes' ? 'checked' : '' }}>
+                <input type="radio" id="{{ $field }}_yes" name="{{ $field }}" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field,'no')) === 'yes' ? 'checked' : '' }}>
                 Yes
             </label>
             <label for="{{ $field }}_no">
-                <input type="radio" id="{{ $field }}_no" name="{{ $field }}" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field)) === 'no' ? 'checked' : '' }}>
+                <input type="radio" id="{{ $field }}_no" name="{{ $field }}" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->$field ?? old($field,'no')) === 'no' ? 'checked' : '' }}>
                 No
             </label>
         </div>
@@ -503,11 +489,11 @@
     <div class="form-group">
         <label for="picture_during_toolbox">Picture During Toolbox</label><br>
         <label for="picture_during_toolbox_yes">
-            <input type="radio" id="picture_during_toolbox_yes" name="picture_during_toolbox" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->picture_during_toolbox ?? old('picture_during_toolbox')) === 'yes' ? 'checked' : '' }}>
+            <input type="radio" id="picture_during_toolbox_yes" name="picture_during_toolbox" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->picture_during_toolbox ?? old('picture_during_toolbox', 'no')) === 'yes' ? 'checked' : '' }}>
             Yes
         </label>
         <label for="picture_during_toolbox_no">
-            <input type="radio" id="picture_during_toolbox_no" name="picture_during_toolbox" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->picture_during_toolbox ?? old('picture_during_toolbox')) === 'no' ? 'checked' : '' }}>
+            <input type="radio" id="picture_during_toolbox_no" name="picture_during_toolbox" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->picture_during_toolbox ?? old('picture_during_toolbox', 'no')) === 'no' ? 'checked' : '' }}>
             No
         </label>
     </div>
@@ -525,7 +511,7 @@
             Yes
         </label>
         <label for="upload_images_no">
-            <input type="radio" id="upload_images_no" name="upload_images" value="no"  style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;"onclick="toggleImageInputs(false)">
+            <input type="radio" id="upload_images_no" name="upload_images" value="no"  style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;"onclick="toggleImageInputs(false)" checked>
             No
         </label>
     </div>

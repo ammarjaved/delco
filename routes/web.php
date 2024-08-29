@@ -30,6 +30,7 @@ use App\Http\Controllers\ToolboxTalkController;
 use App\Http\Controllers\SiteSurveyFilesController;
 use App\Http\Controllers\ImageShutdownController;
 use App\Http\Controllers\SATController;
+use App\Http\Controllers\LKSController;
 
 use App\Http\Controllers\Materialshow;
 use App\Http\Controllers\PreCablingAttachmentsController;
@@ -127,6 +128,12 @@ Route::get('/sat/create/{id}', [SATController::class, 'create'])->name('sat.crea
 
 // Store a new SAT record
 Route::post('sat-store', [SATController::class, 'store'])->name('sat.store');
+
+
+Route::get('/LKS', [LKSController::class, 'index'])->name('LKS.index');
+
+Route::get('/LKS/create/{id}', [LKSController::class, 'create'])->name('LKS.create');
+
 
 
 
