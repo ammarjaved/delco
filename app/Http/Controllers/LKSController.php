@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SitePicture;
 use App\Models\SiteSurvey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,13 +29,15 @@ class LKSController extends Controller{
         // return $survey;
         $toolboxtalk=ToolBoxTalk::where('site_survey_id',$survey->id)->get()[0];
 
+        $pictureData=SitePicture::where('site_survey_id',$survey->id)->get()[0];
+
        
 
        
       
 
     
-        return view('LKS.show', compact('survey','toolboxtalk'));
+        return view('LKS.show', compact('survey','toolboxtalk','pictureData'));
     }
 
 

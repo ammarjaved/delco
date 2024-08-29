@@ -72,7 +72,8 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::delete('/material-selection/{id}', [MaterialSelectionController::class, 'destroy'])->name('material-selection.destroy');
+    Route::delete('/material-selection/delete/{id}', [MaterialSelectionController::class, 'destroy'])->name('material-selection.delete');
+
 
     Route::get('/material-selection/index', [MaterialSelectionController::class, 'index'])->name('material-selection.index');
 

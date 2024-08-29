@@ -12,6 +12,7 @@
                 <th>Description</th>
                 <th>Bun</th>
                 <th>Quantity</th>
+                <th>Action</th> <!-- New column for delete button -->
             </tr>
         </thead>
         <tbody>
@@ -22,6 +23,13 @@
                     <td>{{ $item->mat_desc }}</td>
                     <td>{{ $item->bun }}</td>
                     <td>{{ $item->quantity }}</td>
+                    <td>
+                        <form action="{{ route('material-selection.delete', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

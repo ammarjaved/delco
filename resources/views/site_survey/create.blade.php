@@ -359,7 +359,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="skop_kerja">Skop Kerja</label><br>
-        <input type="text" id="skop_kerja" name="skop_kerja" class="form-control" value="SITE SURVEY" readonly>
+        <input type="text" id="skop_kerja" name="skop_kerja" class="form-control" value="SITE-SURVEY" readonly>
     </div>
 </div>
 
