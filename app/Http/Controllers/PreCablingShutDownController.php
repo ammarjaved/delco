@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PreCablingShutDown;
+use App\Models\SiteSurvey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,8 @@ class PreCablingShutDownController extends Controller
     public function create($id)
     {
         //
-        return view('PreCablingShutDown.create', ['site_survey_id' => $id]);
+        $nama_pe = SiteSurvey::findOrFail($id)->nama_pe;
+        return view('PreCablingShutDown.create', ['site_survey_id' => $id,'nama_pe'=>$nama_pe]);
 
     }
 

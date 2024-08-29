@@ -32,10 +32,11 @@ use App\Http\Controllers\ImageShutdownController;
 use App\Http\Controllers\SATController;
 
 use App\Http\Controllers\Materialshow;
+use App\Http\Controllers\PreCablingAttachmentsController;
 use App\Http\Controllers\PreCablingController;
+use App\Http\Controllers\PreCablingImagesController;
 use App\Http\Controllers\PreCablingShutDownController;
-
-
+use App\Models\PreCablingImages;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,6 +95,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/pre-cabling-shut-down/{id}/create',[PreCablingShutDownController::class,'create'])->name('pre-cabling-shut-down.create');
     Route::get('/pre-cabling-shut-down/{id}/delete',[PreCablingShutDownController::class,'destroy'])->name('pre-cabling-shut-down.delete');
 
+    Route::resource('pre-cabling-attachments',PreCablingAttachmentsController::class,['except'=>['index']]);  
+    Route::get('/pre-cabling-attachment/{id}/index',[PreCablingAttachmentsController::class,'index'])->name('pre-cabling-attachment.index');
+
+    Route::resource('pre-cabling-images',PreCablingImagesController::class,['except'=>['index']]);  
+    Route::get('/pre-cabling-image/{id}/index',[PreCablingImagesController::class,'index'])->name('pre-cabling-image.index');
 
 
    // Route to display a list of image shutdowns

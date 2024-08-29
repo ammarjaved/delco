@@ -35,7 +35,40 @@
                         <div class="col-md4"><label for="pe_name"></label></div>
                         <div class="col-md4"></div>
                     </div> --}}
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nama_pe">Kontraktor PIW  </label>
+                            <input type="text" class="form-control" readonly id="kontraktor_piw" name="kontraktor_piw" value="{{!isset($site_survey_id) ? $piw->kontraktor_piw : Auth::user()->project }}" required>
+                           
+                        </div>
+                    </div>
 
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="kontraktor_rtu">Kontraktor RTU  </label>
+                            <input type="text" class="form-control" id="kontraktor_rtu" readonly name="kontraktor_rtu" value="{{!isset($site_survey_id) ? $piw->kontraktor_rtu : Auth::user()->vendor }}" required>
+                           
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nama_pe">Nama PE </label>
+                            <input type="text" class="form-control" id="nama_pe" readonly name="nama_pe" value="{{!isset($site_survey_id) ? $piw->nama_pe : $nama_pe }}" required>
+                           
+                        </div>
+                    </div>
+
+            
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nama_pe">Date  </label>
+                            <input type="date" class="form-control" id="tarikh" name="tarikh" value="{{!isset($site_survey_id) ? $piw->tarikh : now() }}" required>
+                           
+                        </div>
+                    </div>
 
                     <input type="hidden" name="site_survey_id" value="{{isset($site_survey_id) ? $site_survey_id: $piw->site_survey_id}}">
 
