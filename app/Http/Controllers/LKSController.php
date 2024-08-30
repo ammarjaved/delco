@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FileUpload;
 use App\Models\SitePicture;
 use App\Models\SiteSurvey;
 use Illuminate\Http\Request;
@@ -31,13 +32,14 @@ class LKSController extends Controller{
 
         $pictureData=SitePicture::where('site_survey_id',$survey->id)->get()[0];
 
+        $files = FileUpload::where('site_survey_id', $survey->id)->get();
        
 
        
       
 
     
-        return view('LKS.show', compact('survey','toolboxtalk','pictureData'));
+        return view('LKS.show', compact('survey','toolboxtalk','pictureData','files'));
     }
 
 

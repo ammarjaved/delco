@@ -31,145 +31,204 @@
             font-weight: bold;
             margin-top: 200px;
         }
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-        .header { display: flex; justify-content: space-between; margin-bottom: 20px; }
-        .logo { border: 1px solid black; padding: 5px; font-size: 10px; width: 45%; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid black; padding: 5px; text-align: left; }
-        .checklist { display: flex; justify-content: space-between; }
-        .checklist-left { width: 30%; }
-        .checklist-right { width: 65%; }
-        .signature { margin-top: 20px; }
 
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-.container {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-}
+        h2 {
+            text-align: left;
+            margin-bottom: 20px;
+        }
 
-h2 {
-    text-align: left;
-    margin-bottom: 20px;
-}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
 
-th, td {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
+        th {
+            background-color: #f2f2f2;
+        }
 
-th {
-    background-color: #f2f2f2;
-}
+        td[colspan="5"] {
+            font-weight: bold;
+            background-color: #f9f9f9;
+        }
 
-td[colspan="5"] {
-    font-weight: bold;
-    background-color: #f9f9f9;
-}
+        .logo img {
+            width: 100px;
+        }
 
-.logo img {
-    width: 100px;
-}
+        .title {
+            font-size: 24px;
+            text-align: center;
+        }
 
-.title {
-    font-size: 24px;
-    text-align: center;
-}
-.checklist-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px; 
-}
+        .checklist-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px; 
+        }
 
-.checklist-left, .checklist-right {
-    flex: 1;
-    margin: 0 30px; 
-}
-.checklist-left {
-    margin-right: 40px; 
-}
+        .checklist-left, .checklist-right {
+            flex: 1;
+            margin: 0 30px; 
+        }
 
-.checklist-right {
-    margin-left: 40px; 
-}
+        .checklist-left {
+            margin-right: 40px; 
+        }
 
-.checklist {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap; 
-}
+        .checklist-right {
+            margin-left: 40px; 
+        }
 
-ol {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+        .checklist {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap; 
+        }
 
-li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px; 
-    font-size: 14px; 
-}
+        ol {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-li label {
-    margin-right: 20px; 
-    margin-left: 10px; 
-}
-.signature-section {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 40px;
-}
+        li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px; 
+            font-size: 14px; 
+        }
 
-.prepared, .reviewed {
-    width: 45%;
-    text-align: left;
-}
+        li label {
+            margin-right: 20px; 
+            margin-left: 10px; 
+        }
 
-.signature-box {
-    border: 1px solid #000;
-    width: 150px;
-    height: 50px;
-    margin-bottom: 10px;
-}
+        .signature-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
 
-input[type="checkbox"] {
-    margin-right: 5px; 
-    accent-color: black;
-    cursor: not-allowed;
-    -webkit-appearance: none;
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    border: 2px solid #000;
-    background-color: #fff;
-    position: relative;
-    vertical-align: middle; 
-}
+        .prepared, .reviewed {
+            width: 45%;
+            text-align: left;
+        }
 
-input[type="checkbox"]:checked::before {
-    content: "✓";
-    color: #000;
-    font-weight: bold;
-    font-size: 14px; 
-    position: absolute;
-    left: 2px;
-    top: -2px;
-}
-input[type="checkbox"].yes {
-    margin-right: 20px; 
-}
+        .signature-box {
+            border: 1px solid #000;
+            width: 150px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
 
-input[type="checkbox"].no {
-    margin-right: 0; 
-}
+        input[type="checkbox"] {
+            margin-right: 5px; 
+            accent-color: black;
+            cursor: not-allowed;
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #000;
+            background-color: #fff;
+            position: relative;
+            vertical-align: middle; 
+        }
+
+        input[type="checkbox"]:checked::before {
+            content: "✓";
+            color: #000;
+            font-weight: bold;
+            font-size: 14px; 
+            position: absolute;
+            left: 2px;
+            top: -2px;
+        }
+
+        input[type="checkbox"].yes {
+            margin-right: 20px; 
+        }
+
+        input[type="checkbox"].no {
+            margin-right: 0; 
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        header img {
+            max-height: 100px;
+        }
+
+        .substation-info {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .pictures-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+            gap: 20px; /* Space between items */
+        }
+
+        .picture-item {
+            padding: 10px;
+            border: 1px solid black; /* Simple black border */
+            text-align: center; /* Center align text */
+        }
+
+        .picture-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px; /* Space between image and description */
+            border: 1px solid black; /* Black border around image */
+        }
+
+        .picture-item p {
+            font-size: 14px;
+            color: #000; /* Black text color */
+            font-weight: normal; /* Normal weight for description text */
+            border-top: 1px solid black; /* Black line above description */
+            padding-top: 10px; /* Space between line and description */
+        }
+
     </style>
 </head>
 <body>
@@ -197,7 +256,7 @@ input[type="checkbox"].no {
     </div>
 
 
-    <div class="header" style="padding-top: 300px">
+    <div class="header" style="padding-top: 1000px">
         <div class="logo">
             <img src="/api/placeholder/30/30" alt="TNB Logo">
             <p>TNB ENERGY SERVICES SDN BHD (234667-M)<br>
@@ -535,6 +594,44 @@ input[type="checkbox"].no {
             <div class="signature-box">Signature 2</div>
             <p>Nama:<br>Jawatan:</p>
         </div>
+    </div>
+
+
+
+
+    <div>
+       
+    <div class="header" style="padding-top: 300px">
+        <div class="logo">
+            <img src="/api/placeholder/30/30" alt="TNB Logo">
+            <p>TNB ENERGY SERVICES SDN BHD (234667-M)<br>
+            Level 2, Jalan Air Hitam, Kawasan 16,<br>
+            40000 Shah Alam, Selangor</p>
+        </div>
+        <div class="logo">
+            <img src="/api/placeholder/30/30" alt="AK Logo">
+            <p>ARUS KEJURUTERAAN SDN BHD<br>
+            1st Floor No 72, Jalan SS 21/1, Damansara<br>
+            Utama, 47400 Petaling Jaya, Selangor</p>
+        </div>
+    </div>
+
+        <div class="substation-info">           
+            <p><strong>SUBSTATION NAME:</strong> {{$survey->nama_pe}}</p>
+            <p><strong>NO FUNCTIONAL LOCATION:</strong> JJBUPJCOEH00621</p>
+        </div>
+
+        <h2 class="section-title"><u>PICTURE OF SITE SURVEY</u></h2>
+
+        <div class="pictures-grid">
+            @foreach($files as $file)
+                <div class="picture-item">
+                    <img src="{{ asset($file->file_path) }}" alt="{{ $file->description }}">
+                    <p>{{ $file->description }}</p>
+                </div>
+            @endforeach
+        </div>
+        
     </div>
 
 
