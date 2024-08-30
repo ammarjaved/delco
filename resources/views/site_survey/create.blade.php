@@ -304,6 +304,9 @@
                                     <input type="file" class="form-control-file" id="{{ $field }}_image{{ $i }}" name="{{ $field }}_image{{ $i }}">
                                     @if (isset($siteSurvey1) && $siteSurvey1->{"{$field}_image{$i}"})
                                         <img src="{{ asset($siteSurvey1->{"{$field}_image{$i}"}) }}" id='img_{{$field}}{{$i}}' alt="{{ ucwords(str_replace('_', ' ', $field)) }} Image {{ $i }}" class="img-thumbnail mt-2" style="max-width: 200px;">
+                                    @else
+                                        <img src="" id='img_{{$field}}{{$i}}' alt="{{ ucwords(str_replace('_', ' ', $field)) }} Image {{ $i }}" class="img-thumbnail mt-2" style="max-width: 200px;">
+
                                     @endif
                                 </div>
                             @endfor
@@ -631,6 +634,38 @@ document.addEventListener('DOMContentLoaded', function() {
         ];
 
         var status= '{{isset($siteSurvey['id'])}}';
+
+
+        var j=1;
+       for(var i=0;i<pictureFields.length;i++){
+         for(var j=1;j<3;j++){
+        $('#'+pictureFields[i]+'_image'+j).change(function() {
+          //  var input = $('#'+pictureFields[i]+'_image'+j)[0];
+              var input=this;
+                   var inputid=input.id;
+                  var img_name=inputid.split('_');
+                      imgsrc='';
+                   if(img_name.length==3){
+                    imgsrc=img_name[0]+'_'+img_name[1]+img_name[2].charAt(img_name[2].length-1);
+                   }else if(img_name.length==4){
+                    imgsrc=img_name[0]+'_'+img_name[1]+'_'+img_name[2]+img_name[3].charAt(img_name[3].length-1);
+                   }else if(img_name.length==2){
+                    imgsrc=img_name[0]+img_name[1].charAt(img_name[1].length-1);
+                   }
+
+            if (input.files && input.files.length > 0) {
+                for (var i = 0; i < input.files.length; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#img_'+imgsrc).attr('src',e.target.result).show()
+                    }
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+        });
+    }
+    }
+   
 
         
 
