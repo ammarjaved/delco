@@ -1,6 +1,26 @@
 
-
-
+@php
+ $imageFields = [
+                'substation_fl_image1', 'substation_fl_image2',
+                'existing_switchgear_image1', 'existing_switchgear_image2',
+                'switchgear_nameplate_image1', 'switchgear_nameplate_image2',
+                'distribution_board_image1', 'distribution_board_image2',
+                'battery_charger_image1', 'battery_charger_image2',
+                'battery_charger_nameplate_image1', 'battery_charger_nameplate_image2',
+                'ceiling_tray_image1', 'ceiling_tray_image2',
+                'civil_location_image1', 'civil_location_image2',
+                'substation_entrance_image1', 'substation_entrance_image2',
+                'cable_route_image1', 'cable_route_image2',
+                'genset_location_image1', 'genset_location_image2',
+                'feeder_tx_image1', 'feeder_tx_image2',
+                'trench_view_image1', 'trench_view_image2',
+                'rtu_image1', 'rtu_image2',
+                'rcb_image1', 'rcb_image2',
+                'efi_image1', 'efi_image2',
+                'other_image1', 'other_image2', 'other_image3', 'other_image4'
+            ];
+$toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,17 +189,10 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
+            
         }
 
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 800px;
-            margin: 0 auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+       
 
         header {
             display: flex;
@@ -228,6 +241,97 @@
             border-top: 1px solid black; /* Black line above description */
             padding-top: 10px; /* Space between line and description */
         }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #000;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .signature {
+            text-align: center;
+        }
+        .stamp {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .image-container {
+            max-width: 100%;
+            max-height: 100vh;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100vh;
+            object-fit: contain;
+            
+        }
+
+        .pictures-grids {
+            padding-top: 300px;
+            margin: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .image-containers {
+            text-align: center;
+            margin-bottom: 50px; /* Adjust spacing between images */
+        }
+
+        .gallery-images {
+            max-width: 90%;
+            max-height: 80vh;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .image-descriptions {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+
+       
+
+
+        
 
     </style>
 </head>
@@ -624,18 +728,103 @@
         <h2 class="section-title"><u>PICTURE OF SITE SURVEY</u></h2>
 
         <div class="pictures-grid">
-            @foreach($files as $file)
-                <div class="picture-item">
-                    <img src="{{ asset($file->file_path) }}" alt="{{ $file->description }}">
-                    <p>{{ $file->description }}</p>
-                </div>
-            @endforeach
+            @if(isset($pictureData))
+                @foreach($imageFields as $field)
+                    @if(!empty($pictureData->$field))
+                        <div class="picture-item">
+                            <img src="{{ asset($pictureData->$field) }}" alt="{{ ucfirst(str_replace('_', ' ', $field)) }}">
+                            <p>{{ ucfirst(str_replace('_', ' ', $field)) }}</p>
+                        </div>
+                    @endif
+                @endforeach
+            @endif
+        
+            @if(isset($toolbox))
+                @foreach($toolboxImageFields as $field)
+                    @if(!empty($toolbox->$field))
+                        <div class="picture-item">
+                            <img src="{{ asset($toolbox->$field) }}" alt="{{ ucfirst(str_replace('_', ' ', $field)) }}">
+                            <p>{{ ucfirst(str_replace('_', ' ', $field)) }}</p>
+                        </div>
+                    @endif
+                @endforeach
+            @endif
         </div>
+        
         
     </div>
 
 
 
+    <div style="padding-top: 300px">
+        <h1>JADUAL ANGGARAN DAN PENGGUNAAN BAHAN</h1>
+        <table>
+            <tr>
+                <th>PROJEK PEMBINAAN:</th>
+                <td colspan="3">PROJEK TAMAN DESA COPIAWALA - PKT MUTIARA IMAN NO.5</td>
+            </tr>
+            <tr>
+                <th>TAJUK KERJA:</th>
+                <td colspan="3">TAMAN DESA COPIAWALA</td>
+            </tr>
+            <tr>
+                <th>NO. PESANAN:</th>
+                <td colspan="3">PO REF: LKT0052/2022</td>
+            </tr>
+            <tr>
+                <th>KONTRAKTOR:</th>
+                <td colspan="3">JAYA KEJURUTERAAN SDN BHD</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <th>Bil.</th>
+                <th>No. Rujukan</th>
+                <th>Keterangan Barang</th>
+                <th>Kuantiti</th>
+                <th>Unit</th>
+            </tr>
+        
+            @foreach ($projectMaterials as $item)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $item->material->mat_code }}</td> 
+                    <td>{{ $item->material->mat_desc }}</td>
+                    <td>{{ $item->quantity }}</td>
+                    <td>{{ $item->material->bun }}</td>
+                </tr>
+            @endforeach
+        </table>
+        
+        
+        <div class="footer">
+            <div class="signature">
+                <div class="stamp">STAMP</div>
+                <p>Pengarah Urusan</p>
+                <p>AHMAD RAZALI SUPARMAN</p>
+            </div>
+            <div class="signature">
+                <div class="stamp">STAMP</div>
+                <p>Jurutera</p>
+                <p>NAMA:</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="pictures-grids">
+        <p class="survey-titles">{{$survey->nama_pe}}</p>
+        @foreach($files as $file)
+            <div class="image-containers">
+                <img class="gallery-images" src="{{ asset($file->file_path) }}" alt="{{ $file->description }}">
+                <p class="image-descriptions">{{ $file->description }}</p>
+            </div>
+            <div class="page-break"></div>
+        @endforeach
+    </div>
+
+
+    
     
 
     </div>
