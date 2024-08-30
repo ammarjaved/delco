@@ -99,19 +99,20 @@ public function format()
 
     
 
-    public function showData($id)
-    {
-        $data = DB::select(DB::raw("
-            WITH foo AS (SELECT * FROM project_material)
-            SELECT c.nama_pe, mat_desc, mat_code, bun, a.quantity
-            FROM material b
-            JOIN foo a ON a.material_id = b.id
-            JOIN tbl_site_survey c ON a.site_survey_id = c.id
-            WHERE c.id = ?
-        "), [$id]);
+public function showData($id)
+{
+    $data = DB::select(DB::raw("
+        WITH foo AS (SELECT * FROM project_material)
+        SELECT a.id, c.nama_pe, mat_desc, mat_code, bun, a.quantity
+        FROM material b
+        JOIN foo a ON a.material_id = b.id
+        JOIN tbl_site_survey c ON a.site_survey_id = c.id
+        WHERE c.id = ?
+    "), [$id]);
     
-        return view('material-selection.data-table', ['data' => $data]);
-    }
+    return view('material-selection.data-table', ['data' => $data]);
+}
+
     
     
 
@@ -148,20 +149,20 @@ public function format()
     public function destroy($id)
     {
         try {
-            // Deleting materials related to the specific site survey ID from project_material table
+            
             $materialCount = DB::table('project_material')
-                ->where('site_survey_id', $id)
+                ->where('id', $id)
                 ->delete();
     
-            return redirect()
-                ->route('site_survey.index')
-                ->with('success', "$materialCount Material(s) successfully deleted for Site Survey ID $id");
+            
+            return redirect()->back()->with('success', "$materialCount Material(s) successfully deleted.");
         } catch (Exception $e) {
-            return redirect()
-                ->route('site_survey.index')
-                ->with('failed', 'Failed to delete materials: ' . $e->getMessage());
+            
+            return redirect()->back()->with('failed', 'Failed to delete material: ' . $e->getMessage());
         }
     }
+    
+    
     
 
 

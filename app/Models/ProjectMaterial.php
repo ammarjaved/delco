@@ -23,9 +23,9 @@ class ProjectMaterial extends Model
         });
     }
 
-public function material()
-{
-    return $this->belongsTo(material::class);
-}
+    public function material()
+    {
+        return $this->belongsTo(Material::class, 'material_id');
+    }
 
 }

@@ -117,22 +117,25 @@ class SiteSurveyController extends Controller
         
             $toolbox['site_survey_id'] = $siteSurvey->id;
             $toolbox['pe_nama'] = $siteSurvey->nama_pe;
-            $toolbox['lokasi'] = $request->lokasi;
+            $toolbox['lokasi'] = $usr_info->area;
             $toolbox['tarikh'] = $request->tarikh;
-            $toolbox['cfs'] = $request->cfs;
+            $toolbox['cfs'] =  $usr_info->area;
             $toolbox['skop_kerja'] = $request->skop_kerja;
             $toolbox['ppd_safety_helment'] = $request->ppd_safety_helment;
             $toolbox['ppd_safety_vest'] = $request->ppd_safety_vest;
             $toolbox['ppd_safety_shoes'] = $request->ppd_safety_shoes;
             $toolbox['ppd_safety'] = $request->ppd_safety;
             $toolbox['equipment_condition'] = $request->equipment_condition;
-            $toolbox['equipment_kit_condition'] = $request->equipment_kit_condition;
+            $toolbox['instrument_condition'] = $request->instrument_condition; //
+
+            $toolbox['instrument_kit_condition'] = $request->instrument_kit_condition;//
             $toolbox['vehicle_fire_extinguisher'] = $request->vehicle_fire_extinguisher;
             $toolbox['vehicle_condition'] = $request->vehicle_condition;
             $toolbox['team_ap_tnp'] = $request->team_ap_tnp;
             $toolbox['team_cp_tnb'] = $request-> team_cp_tnb;
             $toolbox['niosh_staff_ntsp'] = $request-> niosh_staff_ntsp;
-            $toolbox['niosh_special_permit'] = $request-> niosh_special_permit;
+            $toolbox['permit_special'] = $request-> permit_special;
+            $toolbox['permit_work'] = $request-> permit_work;
             $toolbox['picture_during_toolbox'] = $request-> picture_during_toolbox;
            
             $toolbox['traffic_safety_kon'] = $request->traffic_safety_kon;
