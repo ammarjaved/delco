@@ -47,6 +47,7 @@ class ToolboxTalkController extends Controller
             $var['area']=$area;
             $var['project']=$project;
 
+
             $siteSurvey = SiteSurvey::create($var); 
 
 
