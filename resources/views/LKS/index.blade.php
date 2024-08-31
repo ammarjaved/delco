@@ -71,7 +71,7 @@
                                         </button>
                                     
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="{{ route('LKS.create', $survey->id) }}"> <i class="fas fa-eye"></i>Show LKS</a>
+                                            <a class="dropdown-item" href="{{ route('LKS.create', $survey->id) }}" target="_blank"> <i class="fas fa-eye"></i>Show LKS</a>
                                         </div>
                                     </div>
                                 </td>

@@ -3,57 +3,45 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-    <style>
-        /* Ensure the dropdown menu is positioned correctly and above other content */
-        .dropdown {
-            position: relative;
-        }
-    
-        .dropdown-menu {
-            min-width: 200px;
-            position: absolute;
-            top: 100%; /* Position directly below the button */
-            left: auto;
-            right: 0; /* Align right */
-            z-index: 1050; /* Higher z-index to appear above other elements */
-            padding: 0.5rem 0; /* Space around items */
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Add a shadow for better visibility */
-            background-color: #fff; /* Ensure the background is white */
-        }
-    
-        .dropdown-item {
-            padding: 0.5rem 1rem;
-            display: flex;
-            align-items: center;
-            white-space: nowrap; /* Prevent text wrapping */
-        }
-    
-        .dropdown-item i {
-            margin-right: 10px;
-            width: 16px;
-            text-align: center;
-        }
-    
-        .dropdown-divider {
-            margin: 0.5rem 0;
-        }
-    
-        /* Ensure buttons inside forms take full width */
-        form .dropdown-item {
-            width: 100%;
-            text-align: left;
-        }
-    
-        /* Prevent overflow from other content */
-        body {
-            overflow-x: hidden;
-        }
-    
-        .dropdown-menu-right {
-            right: 0;
-            left: auto;
-        }
-    </style>
+<style>
+    /* Ensure the dropdown menu is positioned correctly and above other content */
+    .dropdown {
+        position: relative;
+        z-index: 1050;
+    }
+
+    .dropdown-menu {
+        min-width: 200px;
+        position: absolute;
+        top: 100%; /* Position directly below the button */
+        z-index: 1050; /* Higher z-index to appear above other elements */
+        padding: 0.5rem 0; /* Space around items */
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Add a shadow for better visibility */
+    }
+
+    .dropdown-item {
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        white-space: nowrap; /* Prevent text wrapping */
+    }
+
+    .dropdown-item i {
+        margin-right: 10px;
+        width: 16px;
+        text-align: center;
+    }
+
+    .dropdown-divider {
+        margin: 0.5rem 0;
+    }
+
+    /* Ensure buttons inside forms take full width */
+    form .dropdown-item {
+        width: 100%;
+        text-align: left;
+    }
+</style>
 
     
 @endsection
@@ -129,30 +117,30 @@
                     <td>{{ $survey->nama_pe }}</td>
                     <td>{{ $survey->kawasan }}</td>
                     <td>
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{ route('site_survey.show', $survey) }}">
-                                    <i class="fas fa-eye"></i> Show
-                                </a>
-                                <a class="dropdown-item" href="{{ route('site_survey.edit', $survey) }}">
-                                    <i class="fas fa-edit"></i> Edit
-                                </a>
-                                <a class="dropdown-item" href="{{ route('siteFileUploadView.index', ['id' => $survey->id]) }}">
-                                    <i class="fas fa-paperclip"></i> Attach Files
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <form action="{{ route('site_survey.destroy', $survey->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this Site Survey?');" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="dropdown-item text-danger">
-                                        <i class="fas fa-trash-alt"></i> Delete Site Survey
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+                    <div class="dropdown" style="position: absolute; z-index: 10000">
+    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-ellipsis-v"></i>
+    </button>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="{{ route('site_survey.show', $survey) }}">
+            <i class="fas fa-eye"></i> Show
+        </a>
+        <a class="dropdown-item" href="{{ route('site_survey.edit', $survey) }}">
+            <i class="fas fa-edit"></i> Edit
+        </a>
+        <a class="dropdown-item" href="{{ route('siteFileUploadView.index', ['id' => $survey->id]) }}">
+            <i class="fas fa-paperclip"></i> Attach Files
+        </a>
+        <div class="dropdown-divider"></div>
+        <form action="{{ route('site_survey.destroy', $survey->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this Site Survey?');" style="display:inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="dropdown-item text-danger">
+                <i class="fas fa-trash-alt"></i> Delete Site Survey
+            </button>
+        </form>
+    </div>
+</div>
   
                     </td>    
                 </tr>
