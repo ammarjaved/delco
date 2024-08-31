@@ -61,10 +61,6 @@ class SiteSurveyController extends Controller
     {
 
          try {
-           
-    
-
-
             $pe_check=SiteSurvey::where('nama_pe',$request->nama_pe)->first();
 
             if($pe_check){

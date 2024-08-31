@@ -103,8 +103,8 @@ class SiteVisitRepository {
         $toolbox['efi'] = $request->efi;
         $toolbox['other'] = $request->other;
 
-        $toolbox['toolbox_image1'] = $request->toolbox_image1;
-        $toolbox['toolbox_image2'] = $request->toolbox_image2;
+       // $toolbox['toolbox_image1'] = $request->toolbox_image1;
+       // $toolbox['toolbox_image2'] = $request->toolbox_image2;
         $toolbox['created_by']= $usr_info->name;
         $toolbox['updated_by']= $usr_info->name;
         $toolbox['area']=  $usr_info->area;

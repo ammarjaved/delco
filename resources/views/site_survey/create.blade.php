@@ -257,10 +257,10 @@
         </div>
         <div class="row">
             <div class="col-5">
-                <input type="text" hidden  class="form-control" placeholder="lat" value="{{ $location->x ?? old('') }}" name="lat" id="lat" readonly>
+                <input type="text" hidden  class="form-control" placeholder="lat" value="{{ $location->y ?? old('') }}" name="lat" id="lat" readonly>
             </div>
             <div class="col-5">
-                <input type="text" hidden  class="form-control" placeholder="lng" value="{{ $location->y ?? old('') }}" name="lng" id="lng" readonly>
+                <input type="text" hidden  class="form-control" placeholder="lng" value="{{ $location->x ?? old('') }}" name="lng" id="lng" readonly>
             </div>
         </div>
         <div id="map" style="height: 400px; width: 100%;" class="my-3"></div>
@@ -492,11 +492,11 @@
     <div class="form-group">
         <label for="picture_during_toolbox">Picture During Toolbox</label><br>
         <label for="picture_during_toolbox_yes">
-            <input type="radio" id="picture_during_toolbox_yes" name="picture_during_toolbox" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->picture_during_toolbox ?? old('picture_during_toolbox', 'no')) === 'yes' ? 'checked' : '' }}>
+            <input type="radio" id="picture_during_toolbox_yes" onclick="toggleImageInputs(true)"  name="picture_during_toolbox" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->picture_during_toolbox ?? old('picture_during_toolbox', 'no')) === 'yes' ? 'checked' : '' }}>
             Yes
         </label>
         <label for="picture_during_toolbox_no">
-            <input type="radio" id="picture_during_toolbox_no" name="picture_during_toolbox" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->picture_during_toolbox ?? old('picture_during_toolbox', 'no')) === 'no' ? 'checked' : '' }}>
+            <input type="radio" id="picture_during_toolbox_no" onclick="toggleImageInputs(false)" name="picture_during_toolbox" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->picture_during_toolbox ?? old('picture_during_toolbox', 'no')) === 'no' ? 'checked' : '' }}>
             No
         </label>
     </div>
@@ -505,7 +505,7 @@
 
        <!-- Toolbox Image 1-->
        
-<div class="row">
+<!-- <div class="row">
     <div class="col-md-6">
        <div class="form-group">
         <label for="upload_images">Toolbox Images</label><br>
@@ -519,7 +519,7 @@
         </label>
     </div>
     </div>
-</div>
+</div> -->
 
     <!-- Conditional Image Inputs -->
     <div class="row">
@@ -579,7 +579,7 @@ function toggleImageInputs(show) {
 
 // Initialize based on existing data if any
 document.addEventListener('DOMContentLoaded', function() {
-    var isYes = document.querySelector('input[name="upload_images"]:checked')?.value === 'yes';
+    var isYes = document.querySelector('input[name="picture_during_toolbox"]:checked')?.value === 'yes';
     toggleImageInputs(isYes);
 });
 
