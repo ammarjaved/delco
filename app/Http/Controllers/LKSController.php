@@ -31,7 +31,11 @@ class LKSController extends Controller{
         // Find the specific site survey by ID
         $survey = SiteSurvey::findOrFail($id);
         // return $survey;
-        $toolboxtalk=ToolBoxTalk::where('site_survey_id',$survey->id)->get()[0];
+        $toolboxtalk = ToolBoxTalk::where('site_survey_id', $survey->id)->get()[0];
+
+
+    
+
 
         $pictureData = SitePicture::where('site_survey_id', $survey->id)->first();
 

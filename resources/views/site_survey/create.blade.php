@@ -58,7 +58,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="kawasan">Kawasan <span style="color: red;">*</span></label>
-                    <input type="text" class="form-control" id="kawasan" name="kawasan" value="{{ $siteSurvey->kawasan ?? old('kawasan') }}" required>
+                    <input type="text" class="form-control" id="kawasan" name="kawasan" value="{{ $siteSurvey->kawasan ?? \Auth::user()->area }}" required>
                     <div id="kawasan_error" class="text-danger" style="display: none;">Please fill this field.</div>
                 </div>
             </div>

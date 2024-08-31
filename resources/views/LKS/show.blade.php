@@ -327,6 +327,24 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
             color: #333;
         }
 
+        .checkboxs {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    border: 1px solid #000;
+}
+
+.checkeds {
+    background-color: #000;
+}
+
+.headers img {
+    max-width: 50%; /* Scale down the image to 80% of its container's width */
+    /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Space between image and heading */
+}
+
 
        
 
@@ -340,13 +358,13 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
 
     <div class="header">
         <div class="logo">
-            <img src="/api/placeholder/50/50" alt="TNB Logo">
+            <img src="{{ URL::asset('assets/web-images/tnblogo.png') }}" alt="TNB Logo">
             <p>TNB ENERGY SERVICES SDN BHD (344878-B)<br>
             Level 2, Jalan Air Hitam, Kawasan 16,<br>
             40000 Shah Alam, Selangor</p>
         </div>
         <div class="logo">
-            <img src="/api/placeholder/50/50" alt="AK Logo">
+            <img src="{{ URL::asset('assets/web-images/araslogo.png') }}" alt="AK Logo">
             <p>ARAS KEJURUTERAAN SDN BHD<br>
             1st Floor No 72, Jalan SS 21/1, Damansara<br>
             Utama, 47400 Petaling Jaya, Selangor</p>
@@ -356,19 +374,21 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
         <p>SITE SURVEY</p>
         <p>{{$survey->nama_pe}}</p>
 
+       
+
         
     </div>
 
 
-    <div class="header" style="padding-top: 1000px">
+    <div class="header" style="padding-top: 300px">
         <div class="logo">
-            <img src="/api/placeholder/30/30" alt="TNB Logo">
+            <img src="{{ URL::asset('assets/web-images/tnblogo.png') }}" alt="TNB Logo">
             <p>TNB ENERGY SERVICES SDN BHD (234667-M)<br>
             Level 2, Jalan Air Hitam, Kawasan 16,<br>
             40000 Shah Alam, Selangor</p>
         </div>
         <div class="logo">
-            <img src="/api/placeholder/30/30" alt="AK Logo">
+            <img src="{{ URL::asset('assets/web-images/araslogo.png') }}" alt="AK Logo">
             <p>ARUS KEJURUTERAAN SDN BHD<br>
             1st Floor No 72, Jalan SS 21/1, Damansara<br>
             Utama, 47400 Petaling Jaya, Selangor</p>
@@ -572,20 +592,22 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
     </div>
     <div class="signature">
         <p>Supervisor:</p>
-        <img src="/api/placeholder/100/50" alt="Signature">
+        <img src="{{ URL::asset('assets/web-images/signs.png') }}" alt="Signature">
         <p>Nama : AHMAD KHALIL QUSYAIRI</p>
     </div>
 
 
     <div class="header" style="padding-top: 300px">
         <div class="logo">
-            <img src="/api/placeholder/30/30" alt="TNB Logo">
+            <img src="{{ URL::asset('assets/web-images/tnblogo.png') }}" alt="TNB Logo">
+
             <p>TNB ENERGY SERVICES SDN BHD (234667-M)<br>
             Level 2, Jalan Air Hitam, Kawasan 16,<br>
             40000 Shah Alam, Selangor</p>
         </div>
         <div class="logo">
-            <img src="/api/placeholder/30/30" alt="AK Logo">
+            
+ <img src="{{ URL::asset('assets/web-images/araslogo.png') }}" alt="AK Logo">
             <p>ARUS KEJURUTERAAN SDN BHD<br>
             1st Floor No 72, Jalan SS 21/1, Damansara<br>
             Utama, 47400 Petaling Jaya, Selangor</p>
@@ -690,7 +712,7 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
     <div class="signature-section">
         <div class="prepared">
             <p>Disediakan Oleh:</p>
-            <div class="signature-box">Signature 1</div>
+            <img src="{{ URL::asset('assets/web-images/signs.png') }}" alt="Signature">
             <p>Nama: AHMAD KHALIL QUSYAIRI<br>Jawatan: PENYELIA TAPAK</p>
         </div>
         <div class="reviewed">
@@ -707,13 +729,15 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
        
     <div class="header" style="padding-top: 300px">
         <div class="logo">
-            <img src="/api/placeholder/30/30" alt="TNB Logo">
+            <img src="{{ URL::asset('assets/web-images/tnblogo.png') }}" alt="TNB Logo">
+
             <p>TNB ENERGY SERVICES SDN BHD (234667-M)<br>
             Level 2, Jalan Air Hitam, Kawasan 16,<br>
             40000 Shah Alam, Selangor</p>
         </div>
         <div class="logo">
-            <img src="/api/placeholder/30/30" alt="AK Logo">
+            <img src="{{ URL::asset('assets/web-images/araslogo.png') }}" alt="AK Logo">
+
             <p>ARUS KEJURUTERAAN SDN BHD<br>
             1st Floor No 72, Jalan SS 21/1, Damansara<br>
             Utama, 47400 Petaling Jaya, Selangor</p>
@@ -799,12 +823,13 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
         
         <div class="footer">
             <div class="signature">
-                <div class="stamp">STAMP</div>
-                <p>Pengarah Urusan</p>
-                <p>AHMAD RAZALI SUPARMAN</p>
+               
+                <img src="{{ URL::asset('assets/web-images/signs.png') }}" alt="Signature">
+        <p>Nama : AHMAD KHALIL QUSYAIRI</p>
             </div>
             <div class="signature">
-                <div class="stamp">STAMP</div>
+                <img src="{{ URL::asset('assets/web-images/sign2.jpg') }}" alt="Signature">
+                
                 <p>Jurutera</p>
                 <p>NAMA:</p>
             </div>
@@ -821,6 +846,147 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
             </div>
             <div class="page-break"></div>
         @endforeach
+    </div>
+
+
+    <div class="form-container">
+        <div class="header">
+            <img src="{{ URL::asset('assets/web-images/tenegalogofull.jfif') }}" alt="TNB Logo">
+            
+        </div>
+        <h1 style="margin-left: -150px">SENARAI SEMAK LAWATAN TAPAK PROJEK SCADA DA</h1>
+
+        <table class="form-table">
+            <tr>
+                <td class="label">Nama Pencawang</td>
+                <td class="input">{{ $survey->nama_pe }}</td>
+            </tr>
+            <tr>
+                <td class="label">Kawasan / Negeri</td>
+                <td class="input">{{ $survey->kawasan }}</td>
+            </tr>
+            <tr>
+                <td class="label">No. Functional Location (FL)</td>
+                <td class="input">{{ $survey->fl }}</td>
+            </tr>
+            <tr>
+                <td class="label">PE Jenis</td>
+                
+                    <td class="input">{{ $survey->jenis }}</td>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Pepatit (Trench) Berpagar?</td>
+                <td class="input">{{  $survey->peparit }}</td>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Jenis Kompaun</td>
+                <td class="input">
+                    <span class="checkboxs {{ $survey->jenis_kompaun == 'Simen' ? 'checkeds' : '' }}"></span> Simen
+                    <span class="checkboxs {{ $survey->jenis_kompaun == 'Rumput' ? 'checkeds' : '' }}"></span> Rumput
+                    <span class="checkboxs {{ $survey->jenis_kompaun == 'Inter-locking' ? 'checkeds' : '' }}"></span> Inter-locking
+                    <span class="checkboxs {{ $survey->jenis_kompaun == 'Crusher Run' ? 'checkeds' : '' }}"></span> Crusher Run
+                    <span class="checkboxs {{ $survey->jenis_kompaun == 'Tidak' ? 'checkeds' : '' }}"></span> Tidak
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Jenis Perkakasuis</td>
+                <td class="input">
+                    <span class="checkboxs {{ $survey->jenis_perkakasuis == 'VCB' ? 'checkeds' : '' }}"></span> VCB
+                    <span class="checkboxs {{ $survey->jenis_perkakasuis == 'RMU' ? 'checkeds' : '' }}"></span> RMU
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Konfigurasi</td>
+                <td class="input">{{ $survey->konfigurasi}}</td>
+            </tr>
+            
+            <tr>
+                <td class="label">Jenama Alatsuis</td>
+                <td class="input">{{ $survey->jenama_alatsuis }}</td>
+            </tr>
+            <tr>
+                <td class="label">Jenis Model</td>
+                <td class="input">{{ $survey->jenis_model }}</td>
+            </tr>
+            <tr>
+                <td class="label">Tahun Pembinaan</td>
+                <td class="input">{{ $survey->tahun_pembinaan }}</td>
+            </tr>
+            <tr>
+                <td class="label">Siri Alatsuis</td>
+                    
+                <td class="input">{{ $survey->siri_alatsuis }}</td>
+                  
+                </td>
+            </tr>
+            @for ($i = 1; $i <= 5; $i++)
+            <tr>
+                <td class="label">Suis No {{ $i }}</td>
+                <td class="input">{{ $survey->{'suis_no' . $i} }}</td>
+            </tr>
+            <tr>
+                <td class="label">Suis Label {{ $i }}</td>
+                <td class="input">{{ $survey->{'suis_label' . $i} }}</td>
+            </tr>
+            <tr>
+                <td class="label">Kabel Jenis {{ $i }}</td>
+                <td class="input">{{ $survey->{'kabel_jenis' . $i} }}</td>
+                
+            </tr>
+            <tr>
+                <td class="label">Kabel Saiz {{ $i }}</td>
+                <td class="input">{{ $survey->{'kabel_saiz' . $i} }}</td>
+            </tr>
+        @endfor
+            <!-- Repeat similar structure for Suis No 2 to 5 -->
+            <tr>
+                <td class="label">Fius Saiz</td>
+                <td class="input">{{ $survey->fius_saiz }}</td>
+            </tr>
+            <tr>
+                <td class="label">CT Saiz Protection</td>
+                <td class="input">{{ $survey->ct_saiz_protection }}</td>
+            </tr>
+            <tr>
+                <td class="label">CT Saiz Metering</td>
+                <td class="input">{{ $survey->ct_saiz_metering }}</td>
+            </tr>
+            <tr>
+                <td class="label">SCADA Status</td>
+                <td class="input">{{ $survey->scada_status }}</td>
+            </tr>
+            <tr>
+                <td class="label">Bekalan LV</td>
+                <td class="input">{{ $survey->bekalan_lv }}</td>
+            </tr>
+            <tr>
+                <td class="label">Bacaan Beban</td>
+                <td class="input">{{ $survey->bacaan_beban }}</td>
+            </tr>
+            <tr>
+                <td class="label">Genset</td>
+                <td class="input">{{ $survey->genset }}</td>
+            </tr>
+            <tr>
+                <td class="label">Jenis LVDB</td>
+                <td class="input">{{ $survey->jenis_lvdb }}</td>
+            </tr>
+            <tr>
+                <td class="label">Keperluan Khas Kerja</td>
+                <td class="input">{{ $survey->keperluan_khas_kerja }}</td>
+            </tr>
+            <tr>
+                <td class="label">Susun</td>
+                <td class="input">{{ $survey->susun }}</td>
+            </tr>
+            
+            
+        </table>
+        <div class="footer">
+            <p>Susun atur Didalam Pencawang. Sila tandakan kedudukan Alatuis / Battery Charger / TX / RCB / RTU / EFI</p>
+        </div>
     </div>
 
 
