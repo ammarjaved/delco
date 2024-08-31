@@ -606,8 +606,7 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
     </div>
     <div class="signature">
         <p>Supervisor:</p>
-        <img src="{{ URL::asset('assets/web-images/signs.png') }}" alt="Signature">
-        <p>Nama : AHMAD KHALIL QUSYAIRI</p>
+        <p>Nama : </p>
     </div>
 
 
@@ -838,11 +837,9 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
         <div class="footer">
             <div class="signature">
                
-                <img src="{{ URL::asset('assets/web-images/signs.png') }}" alt="Signature">
-        <p>Nama : AHMAD KHALIL QUSYAIRI</p>
+        <p>Nama : </p>
             </div>
             <div class="signature">
-                <img src="{{ URL::asset('assets/web-images/sign2.jpg') }}" alt="Signature">
                 
                 <p>Jurutera</p>
                 <p>NAMA:</p>
