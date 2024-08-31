@@ -104,6 +104,8 @@
                                                         <div class="mx-2"> 
                                                             <a href="{{  route('pre-cabling-image.index', $survey->id) }}" class="btn btn-secondary rounded-0">  <i class="fas fa-plus"></i> Add Images</a> 
                                                        
+                                                            <div class="mx-2"> 
+                                                                <a href="{{  route('pre-cabling-image.index', $survey->id) }}" class="btn btn-secondary rounded-0">  <i class="fas fa-plus"></i>Toolbox</a> 
                                                     </div>
                                                         
 

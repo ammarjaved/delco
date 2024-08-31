@@ -26,8 +26,31 @@
                                 <!-- Image Name -->
                                 <div class="col-md-4">
                                     <label for="image_name">Image Name</label>
-                                    <input type="text" class="form-control" id="image_name" name="image_name" required>
+                                    <select class="form-control" id="image_name" name="image_name" required>
+                                        <option value="" disabled selected>Select an image name</option>
+                                        <option value="RCB">RCB</option>
+                                        <option value="RCB-2">RCB-2</option>
+                                        <option value="RCB-SERIAL-NUMBER">RCB-SERIAL-NUMBER</option>
+                                        <option value="RCB-SERIAL-NUMBER-2">RCB-SERIAL-NUMBER-2</option>
+                                        <option value="TERMINATION-OF-RCB">TERMINATION-OF-RCB</option>
+                                        <option value="TERMINATION-OF-RCB-2">TERMINATION-OF-RCB-2</option>
+                                        <option value="SCADA-CABLE-ROUTE">SCADA-CABLE-ROUTE</option>
+                                        <option value="SCADA-CABLE-ROUTE-2">SCADA-CABLE-ROUTE-2</option>
+                                        <option value="BATTERY-CHARGER">BATTERY-CHARGER</option>
+                                        <option value="BATTERY-CHARGER-2">BATTERY-CHARGER-2</option>
+                                        <option value="PLATE-BATTERY-CHARGER">PLATE-BATTERY-CHARGER</option>
+                                        <option value="PLATE-BATTERY-CHARGER-2">PLATE-BATTERY-CHARGER-2</option>
+                                        <option value="EFI">EFI</option>
+                                        <option value="EFI-2">EFI-2</option>
+                                        <option value="EFI-SERIAL-NUMBER">EFI-SERIAL-NUMBER</option>
+                                        <option value="EFI-SERIAL-NUMBER-2">EFI-SERIAL-NUMBER-2</option>
+                                        <option value="RTU">RTU</option>
+                                        <option value="RTU-2">RTU-2</option>
+                                        <option value="RTU-BRAND">RTU-BRAND</option>
+                                        <option value="RTU-BRAND-2">RTU-BRAND-2</option>
+                                    </select>
                                 </div>
+                                
 
                                 <div class="col-md-4">
                                     <label for="image_desc">Image Description</label>
