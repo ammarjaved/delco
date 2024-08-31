@@ -1,6 +1,7 @@
 @extends('layouts.app', ['page_title' => 'Create'])
 
 @section('content')
+<div class="container">
 <h3 class="mt-3">ToolBoxTalk</h3> 
   
 <form action="{{ isset($siteSurvey['id']) ? route('site_survey.update', $siteSurvey['id']) : route('site_survey.store') }}" method="POST" enctype="multipart/form-data">
@@ -230,9 +231,9 @@
  </div>
 
  <div class="mt-3">
-      <button type="submit" class="btn btn-success" id="submitBtn" style="display:none;">{{ isset($siteSurvey) ? 'Update' : 'Create' }}</button>
+      <button type="submit" class="btn btn-success" id="submitBtn" >{{ isset($siteSurvey) ? 'Update' : 'Create' }}</button>
     </div>
 
     </form> 
-
+    </div>
  @endsection 

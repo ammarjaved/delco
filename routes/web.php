@@ -92,6 +92,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/pre-cabling-piw/{id}/create',[PreCablingController::class,'create'])->name('pre-cabling-piw.create');
     Route::get('/pre-cabling-piw/{id}/delete',[PreCablingController::class,'destroy'])->name('pre-cabling-piw.delete');
 
+    Route::get('/precabling-toolboctalk',[PreCablingController::class,'createToolboxTalk'])->name('PreCabling.toolboxtalk');
+
+
     Route::resource('pre-cabling-shut-down',PreCablingShutDownController::class,['except' => ['create','delete']]); 
 
     Route::get('/pre-cabling-shut-down/{id}/create',[PreCablingShutDownController::class,'create'])->name('pre-cabling-shut-down.create');

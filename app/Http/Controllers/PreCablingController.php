@@ -7,9 +7,18 @@ use App\Models\SiteSurvey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Repositories\SiteVisitRepository;
+
 
 class PreCablingController extends Controller
 {
+
+    private $siteRepository;
+
+    public function __construct(SiteVisitRepository $siteRepository)
+    {
+        $this->siteRepository = $siteRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,6 +43,12 @@ class PreCablingController extends Controller
         return view('PreCabling.create', ['site_survey_id' => $id,'nama_pe'=>$nama_pe]);
     }
 
+
+    public function createToolboxTalk()
+    {
+        return view('PreCabling.toolboxtalk');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -44,7 +59,7 @@ class PreCablingController extends Controller
     {
         try {
             //code...
-
+              return  $request;
             $request['created_by'] = Auth::user()->name;
             PreCabling::create($request->all());
         } catch (\Throwable $th) {
@@ -54,6 +69,21 @@ class PreCablingController extends Controller
         return redirect()->route('pre-cabling.index')->with('success', 'Request Success');
     }
 
+
+
+    public function storeToolboxtalk(Request $request)
+    {
+        try {
+
+            $usr_info= Auth::user()->name;
+            $toolbox=$this->siteRepository->addToolBoxTalk($request,$siteSurvey->id,$siteSurvey->nama_pe,$usr_info);
+
+        } catch (\Throwable $th) {
+            return redirect()->route('pre-cabling.index')->with('failed', 'Request Failed');
+        }
+
+        return redirect()->route('pre-cabling.index')->with('success', 'Request Success');
+    }
     /**
      * Display the specified resource.
      *
