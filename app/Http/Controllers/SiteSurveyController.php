@@ -8,12 +8,21 @@ use App\Models\SitePicture;
 use App\Models\ToolBoxTalk;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\SiteVisitRepository;
+
 
 
 
 
 class SiteSurveyController extends Controller
 {
+
+    private $siteRepository;
+
+    public function __construct(SiteVisitRepository $siteRepository)
+    {
+        $this->siteRepository = $siteRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -115,44 +124,7 @@ class SiteSurveyController extends Controller
             $pictureData['area']=$area;
             $pictureData['project']=$project;
         
-            $toolbox['site_survey_id'] = $siteSurvey->id;
-            $toolbox['pe_nama'] = $siteSurvey->nama_pe;
-            $toolbox['lokasi'] = $usr_info->area;
-            $toolbox['tarikh'] = $request->tarikh;
-            $toolbox['cfs'] =  $usr_info->area;
-            $toolbox['skop_kerja'] = $request->skop_kerja;
-            $toolbox['ppd_safety_helment'] = $request->ppd_safety_helment;
-            $toolbox['ppd_safety_vest'] = $request->ppd_safety_vest;
-            $toolbox['ppd_safety_shoes'] = $request->ppd_safety_shoes;
-            $toolbox['ppd_safety'] = $request->ppd_safety;
-            $toolbox['equipment_condition'] = $request->equipment_condition;
-            $toolbox['instrument_condition'] = $request->instrument_condition; //
-
-            $toolbox['instrument_kit_condition'] = $request->instrument_kit_condition;//
-            $toolbox['vehicle_fire_extinguisher'] = $request->vehicle_fire_extinguisher;
-            $toolbox['vehicle_condition'] = $request->vehicle_condition;
-            $toolbox['team_ap_tnp'] = $request->team_ap_tnp;
-            $toolbox['team_cp_tnb'] = $request-> team_cp_tnb;
-            $toolbox['niosh_staff_ntsp'] = $request-> niosh_staff_ntsp;
-            $toolbox['permit_special'] = $request-> permit_special;
-            $toolbox['permit_work'] = $request-> permit_work;
-            $toolbox['picture_during_toolbox'] = $request-> picture_during_toolbox;
-           
-            $toolbox['traffic_safety_kon'] = $request->traffic_safety_kon;
-            $toolbox['traffic_sign_board'] = $request->traffic_sign_board;
-            $toolbox['traffic_chargeman'] = $request->traffic_chargeman;
-            $toolbox['rcb'] = $request->rcb;
-            $toolbox['efi'] = $request->efi;
-            $toolbox['other'] = $request->other;
-
-            $toolbox['toolbox_image1'] = $request->toolbox_image1;
-            $toolbox['toolbox_image2'] = $request->toolbox_image2;
-            $toolbox['created_by']= $usr_info->email;
-            $toolbox['updated_by']= $usr_info->email;
-            $toolbox['area']=$area;
-            $toolbox['project']=$project;
-
-
+            
 
         
 
@@ -179,7 +151,6 @@ class SiteSurveyController extends Controller
             ];
             $destinationPath = 'assets/images/';
 
-            $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
 
     
                 foreach ($imageFields as $field) {
@@ -193,26 +164,10 @@ class SiteSurveyController extends Controller
                 }
 
 
-                foreach ($toolboxImageFields as $field) {
-                    if ($request->hasFile($field)) {
-                        if($field=='toolbox_image1'  || $field=='toolbox_image2'){
-                        $img_ext =$request->file($field)->getClientOriginalExtension();
-                        $filename =$field . '-' . strtotime(now()) . '.' . $img_ext;
-                        $request->file($field)->move($destinationPath, $filename);
-                       // $pictureData[$field] = $request->file($field)->store('images', 'public');
-                        $toolbox[$field] =$destinationPath . $filename;
-                        }
-                    }
-                }
 
-        //           foreach ($imageFields as $field) {
-        //     if ($request->hasFile($field)) {
-        //         $img_ext = $request->file($field)->getClientOriginalExtension();
-        //         $filename = $field . '-' . time() . '.' . $img_ext;
-        //         $request->file($field)->move(public_path($destinationPath), $filename);
-        //         $toolbox[$field] = $destinationPath . $filename;
-        //     }
-        // }
+                $toolbox=$this->siteRepository->addToolBoxTalk($request,$siteSurvey->id,$siteSurvey->nama_pe,$usr_info);
+
+            
     
           // return $pictureData;
             SitePicture::create($pictureData);
@@ -288,6 +243,9 @@ class SiteSurveyController extends Controller
        // DB::transaction(function () use ($validatedData, $request, $siteSurvey) {
             $siteSurvey=SiteSurvey::find($id)->update($request->all());
 
+            $tbk=ToolBoxTalk::where('site_survey_id',$id)->where('skop_kerja','=','SITE-SURVEY')->get();
+            
+
             DB::statement("UPDATE tbl_site_survey set geom = ST_GeomFromText('POINT($request->lng $request->lat)',4326) where id =  $id");
 
     
@@ -342,6 +300,12 @@ class SiteSurveyController extends Controller
                 }
             }
 
+
+            $usr_info=\Auth::user();
+
+            $toolbox=$this->siteRepository->updateToolBoxTalk($request,$tbk[0]->id,$usr_info);
+
+
        // return $pictureData;
       //  SitePicture::create($pictureData);
     
@@ -349,6 +313,14 @@ class SiteSurveyController extends Controller
                 ['site_survey_id' => $id],
                 $pictureData
             );
+
+            ToolBoxTalk::updateOrCreate(
+                ['id' => $tbk[0]->id],
+                $toolbox
+            );     
+
+           // ToolBoxTalk::where('id',$tbk[0]->id)->update([$toolbox]);
+                  
        // });
     
         return redirect()->route('site_survey.index')

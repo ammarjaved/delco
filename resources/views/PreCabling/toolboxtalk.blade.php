@@ -1,5 +1,13 @@
+@extends('layouts.app', ['page_title' => 'Create'])
+
+@section('content')
 <h3 class="mt-3">ToolBoxTalk</h3> 
-    
+  
+<form action="{{ isset($siteSurvey['id']) ? route('site_survey.update', $siteSurvey['id']) : route('site_survey.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+        @if(isset($siteSurvey))
+            @method('PUT')
+@endif
        <div class="row">
         {{-- <div class="col-md-6">
 
@@ -40,7 +48,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="skop_kerja">Skop Kerja</label><br>
-        <input type="text" id="skop_kerja" name="skop_kerja" class="form-control" value="SITE-SURVEY" readonly>
+        <input type="text" id="skop_kerja" name="skop_kerja" class="form-control" value="CABLING" readonly>
     </div>
 </div>
 
@@ -220,3 +228,11 @@
     </div>
 </div>
  </div>
+
+ <div class="mt-3">
+      <button type="submit" class="btn btn-success" id="submitBtn" style="display:none;">{{ isset($siteSurvey) ? 'Update' : 'Create' }}</button>
+    </div>
+
+    </form> 
+
+ @endsection 
