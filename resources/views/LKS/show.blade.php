@@ -347,12 +347,23 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
 
 
        
-@media print {
-            button {
+
+        @media print {
+            .print-button {
                 display: none;
             }
+            body {
+                padding: 0;
+            }
+            /* Ensure each major section starts on a new page */
+            .page-break {
+                page-break-before: always;
+            }
+            /* Prevent awkward breaks within sections */
+            table, tr, td, th, .no-break {
+                page-break-inside: avoid;
+            }
         }
-
         
 
     </style>
