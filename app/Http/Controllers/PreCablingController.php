@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Repositories\SiteVisitRepository;
+use App\Models\ToolBoxTalk;
 
 
 class PreCablingController extends Controller
@@ -27,7 +28,10 @@ class PreCablingController extends Controller
     public function index()
     {
         //
-        $data = SiteSurvey::with(['PreCabling', 'PreCablingShutDown'])->get();
+        $data = SiteSurvey::with(['PreCabling', 'PreCablingShutDown','ToolBoxTalk'])->get();
+
+      //  return $data;
+                
         return view('PreCabling.index', ['surveys' => $data]);
     }
 
@@ -39,14 +43,33 @@ class PreCablingController extends Controller
     public function create($id)
     {
         //
-        $nama_pe = SiteSurvey::findOrFail($id)->nama_pe;
         return view('PreCabling.create', ['site_survey_id' => $id,'nama_pe'=>$nama_pe]);
     }
 
 
-    public function createToolboxTalk()
+    public function createToolboxTalk($id)
     {
-        return view('PreCabling.toolboxtalk');
+        $sitesurveydata = SiteSurvey::find($id);
+
+      // return compact('sitesurveydata');
+
+        return view('PreCabling.toolboxtalk',compact('sitesurveydata'));
+    }
+
+
+    public function editToolboxTalk($id)
+    {
+        $toolboxtalk = ToolBoxTalk::find($id);
+
+       // return $toolboxtalk;
+
+       // $toolboxtalk = ToolBoxTalk::where('site_survey_id',$id)->where('skop_kerja','=','CABLING')->get()[0] ;
+
+      // return compact('sitesurveydata');
+
+     // return  $toolboxtalk;
+
+        return view('PreCabling.toolboxtalkedit',compact('toolboxtalk'));
     }
 
     /**
@@ -59,7 +82,7 @@ class PreCablingController extends Controller
     {
         try {
             //code...
-              return  $request;
+            //  return  $request;
             $request['created_by'] = Auth::user()->name;
             PreCabling::create($request->all());
         } catch (\Throwable $th) {
@@ -75,8 +98,35 @@ class PreCablingController extends Controller
     {
         try {
 
-            $usr_info= Auth::user()->name;
-            $toolbox=$this->siteRepository->addToolBoxTalk($request,$siteSurvey->id,$siteSurvey->nama_pe,$usr_info);
+            $usr_info= Auth::user();
+          //  return $request;
+            $toolbox=$this->siteRepository->addToolBoxTalk($request,$request->site_survey_id,$request->nama_pe,$usr_info);
+
+            //return $toolbox;
+            ToolBoxTalk::create($toolbox);
+
+
+        } catch (\Throwable $th) {
+            return redirect()->route('pre-cabling.index')->with('failed', 'Request Failed');
+        }
+
+        return redirect()->route('pre-cabling.index')->with('success', 'Request Success');
+    }
+
+
+    public function updateToolboxtalk(Request $request,$id)
+    {
+        try {
+
+            $usr_info= Auth::user();
+          //  return $request;
+            $toolbox=$this->siteRepository->updateToolBoxTalk($request,$id,$usr_info);
+
+           // return $toolbox;
+            ToolBoxTalk::updateOrCreate(
+                ['id' =>$id],
+                $toolbox
+            );     
 
         } catch (\Throwable $th) {
             return redirect()->route('pre-cabling.index')->with('failed', 'Request Failed');

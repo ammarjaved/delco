@@ -11,22 +11,24 @@ class SiteVisitRepository {
     public function addToolBoxTalk($request,$id,$pe_name, $usr_info){
 
         $destinationPath = 'assets/images/';
-
-
+               
+         
         $toolbox['site_survey_id'] = $id;
         $toolbox['pe_nama'] = $pe_name;
+     
         $toolbox['lokasi'] = $usr_info->area;
         $toolbox['tarikh'] = $request->tarikh;
         $toolbox['cfs'] =  $usr_info->area;
         $toolbox['skop_kerja'] = $request->skop_kerja;
+       
         $toolbox['ppd_safety_helment'] = $request->ppd_safety_helment;
         $toolbox['ppd_safety_vest'] = $request->ppd_safety_vest;
         $toolbox['ppd_safety_shoes'] = $request->ppd_safety_shoes;
         $toolbox['ppd_safety'] = $request->ppd_safety;
         $toolbox['equipment_condition'] = $request->equipment_condition;
-        $toolbox['instrument_condition'] = $request->instrument_condition; //
-
-        $toolbox['instrument_kit_condition'] = $request->instrument_kit_condition;//
+        $toolbox['instrument_condition'] = $request->instrument_condition; 
+      
+        $toolbox['instrument_kit_condition'] = $request->instrument_kit_condition;
         $toolbox['vehicle_fire_extinguisher'] = $request->vehicle_fire_extinguisher;
         $toolbox['vehicle_condition'] = $request->vehicle_condition;
         $toolbox['team_ap_tnp'] = $request->team_ap_tnp;

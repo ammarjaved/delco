@@ -103,10 +103,15 @@
 
                                                         <div class="mx-2"> 
                                                             <a href="{{  route('pre-cabling-image.index', $survey->id) }}" class="btn btn-secondary rounded-0">  <i class="fas fa-plus"></i> Add Images</a> 
-                                                       
+                                                        </div>  
                                                             <div class="mx-2"> 
-                                                                <a href="{{  route('PreCabling.toolboxtalk', $survey->id) }}" class="btn btn-secondary rounded-0">  <i class="fas fa-plus"></i>Toolbox</a> 
-                                                    </div>
+                                                            @if ($survey->ToolBoxTalk)    
+                                                                <a href="{{  route('PreCabling.toolboxtalkedit', $survey->ToolBoxTalk->id) }}" class="btn btn-secondary rounded-0">  </i>Toolbox</a> 
+                                                            @else
+                                                                <a href="{{  route('PreCabling.toolboxtalk', $survey->id) }}" class="btn btn-success rounded-0">Add Toolbox</a>
+                                                            @endif
+                                                  
+                                                           </div>
                                                         
 
                                                         <!-- Edit Button with margin-left -->

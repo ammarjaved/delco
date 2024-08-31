@@ -43,6 +43,10 @@ class SiteSurvey extends Model
         return $this->hasOne(PreCablingShutDown::class, 'site_survey_id');
     }
 
+    public function ToolBoxTalk() {
+        return $this->hasOne(ToolBoxTalk::class, 'site_survey_id')->where('skop_kerja', 'CABLING');
+    }
+
     public function imageShutdown()
     {
         return $this->hasOne(ImageShutdown::class, 'site_survey_id');
