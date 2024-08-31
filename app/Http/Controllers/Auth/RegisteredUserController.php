@@ -43,7 +43,7 @@ class RegisteredUserController extends Controller
             'area'=>$request->area,
             'project'=>$request->project,
             'vendor'=>$request->company,
-            'type' => false,
+            'type' => true,
         ]);
 
       //  event(new Registered($user));
