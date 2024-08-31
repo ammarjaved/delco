@@ -82,8 +82,8 @@ class SiteSurveyController extends Controller
        $area= $usr_info->area;
        $project= $usr_info->project;
            $var=$request->all();
-           $var['created_by']= $usr_info->email;
-           $var['updated_by']= $usr_info->email;
+           $var['created_by']= $usr_info->name;
+           $var['updated_by']= $usr_info->name;
            $var['area']=$area;
            $var['project']=$project;
              

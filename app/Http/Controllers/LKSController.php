@@ -19,7 +19,7 @@ class LKSController extends Controller{
     public function index()
     {
         $usr_info = Auth::user();
-        $surveys = SiteSurvey::where('created_by', $usr_info->email)->get();
+        $surveys = SiteSurvey::where('created_by', $usr_info->name)->get();
 
         // Pass the surveys to the 'SAT.index' view
         return view('LKS.index', compact('surveys'));

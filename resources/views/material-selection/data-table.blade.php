@@ -4,7 +4,7 @@
 <div class="container">
     <h2>Data Table</h2>
     
-    <table class="table">
+    <table class="table"  style="background-color:#E0EEE0;">
         <thead>
             <tr>
                 <th>PE Name</th>

@@ -47,8 +47,8 @@ class SiteVisitRepository {
 
         $toolbox['toolbox_image1'] = $request->toolbox_image1;
         $toolbox['toolbox_image2'] = $request->toolbox_image2;
-        $toolbox['created_by']= $usr_info->email;
-        $toolbox['updated_by']= $usr_info->email;
+        $toolbox['created_by']= $usr_info->name;
+        $toolbox['updated_by']= $usr_info->name;
         $toolbox['area']=  $usr_info->area;
         $toolbox['project']=  $usr_info->project;
 
@@ -105,8 +105,8 @@ class SiteVisitRepository {
 
         $toolbox['toolbox_image1'] = $request->toolbox_image1;
         $toolbox['toolbox_image2'] = $request->toolbox_image2;
-        $toolbox['created_by']= $usr_info->email;
-        $toolbox['updated_by']= $usr_info->email;
+        $toolbox['created_by']= $usr_info->name;
+        $toolbox['updated_by']= $usr_info->name;
         $toolbox['area']=  $usr_info->area;
         $toolbox['project']=  $usr_info->project;
 

@@ -17,8 +17,8 @@
         </div>
     </section>
     <section class="content">
-        <div class="container-fluid">
-            <div class="container bg-white  shadow my-4 " style="border-radius: 10px">
+        <div class="container-fluid" >
+            <div class="container   shadow my-4 " style="border-radius: 10px;background-color:#E0EEE0;" >
 
                 <h3 class="text-center mb-4"> Site Data Collections</h3>
                 
@@ -510,7 +510,7 @@
        <div class="form-group">
         <label for="upload_images">Toolbox Images</label><br>
         <label for="upload_images_yes">
-            <input type="radio" id="upload_images_yes" name="upload_images" value="yes"  style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" onclick="toggleImageInputs(true)">
+            <input type="radio" id="upload_images_yes" name="upload_images" value="yes"  style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;"  onclick="toggleImageInputs(true)">
             Yes
         </label>
         <label for="upload_images_no">

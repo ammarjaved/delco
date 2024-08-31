@@ -43,7 +43,9 @@ class PreCablingController extends Controller
     public function create($id)
     {
         //
-        return view('PreCabling.create', ['site_survey_id' => $id,'nama_pe'=>$nama_pe]);
+        $sitesurveydata = SiteSurvey::find($id);
+
+        return view('PreCabling.create', ['site_survey_id' => $id,'nama_pe'=> $sitesurveydata->nama_pe]);
     }
 
 

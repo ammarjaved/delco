@@ -20,7 +20,7 @@
     <form action="{{ route('material-selection.save', ['id' => $siteSurvey->id]) }}" method="POST">
         @csrf
         
-        <table class="table">
+        <table class="table" style="background-color:#E0EEE0;">
             <thead>
                 <tr>
                     <th>Id</th>

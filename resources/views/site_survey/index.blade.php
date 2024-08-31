@@ -48,8 +48,8 @@
 
 @section('content')
 
-<section class="content-header">
-        <div class="container-fluid  ">
+<section class="content-header" style="background-color:#FAFAFA;">
+        <div class="container-fluid ">
             <div class="row mb-2" style="flex-wrap:nowrap">
                 <div class="col-sm-6">
                     <h3>Site Data</h3>
@@ -64,7 +64,7 @@
             </div>
         </div>
 </section>
-<section class="content">
+<section class="content" style="background-color:#FAFAFA;">
         <div class="container-fluid">
             @if (Session::has('failed'))
                 <div class="alert {{ Session::get('alert-class', 'alert-secondary') }}" role="alert">
@@ -86,7 +86,7 @@
             @endif
         <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card" style="background-color:#E0EEE0;">
                         <div class="card-header">
                             <div class="card-title">
                                 <a href="{{ route('site_survey.create') }}" class="btn  btn-sm"

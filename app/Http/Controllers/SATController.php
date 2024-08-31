@@ -16,7 +16,7 @@ class SATController extends Controller
         $usr_info = Auth::user();
 
         // Retrieve all Site Surveys created by the logged-in user
-        $surveys = SiteSurvey::where('created_by', $usr_info->email)->get();
+        $surveys = SiteSurvey::where('created_by', $usr_info->name)->get();
 
         // Pass the surveys to the 'SAT.index' view
         return view('SAT.index', compact('surveys'));
