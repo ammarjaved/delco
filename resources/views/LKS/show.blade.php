@@ -347,7 +347,11 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
 
 
        
-
+@media print {
+            button {
+                display: none;
+            }
+        }
 
         
 
@@ -355,7 +359,6 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
 </head>
 <body>
     <div class="container">
-
     <div class="header">
         <div class="logo">
             <img src="{{ URL::asset('assets/web-images/tnblogo.png') }}" alt="TNB Logo">
@@ -712,8 +715,8 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
     <div class="signature-section">
         <div class="prepared">
             <p>Disediakan Oleh:</p>
-            <img src="{{ URL::asset('assets/web-images/signs.png') }}" alt="Signature">
-            <p>Nama: AHMAD KHALIL QUSYAIRI<br>Jawatan: PENYELIA TAPAK</p>
+            <!-- <img src="{{ URL::asset('assets/web-images/signs.png') }}" alt="Signature"> -->
+            <p>Nama: <br>Jawatan: </p>
         </div>
         <div class="reviewed">
             <p>Disemak Oleh:</p>
@@ -992,6 +995,7 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
 
     
     
+    <button onclick="window.print()">Print</button>
 
     </div>
 </body>
