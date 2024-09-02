@@ -1,10 +1,10 @@
 <x-guest-layout>
     <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <x-auth-session-status class="mb-4" :status="session('status')"  />
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
-
+         
         <div class="text-center">
             <img src="{{URL::asset('assets/web-images/main-logo.png')}}" alt="" height="60" srcset="" class="" style="height: 60px !important ; margin:5% auto">
         </div>

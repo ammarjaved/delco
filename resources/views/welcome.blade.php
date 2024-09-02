@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delco</title>
+    <title>DALCO</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -65,9 +65,9 @@
     }
 </style>
 
-<body>
-    <div class="container">
-        <h4 style=" font-family: Arial, sans-serif italic;font-size: 100px;font-style: italic; ;"><span  style="color:#D5212D;">D</span><span style="color:#767BBC;">e</span><span style="color:#D5212D">lco</span></h4>
+<body style="background-color:#E0EEE0;">
+    <div class="container" >
+        <h4 style=" font-family: Arial, sans-serif italic;font-size: 100px;font-style: italic; ;"><span  style="color:#D5212D;">D</span><span style="color:#767BBC;">A</span><span style="color:#D5212D">LCO</span></h4>
         <img src="{{ URL::asset('assets/web-images/main-logo.png') }}" alt="" height="265">
         <a href="{{ route('site_survey.index') }}">
             <button class="btn  btn-success mt-4"> GOTO MAIN</button>
