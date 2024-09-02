@@ -45,47 +45,61 @@
 
         <div class="mt-4">
             <x-input-label for="area" :value="__('Area')" />
-        
-            <select id="area" name="area" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
+            <select id="area" name="area" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required onchange="updateDropdowns()">
                 <option value="KL">KL</option>
                 <option value="JOHOR">Johor</option>
             </select>
-        
             <x-input-error :messages="$errors->get('area')" class="mt-2" />
         </div>
-        
+
+        <!-- Company -->
+        <div class="mt-4">
+            <x-input-label for="company" :value="__('Company')" />
+            <select id="company" name="company" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required onchange="updateDropdowns()">
+                <option value="Aerosynergy Solutions Sdn. Bhd">Aerosynergy Solutions Sdn. Bhd</option>
+                <option value="ARAS KEJURUTERAAN SDN. Bhd">ARAS KEJURUTERAAN SDN. Bhd</option>
+            </select>
+            <x-input-error :messages="$errors->get('company')" class="mt-2" />
+        </div>
+
+        <!-- Project -->
         <div class="mt-4">
             <x-input-label for="project" :value="__('Project')" />
-        
             <select id="project" name="project" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
                 <option value="AERO-KL">AERO-KL</option>
                 <option value="ARAS-JOHOR">ARAS-JOHOR</option>
                 <option value="AERO-JOHOR">AERO-JOHOR</option>
             </select>
-        
             <x-input-error :messages="$errors->get('project')" class="mt-2" />
         </div>
-        
-        <div class="mt-4">
-            <x-input-label for="company" :value="__('Company')" />
-        
-            <select id="company" name="company" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
-                <option value="Aerosynergy Solutions Sdn. Bhd">Aerosynergy Solutions Sdn. Bhd</option>
-                <option value="ARAS KEJURUTERAAN SDN. Bhd">ARAS KEJURUTERAAN SDN. Bhd</option>
-            </select>
-        
-            <x-input-error :messages="$errors->get('company')" class="mt-2" />
-        </div>
-        
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
-
             <x-primary-button class="ml-4">
                 {{ __('Register') }}
             </x-primary-button>
         </div>
     </form>
+
+    <script>
+        function updateDropdowns() {
+            const area = document.getElementById('area').value;
+            const company = document.getElementById('company').value;
+            const project = document.getElementById('project');
+
+            if (area === 'KL') {
+                project.value = 'AERO-KL';
+            } else if (area === 'JOHOR') {
+                if (company === 'Aerosynergy Solutions Sdn. Bhd') {
+                    project.value = 'AERO-JOHOR';
+                } else if (company === 'ARAS KEJURUTERAAN SDN. Bhd') {
+                    project.value = 'ARAS-JOHOR';
+                }
+            } else {
+                project.value = '';
+            }
+        }
+    </script>
 </x-guest-layout>
