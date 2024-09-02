@@ -67,6 +67,7 @@
 
 <body>
     <div class="container">
+        <h4 style=" font-family: Arial, sans-serif italic;font-size: 100px;font-style: italic; ;"><span  style="color:#D5212D;">D</span><span style="color:#767BBC;">e</span><span style="color:#D5212D">lco</span></h4>
         <img src="{{ URL::asset('assets/web-images/main-logo.png') }}" alt="" height="265">
         <a href="{{ route('site_survey.index') }}">
             <button class="btn  btn-success mt-4"> GOTO MAIN</button>
