@@ -38,6 +38,7 @@ use App\Http\Controllers\PreCablingController;
 use App\Http\Controllers\PreCablingImagesController;
 use App\Http\Controllers\PreCablingShutDownController;
 use App\Models\PreCablingImages;
+use App\Models\SAT;
 
 /*
 |--------------------------------------------------------------------------
@@ -136,6 +137,13 @@ Route::put('image-shutdown/{id}', [ImageShutdownController::class, 'update'])->n
 // Define the route to handle deletion of an image shutdown
 Route::delete('image-shutdown/{id}', [ImageShutdownController::class, 'destroy'])->name('image-shutdown.destroy');
 
+
+
+
+Route::get('/SAT/{id}',[SATController::class,'createToolboxTalk'])->name('SAT.toolboxtalk');
+Route::get('/SAT-toolboxtalkedit/{id}',[SATController::class,'editToolboxTalk'])->name('SAT.toolboxtalkedit');
+ Route::post('/SAT-toolboxtalk-store', [SATController::class, 'storeToolboxtalk'])->name('SAT.toolboxtalk.store');
+ Route::post('/SAT-toolboxtalk-update/{id}', [SATController::class, 'updateToolboxtalk'])->name('SAT.toolboxtalk.update');
    
 Route::get('/sat', [SATController::class, 'index'])->name('sat.index');
 

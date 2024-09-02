@@ -233,10 +233,12 @@
         @endif
     </div>
 
-    <div class="mt-3">
-      <button type="submit" class="btn btn-success" id="submitBtn" >{{ isset($siteSurvey) ? 'Update' : 'Create' }}</button>
-    </div>
+    
 
+</div>
+
+<div class="mt-3">
+    <button type="submit" class="btn btn-success" id="submitBtn">{{ isset($siteSurvey) ? 'Update' : 'Create' }}</button>
 </div>
  </div>
 

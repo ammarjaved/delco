@@ -4,7 +4,7 @@
 <div class="container">
 <h3 class="mt-3">ToolBoxTalk</h3> 
   
-<form action="{{ isset($toolboxtalk['id']) ? route('image_shutdown.toolboxtalkedit',$toolboxtalk['id']) : route('image_shutdown.toolboxtalk.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ isset($toolboxtalk['id']) ? route('SAT.toolboxtalkedit',$toolboxtalk['id']) : route('SAT.toolboxtalk.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
         @if(isset($siteSurvey))
             @method('PUT')
@@ -54,7 +54,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="skop_kerja">Skop Kerja</label><br>
-        <input type="text" id="skop_kerja" name="skop_kerja" class="form-control" value="OUTAGE" readonly>
+        <input type="text" id="skop_kerja" name="skop_kerja" class="form-control" value="SAT" readonly>
     </div>
 </div>
 
@@ -233,9 +233,10 @@
         @endif
     </div>
 
-  
+   
 
 </div>
+
 <div class="mt-3">
     <button type="submit" class="btn btn-success" id="submitBtn" >{{ isset($siteSurvey) ? 'Update' : 'Create' }}</button>
   </div>

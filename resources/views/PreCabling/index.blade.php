@@ -3,49 +3,38 @@
 
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-<style>
-.dropdown {
-        position: relative;
-        z-index: 1050;
-    }
-
-    .dropdown-menu {
-        min-width: 200px;
-        position: absolute;
-        top: 100%; /* Position directly below the button */
-        z-index: 1050; /* Higher z-index to appear above other elements */
-        padding: 0.5rem 0; /* Space around items */
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Add a shadow for better visibility */
-    }
-
-    .dropdown-item {
-        padding: 0.5rem 1rem;
-        display: flex;
-        align-items: center;
-        white-space: nowrap; /* Prevent text wrapping */
-    }
-
-    .dropdown-item i {
-        margin-right: 10px;
-        width: 16px;
-        text-align: center;
-    }
-
-    .dropdown-divider {
-        margin: 0.5rem 0;
-    }
-
-    /* Ensure buttons inside forms take full width */
-    form .dropdown-item {
-        width: 100%;
-        text-align: left;
-    }
-
-</style>
-
+<link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <style>
+        .dropdown {
+            position: relative; /* Ensure this is correct for your layout */
+        }
+        
+        .dropdown-menu {
+            min-width: 200px;
+            position: absolute;
+            top: 100%; /* Position dropdown just below the button */
+            left: 0; /* Aligns dropdown menu with the left edge of the button */
+            z-index: 1050; /* Ensure it appears above other content */
+            background: #fff; /* Ensure the dropdown background is solid */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add a shadow for better visibility */
+            border-radius: 4px; /* Optional: Add rounded corners for a better look */
+        }
+        
+        .dropdown-item {
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .dropdown-item i {
+            margin-right: 10px;
+            width: 16px;
+            text-align: center;
+        }
+        
+        </style>
 @endsection
 
 @section('content')
@@ -119,33 +108,35 @@
                                                 <td>{{ $survey->nama_pe }}</td>
                                                 <td>{{ $survey->kawasan }}</td>
                                                 <td>
-                                                <div class="dropdown" style="position: absolute; z-index: 10000">
-                                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <div class="dropdown" style="position: relative;">
+                                                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <i class="fas fa-ellipsis-v"></i>
                                                         </button>
-                                                    
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                             @if ($survey->PreCabling)
-                                                                <a class="dropdown-item" href="{{  route('pre-cabling.edit', $survey->PreCabling->id) }}" >Edit PIW</a>
+                                                                <a class="dropdown-item" href="{{ route('pre-cabling.edit', $survey->PreCabling->id) }}"><i class="fa fa-edit"></i>Edit PIW</a>
                                                             @else
-                                                                <a class="dropdown-item" href="{{  route('pre-cabling-piw.create',$survey) }}" >Add PIW</a>
-
+                                                                <a class="dropdown-item" href="{{ route('pre-cabling-piw.create', $survey) }}"><i class="fa fa-plus"></i>Add PIW</a>
                                                             @endif
+                                                
                                                             @if ($survey->PreCablingShutDown)
-                                                                <a class="dropdown-item" href="{{  route('pre-cabling-shut-down.edit', $survey->PreCablingShutDown->id) }}" >Edit Per-ShutDown</a>
+                                                                <a class="dropdown-item" href="{{ route('pre-cabling-shut-down.edit', $survey->PreCablingShutDown->id) }}"><i class="fa fa-edit"></i>Edit Pre-ShutDown</a>
                                                             @else
-                                                                <a class="dropdown-item" href="{{  route('pre-cabling-shut-down.create',$survey) }}" >Add Pre-ShutDown</a>
+                                                                <a class="dropdown-item" href="{{ route('pre-cabling-shut-down.create', $survey) }}"><i class="fa fa-plus"></i>Add Pre-ShutDown</a>
                                                             @endif
-                                                                <a class="dropdown-item" href="{{  route('pre-cabling-attachment.index', $survey->id) }}" >  Add PreCabling Attactments</a> 
-                                                                <a class="dropdown-item" href="{{  route('pre-cabling-image.index', $survey->id) }}" >  Add PreCabling Images</a> 
-                                                                @if ($survey->ToolBoxTalk)    
-                                                                <a class="dropdown-item" href="{{  route('PreCabling.toolboxtalkedit', $survey->ToolBoxTalk->id) }}" >  </i>Toolbox</a> 
+                                                
+                                                            <a class="dropdown-item" href="{{ route('pre-cabling-attachment.index', $survey->id) }}"><i class="fa fa-paperclip"></i>Add PreCabling Attachments</a> 
+                                                            <a class="dropdown-item" href="{{ route('pre-cabling-image.index', $survey->id) }}"><i class="fa fa-image"></i>Add PreCabling Images</a> 
+                                                
+                                                            @if ($survey->ToolBoxTalk)    
+                                                                <a class="dropdown-item" href="{{ route('PreCabling.toolboxtalkedit', $survey->ToolBoxTalk->id) }}"><i class="fa fa-edit"></i>Edit Toolbox</a> 
                                                             @else
-                                                                <a class="dropdown-item" href="{{  route('PreCabling.toolboxtalk', $survey->id) }}">Add Toolbox</a>
+                                                                <a class="dropdown-item" href="{{ route('PreCabling.toolboxtalk', $survey->id) }}"><i class="fa fa-plus"></i>Add Toolbox</a>  
                                                             @endif
                                                         </div>
                                                     </div>
-                                                 </td>
+                                                </td>
+                                                
                                                 
                                             </tr>
                                         @endforeach
@@ -164,3 +155,28 @@
         </div>
     </section>
 @endsection
+
+
+<script>
+$(document).ready(function() {
+    $('.dropdown-toggle').on('click', function(e) {
+        e.preventDefault();
+
+        // Close all open dropdowns
+        $('.dropdown-menu').removeClass('show');
+
+        // Open the clicked dropdown
+        $(this).next('.dropdown-menu').toggleClass('show');
+    });
+
+    // Close the dropdown if clicked outside
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.dropdown').length) {
+            $('.dropdown-menu').removeClass('show');
+        }
+    });
+});
+
+
+
+</script>

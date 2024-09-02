@@ -39,6 +39,8 @@ class LKSController extends Controller{
 
         $pictureData = SitePicture::where('site_survey_id', $survey->id)->first();
 
+    
+
         $files = FileUpload::where('site_survey_id', $survey->id)->get();
 
         $projectMaterials = ProjectMaterial::where('site_survey_id', $survey->id)->get();

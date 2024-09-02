@@ -4,7 +4,7 @@
 <div class="container">
 <h3 class="mt-3">ToolBoxTalk</h3> 
 
-<form action="{{route('image_shutdown.toolboxtalk.update',$toolboxtalk['id'])}}" method="POST" enctype="multipart/form-data">
+<form action="{{route('SAT.toolboxtalk.update',$toolboxtalk['id'])}}" method="POST" enctype="multipart/form-data">
                 @csrf
         @if(isset($siteSurvey))
             @method('PUT')
@@ -54,7 +54,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <label for="skop_kerja">Skop Kerja</label><br>
-        <input type="text" id="skop_kerja" name="skop_kerja" class="form-control" value="OUTAGE" readonly>
+        <input type="text" id="skop_kerja" name="skop_kerja" class="form-control" value="SAT" readonly>
     </div>
 </div>
 

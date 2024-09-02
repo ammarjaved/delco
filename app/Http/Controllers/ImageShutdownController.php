@@ -6,6 +6,7 @@ use App\Models\ImageShutdown;
 use App\Models\SiteSurvey; // Ensure this is imported
 use Illuminate\Http\Request;
 use App\Models\ToolBoxTalk;
+use Illuminate\Support\Facades\Auth;
 use App\Repositories\SiteVisitRepository;
 
 class ImageShutdownController extends Controller
@@ -36,7 +37,7 @@ class ImageShutdownController extends Controller
     public function index()
     {
         // Fetch surveys from the database, including related ImageShutdown data
-        $surveys = SiteSurvey::with(['imageShutdown','ToolBoxTalk'])->get(); // Use the correct model and relation
+        $surveys = SiteSurvey::with(['imageShutdown'])->get(); // Use the correct model and relation
 
         // Return the index view with the fetched surveys
         return view('image_shutdown.index', compact('surveys'));
@@ -125,6 +126,7 @@ class ImageShutdownController extends Controller
     public function createToolboxTalk($id)
     {
         $sitesurveydata = SiteSurvey::find($id);
+        
 
       // return compact('sitesurveydata');
 
@@ -156,16 +158,19 @@ class ImageShutdownController extends Controller
     {
         try {
 
-            $usr_info= Auth::user();
-          //  return $request;
-            $toolbox=$this->siteRepository->addToolBoxTalk($request,$request->site_survey_id,$request->nama_pe,$usr_info);
+            $usr_info= \Auth::user();
+        //    return $request;
 
-            //return $toolbox;
+            $toolbox=$this->siteRepository->addToolBoxTalk($request,$request->site_survey_id,$request->nama_pe,$usr_info);
+            
+            //  return $toolbox;
             ToolBoxTalk::create($toolbox);
 
 
         } catch (\Throwable $th) {
-            return redirect()->route('image-shutdown.index')->with('failed', 'Request Failed');
+            // return $th;
+          return redirect()->route('image-shutdown.index')->with('failed', 'Request Failed');
+            
         }
 
         return redirect()->route('image-shutdown.index')->with('success', 'Request Success');
@@ -175,7 +180,7 @@ class ImageShutdownController extends Controller
     {
         try {
 
-            $usr_info= Auth::user();
+            $usr_info= \Auth::user();
           //  return $request;
             $toolbox=$this->siteRepository->updateToolBoxTalk($request,$id,$usr_info);
 

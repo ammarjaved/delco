@@ -7,13 +7,26 @@ use App\Models\SiteSurvey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Exception;
+use App\Repositories\SiteVisitRepository;
+use App\Models\ToolBoxTalk;
+
 
 class SATController extends Controller
 {
+
+
+    private $siteRepository;
+
+    public function __construct(SiteVisitRepository $siteRepository)
+    {
+        $this->siteRepository = $siteRepository;
+    }
+
+    
     // Method to list all SAT records for a specific Site Survey
     public function index()
     {
-        $usr_info = Auth::user();
+        $usr_info = \Auth::user();
 
         // Retrieve all Site Surveys created by the logged-in user
         $surveys = SiteSurvey::where('created_by', $usr_info->name)->get();
@@ -58,7 +71,7 @@ class SATController extends Controller
             'image_url' => $filePath,
             'image_type' => $request->image_type,
             'site_survey_id' => $request->site_survey_id,
-            'created_by' => Auth::user()->email,
+            'created_by' => \Auth::user()->email,
         ];
 
          $sat_data;
@@ -93,6 +106,88 @@ class SATController extends Controller
 
         return redirect()->back()->with('success', 'File deleted successfully.');
     }
+
+
+    public function createToolboxTalk($id)
+    {
+        $sitesurveydata = SiteSurvey::find($id);
+        
+
+      // return compact('sitesurveydata');
+
+        return view('SAT.toolboxtalk',compact('sitesurveydata'));
+    }
+
+    public function editToolboxTalk($id)
+    {
+        $toolboxtalk = ToolBoxTalk::find($id);
+
+       // return $toolboxtalk;
+
+       // $toolboxtalk = ToolBoxTalk::where('site_survey_id',$id)->where('skop_kerja','=','CABLING')->get()[0] ;
+
+      // return compact('sitesurveydata');
+
+     // return  $toolboxtalk;
+
+        return view('SAT.toolboxtalkedit',compact('toolboxtalk'));
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function storeToolboxtalk(Request $request)
+    {
+        try {
+
+            $usr_info= \Auth::user();
+        //    return $request;
+
+            $toolbox=$this->siteRepository->addToolBoxTalk($request,$request->site_survey_id,$request->nama_pe,$usr_info);
+            
+            //  return $toolbox;
+            ToolBoxTalk::create($toolbox);
+
+
+        } catch (\Throwable $th) {
+            // return $th;
+          return redirect()->route('sat.index')->with('failed', 'Request Failed');
+            
+        }
+
+        return redirect()->route('sat.index')->with('success', 'Request Success');
+    }
+
+    public function updateToolboxtalk(Request $request,$id)
+    {
+        try {
+
+            $usr_info= \Auth::user();
+          //  return $request;
+            $toolbox=$this->siteRepository->updateToolBoxTalk($request,$id,$usr_info);
+
+           // return $toolbox;
+            ToolBoxTalk::updateOrCreate(
+                ['id' =>$id],
+                $toolbox
+            );     
+
+        } catch (\Throwable $th) {
+            return redirect()->route('sat.index')->with('failed', 'Request Failed');
+        }
+
+        return redirect()->route('sat.index')->with('success', 'Request Success');
+    }
+
+      /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
 
 }
