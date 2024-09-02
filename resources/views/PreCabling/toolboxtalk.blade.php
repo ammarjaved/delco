@@ -232,13 +232,15 @@
             <img src="{{ asset($toolboxTalk->toolbox_image2) }}" alt="Toolbox Image 2" class="img-thumbnail mt-2" style="max-width: 200px;">
         @endif
     </div>
-</div>
- </div>
 
- <div class="mt-3">
+    <div class="mt-3">
       <button type="submit" class="btn btn-success" id="submitBtn" >{{ isset($siteSurvey) ? 'Update' : 'Create' }}</button>
     </div>
 
+</div>
+ </div>
+
+ 
     </form> 
     </div>
  @endsection 
