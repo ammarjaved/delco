@@ -5,26 +5,38 @@ namespace App\Http\Controllers;
 use App\Models\ImageShutdown;
 use App\Models\SiteSurvey; // Ensure this is imported
 use Illuminate\Http\Request;
+use App\Models\ToolBoxTalk;
+use App\Repositories\SiteVisitRepository;
 
 class ImageShutdownController extends Controller
 {
+
+    private $siteRepository;
+
+    public function __construct(SiteVisitRepository $siteRepository)
+    {
+        $this->siteRepository = $siteRepository;
+    }
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     // Method to show the form for creating a new ImageShutdown
     public function create($id)
     {
         $survey = SiteSurvey::findOrFail($id);
         $imageShutdowns = ImageShutdown::where('site_survey_id', $id)->get(); // Get related image shutdowns
 
-        return view('image_shutdown.create', [
-            'survey' => $survey,
-            'imageShutdowns' => $imageShutdowns
-        ]);
+        return view('image_shutdown.create', ['survey' => $survey,'imageShutdowns' => $imageShutdowns  ]);
     }
 
 
     public function index()
     {
         // Fetch surveys from the database, including related ImageShutdown data
-        $surveys = SiteSurvey::with(['imageShutdown'])->get(); // Use the correct model and relation
+        $surveys = SiteSurvey::with(['imageShutdown','ToolBoxTalk'])->get(); // Use the correct model and relation
 
         // Return the index view with the fetched surveys
         return view('image_shutdown.index', compact('surveys'));
@@ -110,9 +122,82 @@ class ImageShutdownController extends Controller
     }
 
     
+    public function createToolboxTalk($id)
+    {
+        $sitesurveydata = SiteSurvey::find($id);
+
+      // return compact('sitesurveydata');
+
+        return view('image_shutdown.toolboxtalk',compact('sitesurveydata'));
+    }
+
+    public function editToolboxTalk($id)
+    {
+        $toolboxtalk = ToolBoxTalk::find($id);
+
+       // return $toolboxtalk;
+
+       // $toolboxtalk = ToolBoxTalk::where('site_survey_id',$id)->where('skop_kerja','=','CABLING')->get()[0] ;
+
+      // return compact('sitesurveydata');
+
+     // return  $toolboxtalk;
+
+        return view('image_shutdown.toolboxtalkedit',compact('toolboxtalk'));
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function storeToolboxtalk(Request $request)
+    {
+        try {
+
+            $usr_info= Auth::user();
+          //  return $request;
+            $toolbox=$this->siteRepository->addToolBoxTalk($request,$request->site_survey_id,$request->nama_pe,$usr_info);
+
+            //return $toolbox;
+            ToolBoxTalk::create($toolbox);
 
 
+        } catch (\Throwable $th) {
+            return redirect()->route('image-shutdown.index')->with('failed', 'Request Failed');
+        }
 
+        return redirect()->route('image-shutdown.index')->with('success', 'Request Success');
+    }
+
+    public function updateToolboxtalk(Request $request,$id)
+    {
+        try {
+
+            $usr_info= Auth::user();
+          //  return $request;
+            $toolbox=$this->siteRepository->updateToolBoxTalk($request,$id,$usr_info);
+
+           // return $toolbox;
+            ToolBoxTalk::updateOrCreate(
+                ['id' =>$id],
+                $toolbox
+            );     
+
+        } catch (\Throwable $th) {
+            return redirect()->route('image-shutdown.index')->with('failed', 'Request Failed');
+        }
+
+        return redirect()->route('image-shutdown.index')->with('success', 'Request Success');
+    }
+
+      /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
     
 }
