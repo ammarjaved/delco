@@ -112,6 +112,14 @@ Route::middleware('auth')->group(function () {
 
 
    // Route to display a list of image shutdowns
+
+   Route::get('/image_shutdown/{id}',[ImageShutdownController::class,'createToolboxTalk'])->name('image_shutdown.toolboxtalk');
+   Route::get('/image_shutdown-toolboxtalkedit/{id}',[ImageShutdownController::class,'editToolboxTalk'])->name('image_shutdown.toolboxtalkedit');
+    Route::post('/image_shutdown-toolboxtalk-store', [ImageShutdownController::class, 'storeToolboxtalk'])->name('image_shutdown.toolboxtalk.store');
+    Route::post('/image_shutdown-toolboxtalk-update/{id}', [ImageShutdownController::class, 'updateToolboxtalk'])->name('image_shutdown.toolboxtalk.update');
+
+
+
    Route::get('/image-shutdown', [ImageShutdownController::class, 'index'])->name('image-shutdown.index');
    Route::get('/image-shutdown/create/{survey}', [ImageShutdownController::class, 'create'])->name('image-shutdown.create');
    Route::post('/image-shutdown', [ImageShutdownController::class, 'store'])->name('image-shutdown.store');
