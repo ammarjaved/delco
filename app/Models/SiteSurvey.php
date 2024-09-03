@@ -47,6 +47,11 @@ class SiteSurvey extends Model
         return $this->hasOne(ToolBoxTalk::class, 'site_survey_id')->where('skop_kerja', 'CABLING');
     }
 
+    public function ToolBoxTalkOutage() {
+        return $this->hasOne(ToolBoxTalk::class, 'site_survey_id')->where('skop_kerja', 'OUTAGE');
+    }
+
+
     public function imageShutdown()
     {
         return $this->hasOne(ImageShutdown::class, 'site_survey_id');

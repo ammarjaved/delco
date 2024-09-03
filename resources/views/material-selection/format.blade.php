@@ -123,6 +123,12 @@
                                         <a class="dropdown-item" href="{{ route('material-selection.show', $survey->id) }}">
                                             <i class="fas fa-eye"></i> Show Materials
                                         </a>
+                                        <form  class="dropdown-item"  action="{{ route('material-selection.delete-all', $survey->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete all items for this Site Survey?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"><i class="fas fa-trash"></i> Delete Material</button>
+                                        </form>
+
                                     </div>
                                 </div>
                             </td>

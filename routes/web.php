@@ -74,6 +74,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::delete('/material-selection/delete/{id}', [MaterialSelectionController::class, 'destroy'])->name('material-selection.delete');
+    Route::delete('/material-selection/delete-all/{siteSurveyId}', [MaterialSelectionController::class, 'deleteAll'])->name('material-selection.delete-all');
 
 
     Route::get('/material-selection/index', [MaterialSelectionController::class, 'index'])->name('material-selection.index');
@@ -97,6 +98,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/precabling-toolboxtalkedit/{id}',[PreCablingController::class,'editToolboxTalk'])->name('PreCabling.toolboxtalkedit');
     Route::post('/precabling-toolboxtalk-store', [PreCablingController::class, 'storeToolboxtalk'])->name('PreCabling.toolboxtalk.store');
     Route::post('/precabling-toolboxtalk-update/{id}', [PreCablingController::class, 'updateToolboxtalk'])->name('PreCabling.toolboxtalk.update');
+    Route::delete('/pre-cabling/toolboxtalk/{id}', [PreCablingController::class, 'destroyToolboxTalk'])->name('PreCabling.toolboxtalk.destroy');
+
+    
 
 
 

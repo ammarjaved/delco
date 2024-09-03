@@ -37,10 +37,14 @@ class ImageShutdownController extends Controller
     public function index()
     {
         // Fetch surveys from the database, including related ImageShutdown data
-        $surveys = SiteSurvey::with(['imageShutdown'])->get(); // Use the correct model and relation
+        $surveys = SiteSurvey::with(['ToolBoxTalkOutage'])->get(); // Use the correct model and relation
+
+
+        //  return $surveys;
 
         // Return the index view with the fetched surveys
         return view('image_shutdown.index', compact('surveys'));
+
     }
     // Method to store a new ImageShutdown record
     public function store(Request $request)
@@ -158,8 +162,9 @@ class ImageShutdownController extends Controller
     {
         try {
 
+
             $usr_info= \Auth::user();
-        //    return $request;
+        //  return $request;
 
             $toolbox=$this->siteRepository->addToolBoxTalk($request,$request->site_survey_id,$request->nama_pe,$usr_info);
             

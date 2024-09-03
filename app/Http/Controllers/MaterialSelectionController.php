@@ -162,6 +162,27 @@ public function showData($id)
         }
     }
     
+    public function deleteAll($siteSurveyId)
+    {
+        try {
+            // Check if site survey exists (optional)
+            $siteSurvey = SiteSurvey::find($siteSurveyId);
+    
+            if (!$siteSurvey) {
+                return redirect()->back()->with('failed', 'Site Survey not found.');
+            }
+    
+            // Delete all records associated with the given site_survey_id
+            $deletedCount = ProjectMaterial::where('site_survey_id', $siteSurveyId)->delete();
+    
+            return redirect()->back()->with('success', "{$deletedCount} Material(s) successfully deleted.");
+        } catch (Exception $e) {
+            return redirect()->back()->with('failed', 'Failed to delete materials: ' . $e->getMessage());
+        }
+    }
+    
+    
+    
     
     
 
