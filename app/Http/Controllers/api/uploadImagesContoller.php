@@ -177,15 +177,15 @@ public function satImage(Request $req)
             $preCblImage->image_name = $req->image_name;
             
             // If updating, delete the old image file if it exists
-            if ($checkImg && file_exists(public_path($checkImg->image_url))) {
-                unlink(public_path($checkImg->image_url));
-            }
+            // if ($checkImg && file_exists(public_path($checkImg->image_url))) {
+            //     unlink(public_path($checkImg->image_url));
+            // }
         }
      //   return         $preCblImage;
         // Save the model instance with all data
         $preCblImage->save();
 
-        $message = $checkImg ? 'Data updated successfully' : 'Data inserted successfully';
+        $message = 'Data inserted successfully';
         
         return response()->json([
             'success' => true,

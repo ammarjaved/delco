@@ -37,7 +37,7 @@ Route::post('/upload-toolbox-images/{id}/{type}',[uploadImagesContoller::class,"
 
 Route::post('/upload-precbl-images',[uploadImagesContoller::class,"preCblImage"]);
 Route::post('/upload-shutdown-images',[uploadImagesContoller::class,"shutdownImage"]);
-Route::post('/upload-sat-images',[uploadImagesContoller::class,"satImages"]);
+Route::post('/upload-sat-images',[uploadImagesContoller::class,"satImage"]);
 
 
 Route::post('/',[uploadImagesContoller::class,""]);
