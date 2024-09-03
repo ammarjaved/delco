@@ -55,7 +55,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="nama_pe">Nama PE </label>
-                            <input type="text" class="form-control" id="nama_pe" readonly name="nama_pe" value="{{!isset($site_survey_id) ? $piw->nama_pe : $nama_pe }}" required>
+                            <input type="text" class="form-control" id="nama_pe" readonly name="pe_name" value="{{!isset($site_survey_id) ? $piw->pe_name : $nama_pe }}" required>
                            
                         </div>
                     </div>
