@@ -55,7 +55,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="nama_pe">Nama PE </label>
-                            <input type="text" class="form-control" id="nama_pe" readonly name="nama_pe" value="{{!isset($site_survey_id) ? $piw->nama_pe : $nama_pe }}" required>
+                            <input type="text" class="form-control" id="nama_pe" readonly name="pe_name" value="{{!isset($site_survey_id) ? $piw->pe_name : $nama_pe }}" required>
                            
                         </div>
                     </div>
@@ -65,14 +65,14 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="nama_pe">Date  </label>
-                            <input type="date" class="form-control" id="tarikh" name="tarikh" value="{{!isset($site_survey_id) ? $piw->tarikh : now() }}" required>
+                            <input type="date" class="form-control" id="tarikh" name="tarikh" value="{{!isset($site_survey_id) ? date('Y-m-d',strtotime($piw->tarikh)) : now() }}" required>
                            
                         </div>
                     </div>
 
                     <input type="hidden" name="site_survey_id" value="{{isset($site_survey_id) ? $site_survey_id: $piw->site_survey_id}}">
 
-                    @foreach (['lokasi_efi' => 'Lokasi EFI Seteah Dipasang', 'lokasi_rcb' => 'Lokasi RCB Seteah Dipasang', 'connection_rcb' => 'Connection RCB', 'lokasi_battery' => 'Lokasi Battery Charger Setelah Dipasang', 'plate_battery' => 'Plate Battery Charger / Serial No', 'lokasi_rtu' => 'Lokasi RTU Setelah Dipasang', 'connection_rtu' => 'Connection RTU', 'plate_rtu' => 'Plate RTU / Serial No', 'laluan_cable_piw' => 'Laluan Cable (PIW)', 'laluan_cable' => 'Laulan Cable'] as $key => $field)
+                    @foreach (['lokasi_efi' => 'Lokasi EFI Seteah Dipasang', 'lokasi_rcb' => 'Lokasi RCB Seteah Dipasang', 'connection_rcb' => 'Connection RCB', 'lokasi_battary' => 'Lokasi Battery Charger Setelah Dipasang', 'plate_battary' => 'Plate Battery Charger / Serial No', 'lokasi_rtu' => 'Lokasi RTU Setelah Dipasang', 'connection_rtu' => 'Connection RTU', 'plate_rtu' => 'Plate RTU / Serial No', 'laluan_cable_piw' => 'Laluan Cable (PIW)', 'laluan_cable' => 'Laulan Cable'] as $key => $field)
                         <div class="row">
 
                             <div class="col-md-6">

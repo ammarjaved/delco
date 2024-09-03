@@ -30,14 +30,14 @@
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab">Site Survey Info</a>
+        <a class="nav-link active" id="tab1-tab" onclick="updateButtonsfromTabs(0)" data-toggle="tab" href="#tab1" role="tab">Site Survey Info</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab">Site Survey Pic</a>
+        <a class="nav-link" id="tab2-tab" onclick="updateButtonsfromTabs(1)" data-toggle="tab" href="#tab2" role="tab">Site Survey Pic</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" id="tab3-tab" data-toggle="tab" href="#tab3" role="tab">Tool Box Talk</a>
+        <a class="nav-link" id="tab3-tab" onclick="updateButtonsfromTabs(2)" data-toggle="tab" href="#tab3" role="tab">Tool Box Talk</a>
       </li>
      
     </ul>
@@ -188,8 +188,8 @@
                         <!-- <input type="text" class="form-control" id="kabel_saiz{{ $i }}" name="kabel_saiz{{ $i }}" value="{{ $siteSurvey->{"kabel_saiz{$i}"} ?? old("kabel_saiz{$i}") }}"> -->
             <select class="form-control" id="kabel_saiz{{ $i }}" name="kabel_saiz{{ $i }}">
                 <option value="">Jenis Perkakasuis</option>
-                <option value="70MM" {{ (old('kabel_saiz'.$i, $siteSurvey->{"kabel_jenis{$i}"} ?? '') == '70MM') ? 'selected' : '' }}>70MM</option>
-                <option value="185MM" {{ (old('kabel_saiz'.$i, $siteSurvey->{"kabel_jenis{$i}"} ?? '') == '185MM') ? 'selected' : '' }}>185MM</option>
+                <option value="70MM" {{ (old('kabel_saiz'.$i, $siteSurvey->{"kabel_saiz{$i}"} ?? '') == '70MM') ? 'selected' : '' }}>70MM</option>
+                <option value="185MM" {{ (old('kabel_saiz'.$i, $siteSurvey->{"kabel_saiz{$i}"} ?? '') == '185MM') ? 'selected' : '' }}>185MM</option>
             </select>
             </div>
         </div>    
@@ -609,22 +609,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+var currentTabIndex = 0;
+const tabs = ['#tab1', '#tab2', '#tab3'];
+
+function updateButtonsfromTabs(i) {
+
+    currentTabIndex = i;
+    updateButtons();
+}
 
 
-
-
-// Function to check if all required images are uploaded
-document.addEventListener('DOMContentLoaded', function() {
-    const tabs = ['#tab1', '#tab2', '#tab3'
-    ];
-    let currentTabIndex = 0;
-
-
-    $('.nav-tabs li').click(function() {
-        checkactiveTabId();
-    })
-
-    function updateButtons() {
+function updateButtons() {
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const submitBtn = document.getElementById('submitBtn');
@@ -634,6 +629,20 @@ document.addEventListener('DOMContentLoaded', function() {
         if (nextBtn) nextBtn.style.display = currentTabIndex === tabs.length - 1 ? 'none' : 'inline-block';
         if (submitBtn) submitBtn.style.display = currentTabIndex === tabs.length - 1 ? 'inline-block' : 'none';
     }
+
+
+// Function to check if all required images are uploaded
+document.addEventListener('DOMContentLoaded', function() {
+  
+   
+
+    // $('.nav-tabs li').click(function() {
+    //     checkactiveTabId();
+    // })
+
+    
+
+
 
     function validateImageUploads() {
         let isValid = true;
