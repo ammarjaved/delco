@@ -54,7 +54,7 @@ class SiteSurvey extends Model
 
     public function imageShutdown()
     {
-        return $this->hasOne(ImageShutdown::class, 'site_survey_id');
+        return $this->hasMany(ImageShutdown::class, 'site_survey_id');
     }
 
     public function SATs()

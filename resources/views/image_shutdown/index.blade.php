@@ -45,6 +45,7 @@
     <div class="container">
         <h3>Image Shutdown</h3>
 
+
         <div class="card" style="background-color:#E0EEE0;">
           
 
@@ -60,6 +61,7 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             @foreach ($surveys as $survey)
                             <tr>
                                 <td>{{ $survey->id }}</td>
@@ -78,8 +80,8 @@
                                             <a class="dropdown-item" href="{{ route('image-shutdown.create', $survey->id) }}"> <i class="fas fa-list-alt"></i> Add Image Shutdown</a>
                                           
                                     
-                                            @if ($survey->tool_box_talk_outage)    
-                                            <a class="dropdown-item" href="{{  route('image_shutdown.toolboxtalkedit', $survey->tool_box_talk_outage->id) }}" ><i class="fas fa-edit"></i>Edit Toolbox</a> 
+                                            @if ($survey->toolBoxTalkOutage)    
+                                            <a class="dropdown-item" href="{{  route('image_shutdown.toolboxtalkedit', $survey->toolBoxTalkOutage->id) }}" ><i class="fas fa-edit"></i>Edit Toolbox</a> 
                                         @else
                                             <a class="dropdown-item" href="{{  route('image_shutdown.toolboxtalk', $survey->id) }}"><i class="fas fa-plus"></i>Add Toolbox</a>
                                         @endif
