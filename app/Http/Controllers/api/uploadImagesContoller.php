@@ -202,40 +202,16 @@ public function satImage(Request $req)
 
 
 
-public function updateShutdownImage(Request $req,$id)
+public function updateShutdownImage(Request $req, $id)
 {
     $destinationPath = 'assets/images/';
     $modelClass = "App\\Models\\ImageShutdown";
-    $checkImg = $modelClass::find($id)->first();
     
     try {
-            $data = $req->all();
+        $imageShutdown = $modelClass::findOrFail($id);
         
-        // if ($checkImg) {
-        //     // Update existing record
-             $preCblImage = $checkImg;
-            
-        //     // Check if updated_by is empty and handle accordingly
-        //     if (empty($data['updated_by'])) {
-        //         // You can either set it to a default value
-        //         $data['updated_by'] = $req->created_by;
-        //         // Or you can unset it to keep the previous value
-        //         // unset($data['updated_by']);
-        //     }
-        // } else {
-            // Create a new model instance
-           // $preCblImage = new $modelClass();
-            
-            // For new records, set created_by if it's empty
-           // if (empty($data['created_by'])) {
-              //  $data['created_by'] = $req->created_by;
-                $data['updated_by'] = $req->created_by;
-            //}
-     //   }
+        $data = $req->all();
         
-        // Fill the model with all request data
-        $preCblImage->fill($data);
-       
         if ($req->hasFile('image')) {
             $uploadedFile = $req->file('image');
             $img_ext = $uploadedFile->getClientOriginalExtension();
@@ -246,23 +222,21 @@ public function updateShutdownImage(Request $req,$id)
             $uploadedFile->move(public_path($destinationPath), $filename);
             
             // Set the image_url and image_name
-            $preCblImage->image_url = $destinationPath . $filename;
-            $preCblImage->image_name = $req->image_name;
+            $data['image_url'] = $destinationPath . $filename;
+            $data['image_name'] = $req->image_name;
             
-            // If updating, delete the old image file if it exists
-            // if ($checkImg && file_exists(public_path($checkImg->image_url))) {
-            //     unlink(public_path($checkImg->image_url));
+            // Delete the old image file if it exists
+            // if ($imageShutdown->image_url && file_exists(public_path($imageShutdown->image_url))) {
+            //     unlink(public_path($imageShutdown->image_url));
             // }
         }
-     //   return         $preCblImage;
-        // Save the model instance with all data
-        $preCblImage->update();
-
-        $message = $checkImg ? 'Data updated successfully' : 'Data inserted successfully';
+        
+        // Update only the fields that are present in $data
+        $imageShutdown->update($data);
         
         return response()->json([
             'success' => true,
-            'message' => $message,
+            'message' => 'Data updated successfully',
             'error' => null,
         ], 200);
     } catch (\Throwable $th) {
