@@ -65,7 +65,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="nama_pe">Date  </label>
-                            <input type="date" class="form-control" id="tarikh" name="tarikh" value="{{!isset($site_survey_id) ? $piw->tarikh : now() }}" required>
+                            <input type="date" class="form-control" id="tarikh" name="tarikh" value="{{!isset($site_survey_id) ? date($piw->tarikh) : now() }}" required>
                            
                         </div>
                     </div>
