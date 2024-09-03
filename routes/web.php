@@ -74,6 +74,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::delete('/material-selection/delete/{id}', [MaterialSelectionController::class, 'destroy'])->name('material-selection.delete');
+    Route::delete('/material-selection/delete-all/{siteSurveyId}', [MaterialSelectionController::class, 'deleteAll'])->name('material-selection.delete-all');
 
 
     Route::get('/material-selection/index', [MaterialSelectionController::class, 'index'])->name('material-selection.index');
@@ -97,6 +98,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/precabling-toolboxtalkedit/{id}',[PreCablingController::class,'editToolboxTalk'])->name('PreCabling.toolboxtalkedit');
     Route::post('/precabling-toolboxtalk-store', [PreCablingController::class, 'storeToolboxtalk'])->name('PreCabling.toolboxtalk.store');
     Route::post('/precabling-toolboxtalk-update/{id}', [PreCablingController::class, 'updateToolboxtalk'])->name('PreCabling.toolboxtalk.update');
+    Route::delete('/pre-cabling/toolboxtalk/{id}', [PreCablingController::class, 'destroyToolboxTalk'])->name('PreCabling.toolboxtalk.destroy');
+
+    
 
 
 
@@ -118,6 +122,8 @@ Route::middleware('auth')->group(function () {
    Route::get('/image_shutdown-toolboxtalkedit/{id}',[ImageShutdownController::class,'editToolboxTalk'])->name('image_shutdown.toolboxtalkedit');
     Route::post('/image_shutdown-toolboxtalk-store', [ImageShutdownController::class, 'storeToolboxtalk'])->name('image_shutdown.toolboxtalk.store');
     Route::post('/image_shutdown-toolboxtalk-update/{id}', [ImageShutdownController::class, 'updateToolboxtalk'])->name('image_shutdown.toolboxtalk.update');
+    Route::delete('/toolbox-talk/{id}', [ImageShutdownController::class, 'destroyToolboxTalk'])->name('toolbox-talk.destroy');
+
 
 
 
@@ -144,6 +150,9 @@ Route::get('/SAT/{id}',[SATController::class,'createToolboxTalk'])->name('SAT.to
 Route::get('/SAT-toolboxtalkedit/{id}',[SATController::class,'editToolboxTalk'])->name('SAT.toolboxtalkedit');
  Route::post('/SAT-toolboxtalk-store', [SATController::class, 'storeToolboxtalk'])->name('SAT.toolboxtalk.store');
  Route::post('/SAT-toolboxtalk-update/{id}', [SATController::class, 'updateToolboxtalk'])->name('SAT.toolboxtalk.update');
+ Route::delete('/toolbox-talks/{id}', [SATController::class, 'destroyToolboxTalk'])->name('toolbox-talks.destroy');
+
+
    
 Route::get('/sat', [SATController::class, 'index'])->name('sat.index');
 

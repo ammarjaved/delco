@@ -184,11 +184,11 @@
     <div class="form-group">
         <label for="picture_during_toolbox">Picture During Toolbox</label><br>
         <label for="picture_during_toolbox_yes">
-            <input type="radio" id="picture_during_toolbox_yes" name="picture_during_toolbox" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxtalk->picture_during_toolbox ?? old('picture_during_toolbox', 'no')) === 'yes' ? 'checked' : '' }}>
+            <input type="radio" id="picture_during_toolbox_yes" name="picture_during_toolbox" value="yes"  onclick="toggleImageInputs(true)" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxtalk->picture_during_toolbox ?? old('picture_during_toolbox', 'no')) === 'yes' ? 'checked' : '' }}>
             Yes
         </label>
         <label for="picture_during_toolbox_no">
-            <input type="radio" id="picture_during_toolbox_no" name="picture_during_toolbox" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxtalk->picture_during_toolbox ?? old('picture_during_toolbox', 'no')) === 'no' ? 'checked' : '' }}>
+            <input type="radio" id="picture_during_toolbox_no" name="picture_during_toolbox" value="no"  onclick="toggleImageInputs(false)" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxtalk->picture_during_toolbox ?? old('picture_during_toolbox', 'no')) === 'no' ? 'checked' : '' }}>
             No
         </label>
     </div>
@@ -197,7 +197,7 @@
 
        <!-- Toolbox Image 1-->
        
-<div class="row">
+{{-- <div class="row">
     <div class="col-md-6">
        <div class="form-group">
         <label for="upload_images">Toolbox Images</label><br>
@@ -211,7 +211,7 @@
         </label>
     </div>
     </div>
-</div>
+</div> --}}
 
     <!-- Conditional Image Inputs -->
     <div class="row">
@@ -235,16 +235,38 @@
 </div>
  </div>
 
- <div class="mt-3">
+ <div class="mt-3" id="button-container">
       <button type="submit" class="btn btn-success" id="submitBtn" >Update</button>
     </div>
 
     </form> 
     </div>
+    <form action="{{ route('toolbox-talks.destroy', $toolboxtalk->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this Toolbox Talk?');">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    
+    
  @endsection 
 
  <script>
     function toggleImageInputs(show) {
-    document.getElementById('image_inputs').style.display = show ? 'block' : 'none';
-}
- </script>   
+        const imageInputs = document.getElementById('image_inputs');
+        const updateButton = document.getElementById('submitBtn');
+        const buttonContainer = document.getElementById('button-container');
+
+        if (show) {
+            imageInputs.style.display = 'block';
+            if (updateButton && !imageInputs.contains(updateButton)) {
+                imageInputs.appendChild(updateButton);
+            }
+        } else {
+            imageInputs.style.display = 'none';
+            if (updateButton && !buttonContainer.contains(updateButton)) {
+                buttonContainer.appendChild(updateButton);
+            }
+        }
+    }
+</script>
+  

@@ -200,4 +200,16 @@ class PreCablingController extends Controller
 
         return redirect()->route('pre-cabling.index')->with('success', 'Request Success');
     }
+
+    public function destroyToolboxTalk($id)
+{
+    try {
+        $toolBoxTalk = ToolBoxTalk::findOrFail($id);
+        $toolBoxTalk->delete();
+        return redirect()->route('pre-cabling.index')->with('success', 'ToolBoxTalk deleted successfully');
+    } catch (\Throwable $th) {
+        return redirect()->route('pre-cabling.index')->with('failed', 'Failed to delete ToolBoxTalk');
+    }
+}
+
 }
