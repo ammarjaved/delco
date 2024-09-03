@@ -253,18 +253,23 @@
 
  @endsection 
 
+
  <script>
     function toggleImageInputs(show) {
         const imageInputs = document.getElementById('image_inputs');
         const updateButton = document.getElementById('submitBtn');
+        const buttonContainer = document.getElementById('button-container');
+
         if (show) {
             imageInputs.style.display = 'block';
-            if (updateButton) {
+            if (updateButton && !imageInputs.contains(updateButton)) {
                 imageInputs.appendChild(updateButton);
             }
         } else {
             imageInputs.style.display = 'none';
-            // Optionally, move the button back to its original location if needed
+            if (updateButton && !buttonContainer.contains(updateButton)) {
+                buttonContainer.appendChild(updateButton);
+            }
         }
     }
-</script> 
+</script>

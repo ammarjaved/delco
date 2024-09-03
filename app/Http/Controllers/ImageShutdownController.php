@@ -209,5 +209,17 @@ class ImageShutdownController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     public function destroyToolboxTalk($id)
+     {
+         $toolboxtalk = ToolBoxTalk::findOrFail($id);
+         $toolboxtalk->delete();
+ 
+         return redirect()->route('image-shutdown.index')
+                          ->with('success', 'Toolbox Talk deleted successfully.');
+     }
+
+
+
+
     
 }

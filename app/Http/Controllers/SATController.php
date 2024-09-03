@@ -29,7 +29,9 @@ class SATController extends Controller
         $usr_info = \Auth::user();
 
         // Retrieve all Site Surveys created by the logged-in user
-        $surveys = SiteSurvey::where('created_by', $usr_info->name)->get();
+        // $surveys = SiteSurvey::where('created_by', $usr_info->name)->get();
+
+        $surveys = SiteSurvey::with(['ToolBoxTalkSAT'])->get();
 
         // Pass the surveys to the 'SAT.index' view
         return view('SAT.index', compact('surveys'));
@@ -143,6 +145,7 @@ class SATController extends Controller
     {
         try {
 
+
             $usr_info= \Auth::user();
         //    return $request;
 
@@ -188,6 +191,25 @@ class SATController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
+    public function destroyToolboxTalk($id)
+    {
+        try {
+            // Find the Toolbox Talk by ID
+            $toolboxtalk = ToolBoxTalk::findOrFail($id);
+            
+            // Delete the Toolbox Talk record from the database
+            $toolboxtalk->delete();
+    
+            // Redirect to the specified route with a success message
+            return redirect()->route('sat.index')
+                             ->with('success', 'Toolbox Talk deleted successfully.');
+        } catch (\Exception $e) {
+            // Redirect back with an error message if something goes wrong
+            return redirect()->route('sat.index')
+                             ->with('failed', 'Deletion failed: ' . $e->getMessage());
+        }
+    }
+    
+    
 
 }

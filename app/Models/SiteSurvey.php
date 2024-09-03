@@ -52,6 +52,12 @@ class SiteSurvey extends Model
     }
 
 
+    public function ToolBoxTalkSAT() {
+        return $this->hasOne(ToolBoxTalk::class, 'site_survey_id')->where('skop_kerja', 'SAT');
+    }
+
+
+
     public function imageShutdown()
     {
         return $this->hasMany(ImageShutdown::class, 'site_survey_id');

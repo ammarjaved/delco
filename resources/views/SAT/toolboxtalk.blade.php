@@ -184,11 +184,11 @@
     <div class="form-group">
         <label for="picture_during_toolbox">Picture During Toolbox</label><br>
         <label for="picture_during_toolbox_yes">
-            <input type="radio" id="picture_during_toolbox_yes" name="picture_during_toolbox" value="yes" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->picture_during_toolbox ?? old('picture_during_toolbox', 'no')) === 'yes' ? 'checked' : '' }}>
+            <input type="radio" id="picture_during_toolbox_yes" name="picture_during_toolbox" value="yes"  onclick="toggleImageInputs(true)" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->picture_during_toolbox ?? old('picture_during_toolbox', 'no')) === 'yes' ? 'checked' : '' }}>
             Yes
         </label>
         <label for="picture_during_toolbox_no">
-            <input type="radio" id="picture_during_toolbox_no" name="picture_during_toolbox" value="no" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->picture_during_toolbox ?? old('picture_during_toolbox', 'no')) === 'no' ? 'checked' : '' }}>
+            <input type="radio" id="picture_during_toolbox_no" name="picture_during_toolbox" value="no" onclick="toggleImageInputs(false)" style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;" {{ ($toolboxTalk->picture_during_toolbox ?? old('picture_during_toolbox', 'no')) === 'no' ? 'checked' : '' }}>
             No
         </label>
     </div>
@@ -196,7 +196,7 @@
 </div>
 
        <!-- Toolbox Image 1-->
-       
+{{--        
 <div class="row">
     <div class="col-md-6">
        <div class="form-group">
@@ -211,7 +211,7 @@
         </label>
     </div>
     </div>
-</div>
+</div> --}}
 
     <!-- Conditional Image Inputs -->
     <div class="row">

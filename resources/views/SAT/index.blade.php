@@ -75,8 +75,8 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item" href="{{ route('sat.create', $survey->id) }}"> <i class="fas fa-list-alt"></i> Add SAT</a>
 
-                                            @if ($survey->ToolBoxTalk)    
-                                            <a class="dropdown-item" href="{{  route('SAT.toolboxtalkedit', $survey->ToolBoxTalk->id) }}" > <i class="fas fa-edit"></i>Edit Toolbox</a> 
+                                            @if ($survey->ToolBoxTalkSAT)      
+                                            <a class="dropdown-item" href="{{  route('SAT.toolboxtalkedit', $survey->ToolBoxTalkSAT->id) }}" > <i class="fas fa-edit"></i>Edit Toolbox</a> 
                                         @else
                                             <a class="dropdown-item" href="{{  route('SAT.toolboxtalk', $survey->id) }}"><i class="fas fa-plus"></i>Add Toolbox</a>
                                         @endif
