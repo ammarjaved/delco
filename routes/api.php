@@ -39,6 +39,8 @@ Route::post('/upload-precbl-images',[uploadImagesContoller::class,"preCblImage"]
 Route::post('/upload-shutdown-images',[uploadImagesContoller::class,"shutdownImage"]);
 Route::post('/upload-sat-images',[uploadImagesContoller::class,"satImage"]);
 Route::post('/update-shutdown-images/{id}',[uploadImagesContoller::class,"updateShutdownImage"]);
+Route::post('/update-sat-images/{id}',[uploadImagesContoller::class,"updateSatImage"]);
+
 
 
 Route::post('/',[uploadImagesContoller::class,""]);

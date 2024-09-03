@@ -250,6 +250,54 @@ public function updateShutdownImage(Request $req, $id)
 
 
 
+public function updateSatImage(Request $req, $id)
+{
+    $destinationPath = 'assets/images/';
+    $modelClass = "App\\Models\\SAT";
+    
+    try {
+
+        $imageShutdown = $modelClass::findOrFail($id);
+        $data = $req->all();
+        
+        if ($req->hasFile('image')) {
+            $uploadedFile = $req->file('image');
+            $img_ext = $uploadedFile->getClientOriginalExtension();
+            $filename = 'image' . '-' . strtotime(now()) . rand(10, 100) . '.' . $img_ext;
+            $filePath = public_path($destinationPath . $filename);
+            
+            // Move the file to the destination
+            $uploadedFile->move(public_path($destinationPath), $filename);
+            
+            // Set the image_url and image_name
+            $data['image_url'] = $destinationPath . $filename;
+            $data['image_name'] = $req->image_name;
+            
+            // Delete the old image file if it exists
+            // if ($imageShutdown->image_url && file_exists(public_path($imageShutdown->image_url))) {
+            //     unlink(public_path($imageShutdown->image_url));
+            // }
+        }
+        
+        // Update only the fields that are present in $data
+        $imageShutdown->update($data);
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'Data updated successfully',
+            'error' => null,
+        ], 200);
+    } catch (\Throwable $th) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Server-side error',
+            'error' => $th->getMessage(),
+        ], 500);
+    }
+}
+
+
+
 
 public function shutdownImage(Request $req)
 {
