@@ -73,7 +73,7 @@
             <label for="jenis">PE Jenis</label>
             <select name="jenis" id="jenis" class="form-control" value="{{ $siteSurvey->jenis ?? old('jenis') }}">
                                 <option value="" hidden>Select Type</option>
-                                <option value="STANDALONE"  {{ (old('jenis', $siteSurvey->jenis ?? '') == 'STANDALONE') ? 'selected' : '' }}>STANDALONE</option>
+                                <option value="STAND-ALONE"  {{ (old('jenis', $siteSurvey->jenis ?? '') == 'STANDALONE') ? 'selected' : '' }}>STANDALONE</option>
                                 <option value="ATTACHED" {{ (old('jenis', $siteSurvey->jenis ?? '') == 'ATTACHED') ? 'selected' : '' }}>ATTACHED</option>
                                 <option value="OUTDOOR" {{ (old('jenis', $siteSurvey->jenis ?? '') == 'OUTDOOR') ? 'selected' : '' }}>OUTDOOR</option>
                                 <option value="COMPACT" {{ (old('jenis', $siteSurvey->jenis ?? '') == 'COMPACT') ? 'selected' : '' }}>COMPACT</option>
@@ -98,11 +98,11 @@
                     <label for="jenis_kompaun">Jenis Kompaun</label>
                     <select class="form-control" id="jenis_kompaun" name="jenis_kompaun">
                 <option value="">Pilih Jenis Kompaun</option>
-                <option value="Simen" {{ (old('jenis_kompaun', $siteSurvey->jenis_kompaun ?? '') == 'Simen') ? 'selected' : '' }}>Simen</option>
-                <option value="Rumput" {{ (old('jenis_kompaun', $siteSurvey->jenis_kompaun ?? '') == 'Rumput') ? 'selected' : '' }}>Rumput</option>
-                <option value="inter-locking" {{ (old('jenis_kompaun', $siteSurvey->jenis_kompaun ?? '') == 'inter-locking') ? 'selected' : '' }}>inter-locking</option>
-                <option value="Crusher Run" {{ (old('jenis_kompaun', $siteSurvey->jenis_kompaun ?? '') == 'Crusher Run') ? 'selected' : '' }}>Crusher Run</option>
-                <option value="Tidak" {{ (old('jenis_kompaun', $siteSurvey->jenis_kompaun ?? '') == 'Tidak') ? 'selected' : '' }}>Tidak</option>
+                <option value="SIMEN" {{ (old('jenis_kompaun', $siteSurvey->jenis_kompaun ?? '') == 'Simen') ? 'selected' : '' }}>Simen</option>
+                <option value="RUMPUT" {{ (old('jenis_kompaun', $siteSurvey->jenis_kompaun ?? '') == 'Rumput') ? 'selected' : '' }}>Rumput</option>
+                <option value="INTER-LOCKING" {{ (old('jenis_kompaun', $siteSurvey->jenis_kompaun ?? '') == 'inter-locking') ? 'selected' : '' }}>inter-locking</option>
+                <option value="CRUSHER-RUN" {{ (old('jenis_kompaun', $siteSurvey->jenis_kompaun ?? '') == 'Crusher Run') ? 'selected' : '' }}>Crusher Run</option>
+                <option value="TIDAK" {{ (old('jenis_kompaun', $siteSurvey->jenis_kompaun ?? '') == 'Tidak') ? 'selected' : '' }}>Tidak</option>
             </select>
                 </div>
         </div>    
@@ -177,8 +177,8 @@
                 <!-- <input type="text" class="form-control" id="kabel_jenis{{ $i }}" name="kabel_jenis{{ $i }}" value="{{ $siteSurvey->{"kabel_jenis{$i}"} ?? old("kabel_jenis{$i}") }}"> -->
             <select class="form-control" id="kabel_jenis{{ $i }}" name="kabel_jenis{{ $i }}">
                 <option value="">Jenis Perkakasuis</option>
-                <option value="2S+1F" {{ (old('kabel_jenis'.$i, $siteSurvey->{"kabel_jenis{$i}"} ?? '') == 'PILC') ? 'selected' : '' }}>PILC</option>
-                <option value="2S+2F" {{ (old('kabel_jenis'.$i, $siteSurvey->{"kabel_jenis{$i}"} ?? '') == 'XLPE') ? 'selected' : '' }}>XLPE</option>
+                <option value="PILC" {{ (old('kabel_jenis'.$i, $siteSurvey->{"kabel_jenis{$i}"} ?? '') == 'PILC') ? 'selected' : '' }}>PILC</option>
+                <option value="XLPE" {{ (old('kabel_jenis'.$i, $siteSurvey->{"kabel_jenis{$i}"} ?? '') == 'XLPE') ? 'selected' : '' }}>XLPE</option>
             </select>
             </div>
         </div>
@@ -188,8 +188,8 @@
                         <!-- <input type="text" class="form-control" id="kabel_saiz{{ $i }}" name="kabel_saiz{{ $i }}" value="{{ $siteSurvey->{"kabel_saiz{$i}"} ?? old("kabel_saiz{$i}") }}"> -->
             <select class="form-control" id="kabel_saiz{{ $i }}" name="kabel_saiz{{ $i }}">
                 <option value="">Jenis Perkakasuis</option>
-                <option value="2S+1F" {{ (old('kabel_saiz'.$i, $siteSurvey->{"kabel_jenis{$i}"} ?? '') == '70MM') ? 'selected' : '' }}>70MM</option>
-                <option value="2S+2F" {{ (old('kabel_saiz'.$i, $siteSurvey->{"kabel_jenis{$i}"} ?? '') == '185MM') ? 'selected' : '' }}>185MM</option>
+                <option value="70MM" {{ (old('kabel_saiz'.$i, $siteSurvey->{"kabel_jenis{$i}"} ?? '') == '70MM') ? 'selected' : '' }}>70MM</option>
+                <option value="185MM" {{ (old('kabel_saiz'.$i, $siteSurvey->{"kabel_jenis{$i}"} ?? '') == '185MM') ? 'selected' : '' }}>185MM</option>
             </select>
             </div>
         </div>    
@@ -215,13 +215,29 @@
         <div class="col-md-6">
         <div class="form-group">
             <label for="scada_status">SCADA Status</label>
-            <input type="text" class="form-control" id="scada_status" name="scada_status" value="{{ $siteSurvey->scada_status ?? old('scada_status') }}">
+            <!-- <input type="text" class="form-control" id="scada_status" name="scada_status" value="{{ $siteSurvey->scada_status ?? old('scada_status') }}"> -->
+            <label style="display: inline-block; margin-right: 15px;">
+        <input type="radio" name="scada_status" value="yes" {{ (old('scada_status', $siteSurvey->scada_status ?? '') == 'yes') ? 'checked' : '' }} style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;">
+            Yes
+        </label>
+        <label style="display: inline-block;">
+            <input type="radio" name="scada_status" value="no" {{ (old('scada_status', $siteSurvey->scada_status ?? '') == 'no') ? 'checked' : '' }} style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;">
+            No
+        </label>
         </div>
         </div>
         <div class="col-md-6">
         <div class="form-group">
             <label for="bekalan_lv">Bekalan LV</label>
-            <input type="text" class="form-control" id="bekalan_lv" name="bekalan_lv" value="{{ $siteSurvey->bekalan_lv ?? old('bekalan_lv') }}">
+            <!-- <input type="text" class="form-control" id="bekalan_lv" name="bekalan_lv" value="{{ $siteSurvey->bekalan_lv ?? old('bekalan_lv') }}"> -->
+            <label style="display: inline-block; margin-right: 15px;">
+        <input type="radio" name="bekalan_lv" value="yes" {{ (old('bekalan_lv', $siteSurvey->bekalan_lv ?? '') == 'yes') ? 'checked' : '' }} style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;">
+            Yes
+        </label>
+        <label style="display: inline-block;">
+            <input type="radio" name="bekalan_lv" value="no" {{ (old('bekalan_lv', $siteSurvey->bekalan_lv ?? '') == 'no') ? 'checked' : '' }} style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;">
+            No
+        </label>
         </div>
         </div>
         <div class="col-md-6">
@@ -239,7 +255,15 @@
         <div class="col-md-6">
         <div class="form-group">
             <label for="jenis_lvdb">Jenis LVDB</label>
-            <input type="text" class="form-control" id="jenis_lvdb" name="jenis_lvdb" value="{{ $siteSurvey->jenis_lvdb ?? old('jenis_lvdb') }}">
+            <!-- <input type="text" class="form-control" id="jenis_lvdb" name="jenis_lvdb" value="{{ $siteSurvey->jenis_lvdb ?? old('jenis_lvdb') }}"> -->
+            <label style="display: inline-block; margin-right: 15px;">
+        <input type="radio" name="jenis_lvdb" value="DIN" {{ (old('jenis_lvdb', $siteSurvey->jenis_lvdb ?? '') == 'DIN') ? 'checked' : '' }} style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;">
+            DIN
+        </label>
+        <label style="display: inline-block;">
+            <input type="radio" name="jenis_lvdb" value="BS" {{ (old('jenis_lvdb', $siteSurvey->jenis_lvdb ?? '') == 'BS') ? 'checked' : '' }} style="appearance: radio; -webkit-appearance: radio; -moz-appearance: radio; width: auto; display: inline-block; margin-right: 5px;">
+            BS
+        </label>
         </div>
         </div>
         <div class="col-md-6">
