@@ -132,31 +132,32 @@ public function shutdownImage(Request $req)
 {
     $destinationPath = 'assets/images/';
     $modelClass = "App\\Models\\ImageShutdown";
-    $checkImg = $modelClass::where('image_name', $req->image_name)->where('site_survey_id','=',$req->site_survey_id)->where('image_type','=',$req->image_type)->first();
+   // $checkImg = $modelClass::where('image_name', $req->image_name)->where('site_survey_id','=',$req->site_survey_id)->where('image_type','=',$req->image_type)->first();
     
     try {
         $data = $req->all();
         
-        if ($checkImg) {
-            // Update existing record
-            $preCblImage = $checkImg;
+        // if ($checkImg) {
+        //     // Update existing record
+        //     $preCblImage = $checkImg;
             
-            // Check if updated_by is empty and handle accordingly
-            if (empty($data['updated_by'])) {
-                // You can either set it to a default value
-                $data['updated_by'] = $req->created_by;
-                // Or you can unset it to keep the previous value
-                // unset($data['updated_by']);
-            }
-        } else {
+        //     // Check if updated_by is empty and handle accordingly
+        //     if (empty($data['updated_by'])) {
+        //         // You can either set it to a default value
+        //         $data['updated_by'] = $req->created_by;
+        //         // Or you can unset it to keep the previous value
+        //         // unset($data['updated_by']);
+        //     }
+        // } else {
             // Create a new model instance
             $preCblImage = new $modelClass();
             
             // For new records, set created_by if it's empty
             if (empty($data['created_by'])) {
                 $data['created_by'] = $req->created_by;
+                $data['updated_by'] = $req->created_by;
             }
-        }
+  //      }
         
         // Fill the model with all request data
         $preCblImage->fill($data);
@@ -175,15 +176,16 @@ public function shutdownImage(Request $req)
             $preCblImage->image_name = $req->image_name;
             
             // If updating, delete the old image file if it exists
-            if ($checkImg && file_exists(public_path($checkImg->image_url))) {
-                unlink(public_path($checkImg->image_url));
-            }
+
+            // if ($checkImg && file_exists(public_path($checkImg->image_url))) {
+            //     unlink(public_path($checkImg->image_url));
+            // }
         }
      //   return         $preCblImage;
         // Save the model instance with all data
         $preCblImage->save();
 
-        $message = $checkImg ? 'Data updated successfully' : 'Data inserted successfully';
+        $message ='Data inserted successfully';
         
         return response()->json([
             'success' => true,
