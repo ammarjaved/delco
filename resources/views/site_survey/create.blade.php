@@ -305,7 +305,7 @@
                                     @if (isset($siteSurvey1) && $siteSurvey1->{ "{$field}_image{$i}"})
                                         <img src="{{ asset($siteSurvey1->{"{$field}_image{$i}"}) }}" id='img_{{$field}}{{$i}}' alt="{{ ucwords(str_replace('_', ' ', $field)) }} Image {{ $i }}" class="img-thumbnail mt-2" style="max-width: 200px;">
                                     @else
-                                        <img src="" 
+                                        <img src="{{ URL::asset('assets/web-images/download.png') }}" 
                                         id='img_{{$field}}{{$i}}' alt="{{ ucwords(str_replace('_', ' ', $field)) }} Image {{ $i }}" class="img-thumbnail mt-2" style="max-width: 200px;">
 
                                     @endif

@@ -129,30 +129,30 @@
                     <td>{{ $survey->nama_pe }}</td>
                     <td>{{ $survey->kawasan }}</td>
                     <td>
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{ route('site_survey.show', $survey) }}">
-                                    <i class="fas fa-eye"></i> Show
-                                </a>
-                                <a class="dropdown-item" href="{{ route('site_survey.edit', $survey) }}">
-                                    <i class="fas fa-edit"></i> Edit
-                                </a>
-                                <a class="dropdown-item" href="{{ route('siteFileUploadView.index', ['id' => $survey->id]) }}">
-                                    <i class="fas fa-paperclip"></i> Attach Files
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <form action="{{ route('site_survey.destroy', $survey->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this Site Survey?');" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="dropdown-item text-danger">
-                                        <i class="fas fa-trash-alt"></i> Delete Site Survey
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+                    <div class="dropdown" style="position: absolute; z-index: 10000">
+    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-ellipsis-v"></i>
+    </button>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="{{ route('site_survey.show', $survey) }}">
+            <i class="fas fa-eye"></i> Show
+        </a>
+        <a class="dropdown-item" href="{{ route('site_survey.edit', $survey) }}">
+            <i class="fas fa-edit"></i> Edit
+        </a>
+        <a class="dropdown-item" href="{{ route('siteFileUploadView.index', ['id' => $survey->id]) }}">
+            <i class="fas fa-paperclip"></i> Attach Files
+        </a>
+        <div class="dropdown-divider"></div>
+        <form action="{{ route('site_survey.destroy', $survey->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this Site Survey?');" style="display:inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="dropdown-item text-danger">
+                <i class="fas fa-trash-alt"></i> Delete Site Survey
+            </button>
+        </form>
+    </div>
+</div>
   
                     </td>    
                 </tr>
