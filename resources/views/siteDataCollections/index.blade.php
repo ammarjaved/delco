@@ -49,7 +49,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card" style="background-color:#E0EEE0;">
                         <div class="card-header">
                             <div class="card-title">
                                 <a href="{{ route('site-data-collection.create') }}" class="btn  btn-sm"
