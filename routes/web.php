@@ -86,6 +86,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('site-file-upload/{id}', [SiteSurveyFilesController::class, 'index'])->name('siteFileUploadView.index');
 
+    //DelcoSummary
+    Route::get('/delco-summary', [SiteSurveyController::class, 'delcoSummary'])->name('delco-summary');
 
 
     // Route to handle the form submission

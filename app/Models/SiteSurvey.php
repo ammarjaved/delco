@@ -69,4 +69,30 @@ class SiteSurvey extends Model
 }
 
 
+//PreCablingStatus', 'ShutDownStatus','SATStatus
+
+
+public function PreCablingStatus()
+{
+
+    return $this->hasOne(PreCabling::class, 'site_survey_id');
+
+
+}
+
+
+public function ShutDownStatus()
+{
+    return $this->hasMany(ImageShutdown::class, 'site_survey_id');
+}
+
+
+public function SATStatus()
+{
+    return $this->hasMany(SAT::class, 'site_survey_id');
+
+}
+
+
+
 }

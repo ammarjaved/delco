@@ -28,6 +28,23 @@ class SiteSurveyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function delcoSummary()
+     {
+         $usr_info = \Auth::user();
+         $delcoSummary = SiteSurvey::with(['PreCablingStatus', 'ShutDownStatus','SATStatus'])->get();
+
+        //  return  $data;
+     
+         // Pass the surveys to the 'DelcoSummary.DelcoSummary' view
+         return view('DelcoSummary.DelcoSummary', compact('delcoSummary'));
+     }
+
+
+
+
+
+
     public function index()
     {
          $myuser=\Auth::user();
@@ -352,4 +369,7 @@ class SiteSurveyController extends Controller
     
         
     }
+
+
+
 }

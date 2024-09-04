@@ -19,10 +19,25 @@
 
 
         <nav class="mt-2">
+            
 
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 @if (Auth::user()->type === true)
+
+
+
+                <li
+                        class="nav-item">
+                        <a href="{{ route('delco-summary') }} " class="nav-link">
+                            <i class="fa fa-book"></i>
+                            <p>
+                                Delco Summary
+                                
+                            </p>
+                        </a>
+                        
+                    </li>
                     <li
                         class="nav-item {{ Request::route()->getName() === 'site_survey.create' || Request::route()->getName() === 'site_survey.index' ? 'menu-is-opening menu-open' : '' }}">
                         <a href="#" class="nav-link">
@@ -198,6 +213,7 @@
     </li>
 </ul>                
  </li>
+
 
 
                 @endif
