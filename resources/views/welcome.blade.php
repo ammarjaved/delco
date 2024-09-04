@@ -69,7 +69,7 @@
     <div class="container" >
         <h4 style=" font-family: Arial, sans-serif italic;font-size: 100px;font-style: italic; ;"><span  style="color:#D5212D;">D</span><span style="color:#767BBC;">A</span><span style="color:#D5212D">LCO</span></h4>
         <img src="{{ URL::asset('assets/web-images/main-logo.png') }}" alt="" height="265">
-        <a href="{{ route('site_survey.index') }}">
+        <a href="{{ route('delco-summary') }}">
             <button class="btn  btn-success mt-4"> GOTO MAIN</button>
         </a>
     </div>
