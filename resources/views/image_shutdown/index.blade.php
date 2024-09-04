@@ -79,7 +79,8 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item" href="{{ route('image-shutdown.create', $survey->id) }}"> <i class="fas fa-list-alt"></i> Add Image Shutdown</a>
                                           
-                                    
+                                           <a class="dropdown-item" href="{{ route('image-shutdown-attachment.index', $survey->id) }}"><i class="fa fa-paperclip"></i>Add Image Shutdown Attachments</a> 
+                                           
                                             @if ($survey->toolBoxTalkOutage)    
                                             <a class="dropdown-item" href="{{  route('image_shutdown.toolboxtalkedit', $survey->toolBoxTalkOutage->id) }}" ><i class="fas fa-edit"></i>Edit Toolbox</a> 
                                         @else

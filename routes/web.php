@@ -31,6 +31,8 @@ use App\Http\Controllers\SiteSurveyFilesController;
 use App\Http\Controllers\ImageShutdownController;
 use App\Http\Controllers\SATController;
 use App\Http\Controllers\LKSController;
+use App\Http\Controllers\ImageShutdownAttachmentsController;
+use App\Http\Controllers\SATAttachmentsController;
 
 use App\Http\Controllers\Materialshow;
 use App\Http\Controllers\PreCablingAttachmentsController;
@@ -39,6 +41,7 @@ use App\Http\Controllers\PreCablingImagesController;
 use App\Http\Controllers\PreCablingShutDownController;
 use App\Models\PreCablingImages;
 use App\Models\SAT;
+use App\Models\SATAttachments;
 
 /*
 |--------------------------------------------------------------------------
@@ -143,6 +146,10 @@ Route::put('image-shutdown/{id}', [ImageShutdownController::class, 'update'])->n
 // Define the route to handle deletion of an image shutdown
 Route::delete('image-shutdown/{id}', [ImageShutdownController::class, 'destroy'])->name('image-shutdown.destroy');
 
+Route::resource('image-shutdown-attachments',ImageShutdownAttachmentsController::class,['except'=>['index']]);  
+Route::get('/image-shutdown-attachment/{id}/index',[ImageShutdownAttachmentsController::class,'index'])->name('image-shutdown-attachment.index');
+
+
 
 
 
@@ -152,6 +159,11 @@ Route::get('/SAT-toolboxtalkedit/{id}',[SATController::class,'editToolboxTalk'])
  Route::post('/SAT-toolboxtalk-update/{id}', [SATController::class, 'updateToolboxtalk'])->name('SAT.toolboxtalk.update');
  Route::delete('/toolbox-talks/{id}', [SATController::class, 'destroyToolboxTalk'])->name('toolbox-talks.destroy');
 
+ Route::resource('sat-attachments', SATAttachmentsController::class);
+
+
+ Route::get('/sat-attachment/{id}/index', [SATAttachmentsController::class, 'index'])->name('sat-attachment.index');
+ 
 
    
 Route::get('/sat', [SATController::class, 'index'])->name('sat.index');
