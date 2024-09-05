@@ -372,17 +372,23 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
     <div class="container">
     <div class="header">
         <div class="logo">
-            <img src="{{ URL::asset('assets/web-images/tnblogo.png') }}" alt="TNB Logo">
-            <p>TNB ENERGY SERVICES SDN BHD (344878-B)<br>
-            Level 2, Jalan Air Hitam, Kawasan 16,<br>
-            40000 Shah Alam, Selangor</p>
+            @if($projectName === 'AERO-KL' || $projectName === 'AERO-JOHOR')
+                <img src="{{ URL::asset('assets/web-images/main-logo.png') }}" alt="Aerosynergy Solutions Logo">
+                <p>AEROSYNERGY SOLUTIONS SDN BHD<br>
+                 NO. 12B, 2, Jalan PJS 8/12a 46150 Petaling Jaya Selangor</p>
+            @elseif($projectName === 'ARAS-JOHOR')
+                <img src="{{ URL::asset('assets/web-images/araslogo.png') }}" alt="ARAS Kejuruteraan Logo">
+                <p>ARAS KEJURUTERAAN SDN BHD<br>
+                1st Floor No 72, Jalan SS 21/1, Damansara<br>
+                Utama, 47400 Petaling Jaya, Selangor</p>
+            @else
+                <!-- Default logo or empty state -->
+                <img src="{{ URL::asset('assets/web-images/defaultlogo.png') }}" alt="Default Logo">
+                <p>Default Company Name<br>
+                Default Address</p>
+            @endif
         </div>
-        <div class="logo">
-            <img src="{{ URL::asset('assets/web-images/araslogo.png') }}" alt="AK Logo">
-            <p>ARAS KEJURUTERAAN SDN BHD<br>
-            1st Floor No 72, Jalan SS 21/1, Damansara<br>
-            Utama, 47400 Petaling Jaya, Selangor</p>
-        </div>
+        
     </div>
     <div class="content">
         <p>SITE SURVEY</p>
@@ -396,16 +402,21 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
 
     <div class="header" style="padding-top: 300px">
         <div class="logo">
-            <img src="{{ URL::asset('assets/web-images/tnblogo.png') }}" alt="TNB Logo">
-            <p>TNB ENERGY SERVICES SDN BHD (234667-M)<br>
-            Level 2, Jalan Air Hitam, Kawasan 16,<br>
-            40000 Shah Alam, Selangor</p>
-        </div>
-        <div class="logo">
-            <img src="{{ URL::asset('assets/web-images/araslogo.png') }}" alt="AK Logo">
-            <p>ARUS KEJURUTERAAN SDN BHD<br>
-            1st Floor No 72, Jalan SS 21/1, Damansara<br>
-            Utama, 47400 Petaling Jaya, Selangor</p>
+            @if($projectName === 'AERO-KL' || $projectName === 'AERO-JOHOR')
+                <img src="{{ URL::asset('assets/web-images/main-logo.png') }}" alt="Aerosynergy Solutions Logo">
+                <p>AEROSYNERGY SOLUTIONS SDN BHD<br>
+                Address details for Aerosynergy Solutions</p>
+            @elseif($projectName === 'ARAS-JOHOR')
+                <img src="{{ URL::asset('assets/web-images/araslogo.png') }}" alt="ARAS Kejuruteraan Logo">
+                <p>ARAS KEJURUTERAAN SDN BHD<br>
+                1st Floor No 72, Jalan SS 21/1, Damansara<br>
+                Utama, 47400 Petaling Jaya, Selangor</p>
+            @else
+                <!-- Default logo or empty state -->
+                <img src="{{ URL::asset('assets/web-images/defaultlogo.png') }}" alt="Default Logo">
+                <p>Default Company Name<br>
+                Default Address</p>
+            @endif
         </div>
     </div>
 
@@ -619,11 +630,21 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
             40000 Shah Alam, Selangor</p>
         </div>
         <div class="logo">
-            
- <img src="{{ URL::asset('assets/web-images/araslogo.png') }}" alt="AK Logo">
-            <p>ARUS KEJURUTERAAN SDN BHD<br>
-            1st Floor No 72, Jalan SS 21/1, Damansara<br>
-            Utama, 47400 Petaling Jaya, Selangor</p>
+            @if($projectName === 'AERO-KL' || $projectName === 'AERO-JOHOR')
+                <img src="{{ URL::asset('assets/web-images/main-logo.png') }}" alt="Aerosynergy Solutions Logo">
+                <p>AEROSYNERGY SOLUTIONS SDN BHD<br>
+               NO. 12B, 2, Jalan PJS 8/12a 46150 Petaling Jaya Selangor</p>
+            @elseif($projectName === 'ARAS-JOHOR')
+                <img src="{{ URL::asset('assets/web-images/araslogo.png') }}" alt="ARAS Kejuruteraan Logo">
+                <p>ARAS KEJURUTERAAN SDN BHD<br>
+                1st Floor No 72, Jalan SS 21/1, Damansara<br>
+                Utama, 47400 Petaling Jaya, Selangor</p>
+            @else
+                <!-- Default logo or empty state -->
+                <img src="{{ URL::asset('assets/web-images/defaultlogo.png') }}" alt="Default Logo">
+                <p>Default Company Name<br>
+                Default Address</p>
+            @endif
         </div>
     </div>
 
@@ -748,12 +769,22 @@ $toolboxImageFields = ['toolbox_image1', 'toolbox_image2'];
             Level 2, Jalan Air Hitam, Kawasan 16,<br>
             40000 Shah Alam, Selangor</p>
         </div>
-        <div class="logo">
-            <img src="{{ URL::asset('assets/web-images/araslogo.png') }}" alt="AK Logo">
-
-            <p>ARUS KEJURUTERAAN SDN BHD<br>
-            1st Floor No 72, Jalan SS 21/1, Damansara<br>
-            Utama, 47400 Petaling Jaya, Selangor</p>
+          <div class="logo">
+            @if($projectName === 'AERO-KL' || $projectName === 'AERO-JOHOR')
+                <img src="{{ URL::asset('assets/web-images/main-logo.png') }}" alt="Aerosynergy Solutions Logo">
+                <p>AEROSYNERGY SOLUTIONS SDN BHD<br>
+               NO. 12B, 2, Jalan PJS 8/12a 46150 Petaling Jaya Selangor</p>
+            @elseif($projectName === 'ARAS-JOHOR')
+                <img src="{{ URL::asset('assets/web-images/araslogo.png') }}" alt="ARAS Kejuruteraan Logo">
+                <p>ARAS KEJURUTERAAN SDN BHD<br>
+                1st Floor No 72, Jalan SS 21/1, Damansara<br>
+                Utama, 47400 Petaling Jaya, Selangor</p>
+            @else
+                <!-- Default logo or empty state -->
+                <img src="{{ URL::asset('assets/web-images/defaultlogo.png') }}" alt="Default Logo">
+                <p>Default Company Name<br>
+                Default Address</p>
+            @endif
         </div>
     </div>
 

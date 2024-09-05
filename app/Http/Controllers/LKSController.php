@@ -33,18 +33,14 @@ class LKSController extends Controller{
         // return $survey;
         $toolboxtalk = ToolBoxTalk::where('site_survey_id', $survey->id)->get()[0];
 
-
-    
-
-
         $pictureData = SitePicture::where('site_survey_id', $survey->id)->first();
 
-    
 
         $files = FileUpload::where('site_survey_id', $survey->id)->get();
 
         $projectMaterials = ProjectMaterial::where('site_survey_id', $survey->id)->get();
 
+        $projectName = $survey->project;
        
 
        
@@ -53,7 +49,7 @@ class LKSController extends Controller{
       
 
     
-        return view('LKS.show', compact('survey','toolboxtalk','files','pictureData','projectMaterials'));
+        return view('LKS.show', compact('survey','toolboxtalk','files','pictureData','projectMaterials','projectName'));
     }
 
 
